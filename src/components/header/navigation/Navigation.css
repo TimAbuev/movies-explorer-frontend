@@ -1,0 +1,11 @@
+.navigation {
+  color: pink;
+}
+.navigation__link {
+  color: brown;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.navigation__link_active {
+  color: purple;
+}
