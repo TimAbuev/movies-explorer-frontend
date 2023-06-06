@@ -1,6 +1,4 @@
-/* mobile first */
-
-/* 320 */
+/* mobile 320 */
 .not-found-section {
   box-sizing: border-box;
   border: 1px solid blue;
@@ -19,7 +17,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  margin: 10px 0 0;
+  margin: 0;
 }
 .not-found-section__go-back {
   font-weight: 400;
@@ -33,4 +31,23 @@
 .not-found-section__go-back:hover {
   opacity: 70%;
   transition: 0.4s;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .not-found-section__404 {
+    font-size: 140px;
+    line-height: 170px;
+  }
+  .not-found-section__line {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 5px;
+  }
+  .not-found-section__go-back {
+    margin-bottom: 222px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
