@@ -1,10 +1,14 @@
 import '../../index.css';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../header/Header';
+// import NotFound from '../notFound/NotFound';
+import Footer from '../footer/Footer';
+// import Main from '../main/Main'
 
 function App() {
   return (
     <div className="App">
+      {/* header routes */}
       <Routes>
         <Route path="/"
           element={
@@ -62,7 +66,44 @@ function App() {
             />
           } />
 
+        {/* <Route path="/404"
+          element={
+
+          } /> */}
+
       </Routes>
+      {/* footer routes */}
+      <Routes>
+        <Route path="/"
+          element={
+            <Footer
+
+            />
+          }
+        />
+        <Route path="/movies"
+          element={
+            <Footer
+
+            />
+          }
+        />
+        <Route path="/saved-movies"
+          element={
+            <Footer
+
+            />
+          }
+        />
+
+
+      </Routes>
+
+      {/* <Main /> */}
+      {/* invisible components */}
+      {/* <NotFound/> */}
+
+
     </div>
   );
 }

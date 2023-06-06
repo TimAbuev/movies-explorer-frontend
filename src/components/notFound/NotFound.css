@@ -1,0 +1,11 @@
+/* mobile first */
+
+/* 320 */
+.not-found-section {
+  color: pink;
+  border: 1px solid blue;
+  visibility: hidden;
+}
+.not-found-section__404 {
+  font-size: 80px;
+}
