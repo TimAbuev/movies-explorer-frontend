@@ -1,7 +1,7 @@
 import '../../index.css';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../header/Header';
-// import NotFound from '../notFound/NotFound';
+import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
 // import Main from '../main/Main'
 
@@ -76,27 +76,29 @@ function App() {
       <Routes>
         <Route path="/"
           element={
-            <Footer
-
-            />
+            <Footer />
           }
         />
         <Route path="/movies"
           element={
-            <Footer
-
-            />
+            <Footer />
           }
         />
         <Route path="/saved-movies"
           element={
-            <Footer
-
-            />
+            <Footer />
           }
         />
 
 
+      </Routes>
+      {/* {404 routes} */}
+      <Routes>
+        <Route path="/notFound"
+          element={
+            <NotFound />
+          }
+        />
       </Routes>
 
       {/* <Main /> */}

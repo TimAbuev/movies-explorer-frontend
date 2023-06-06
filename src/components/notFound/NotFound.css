@@ -2,10 +2,35 @@
 
 /* 320 */
 .not-found-section {
-  color: pink;
+  box-sizing: border-box;
   border: 1px solid blue;
-  visibility: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .not-found-section__404 {
+  font-weight: 400;
   font-size: 80px;
+  line-height: 96px;
+  margin: 329px 0 0;
+}
+.not-found-section__line {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 10px 0 0;
+}
+.not-found-section__go-back {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  margin-bottom: 30px;
+}
+.not-found-section__go-back:hover {
+  opacity: 70%;
+  transition: 0.4s;
 }
