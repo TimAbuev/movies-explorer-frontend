@@ -97,3 +97,28 @@
   }
 
 }
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .tech {
+    padding: 100px 0;
+    margin: 0 70px;
+  }
+
+  .tech__decorate {
+    margin-bottom: 90px;
+  }
+
+  .tech__paragraph {
+    margin-top: 26px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .tech__grid {
+    max-width: calc(90px * 7 + 60px); /*сумма всех ячеек*/
+    margin-top: 100px;
+  }
+
+}
