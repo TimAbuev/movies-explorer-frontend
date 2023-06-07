@@ -4,16 +4,18 @@ function AboutProject() {
 
       <h1 className="aboutProject__header">О проекте</h1>
       <div className="aboutProject__decorate"></div>
-      <article className="aboutProject__article">
-        <h2 className="aboutProject__header">Дипломный проект включал 5 этапов</h2>
-        <p className="aboutProject__paragraph">Составление плана, работу над бэкендом,
-          вёрстку, добавление функциональности и финальные доработки.</p>
-      </article>
-      <article className="aboutProject__article">
-        <h2 className="aboutProject__header">На выполнение диплома ушло 5 недель</h2>
-        <p className="aboutProject__paragraph">У каждого этапа был мягкий и жёсткий дедлайн,
-          которые нужно было соблюдать, чтобы успешно защититься.</p>
-      </article>
+      <div className="aboutProject__container">
+        <article className="aboutProject__article">
+          <h2 className="aboutProject__header aboutProject__header_mod_h2">Дипломный проект включал 5 этапов</h2>
+          <p className="aboutProject__paragraph">Составление плана, работу над бэкендом,
+            вёрстку, добавление функциональности и финальные доработки.</p>
+        </article>
+        <article className="aboutProject__article">
+          <h2 className="aboutProject__header aboutProject__header_mod_h2">На выполнение диплома ушло 5 недель</h2>
+          <p className="aboutProject__paragraph">У каждого этапа был мягкий и жёсткий дедлайн,
+            которые нужно было соблюдать, чтобы успешно защититься.</p>
+        </article>
+      </div>
 
       <table className="aboutProject__table">
         <tr className="aboutProject__table-row">
@@ -25,7 +27,7 @@ function AboutProject() {
           <td className="aboutProject__table-data">Front-end</td>
         </tr>
       </table>
-      
+
     </section>
   );
 }
