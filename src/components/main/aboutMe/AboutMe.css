@@ -1,0 +1,23 @@
+/* mobile 320 */
+
+.aboutMe {
+  box-sizing: border-box;
+  border: 1px solid red;
+  margin: 0 18px;
+  padding: 70px 0;
+  text-align: start;
+}
+
+.aboutMe__header {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.aboutMe__decorate {
+  border-bottom: 1px solid black;
+  margin-top: 28px;
+  margin-bottom: 60px;
+}
+
