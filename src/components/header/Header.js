@@ -15,10 +15,10 @@ function Header(props) {
 
   return (
     <header className="header">
-      <h1>{headerName}</h1>
       <Link to="/" className="header__logo-link">
         <img className="header__logo" src={logo} alt="логотип" />
       </Link>
+      <h1>{headerName}</h1>
       <Navigation
         linkName1={linkName1}
         toLink1={toLink1}

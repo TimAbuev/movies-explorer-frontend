@@ -1,7 +1,9 @@
+import AboutProject from "./aboutProject/AboutProject";
+
 function Main() {
   return (
     <main className="main">
-      <p>lorem  dasdasdasdasdasdasdasd</p>
+      <AboutProject></AboutProject>
     </main>
   )
 }

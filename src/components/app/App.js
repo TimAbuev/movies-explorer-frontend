@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
-// import Main from '../main/Main'
+import Main from '../main/Main'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/"
           element={
             <Header
-              headerName="about проекте"
+
             />
           } />
         <Route path="/movies"
@@ -56,13 +56,13 @@ function App() {
         <Route path="/sign-in"
           element={
             <Header
-              headerName="Авторизация"
+
             />
           } />
         <Route path="/signup"
           element={
             <Header
-              headerName="Регистрация"
+              headerName="Добро пожаловать!"
             />
           } />
 
@@ -72,6 +72,16 @@ function App() {
           } /> */}
 
       </Routes>
+      {/*main routes*/}
+      <Routes>
+        <Route path="/"
+          element={
+            <Main
+
+            />
+          } />
+      </Routes>
+
       {/* footer routes */}
       <Routes>
         <Route path="/"
@@ -100,6 +110,7 @@ function App() {
           }
         />
       </Routes>
+
 
       {/* <Main /> */}
       {/* invisible components */}
