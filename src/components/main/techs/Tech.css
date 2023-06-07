@@ -57,5 +57,43 @@
 .tech__paragraph {
   font-size: 11px;
   line-height: 16px;
-  margin: 0;
+  margin: 24px auto 0;
+  max-width: 460px;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .tech {
+    padding: 90px 0;
+    margin: 0 50px;
+  }
+
+  .tech__header {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .tech__decorate {
+    margin-top: 23px;
+    margin-bottom: 80px;
+  }
+
+  .tech__header_mod_h3 {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .tech__paragraph {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .tech__grid {
+    max-width: 668px;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 83px;
+  }
+
 }
