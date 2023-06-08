@@ -66,3 +66,25 @@
 .portfolio__list-item-p {
   margin: 0;
 }
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .portfolio__header {
+    font-size: 18px;
+  }
+
+  .portfolio__link-of-list {
+    font-size: 28px;
+    line-height: 50px;
+  }
+
+  .portfolio__list-icon {
+    width: 27px;
+    height: 60px;
+  }
+
+  .portfolio {
+    padding-bottom: 90px;
+  }
+}
