@@ -131,3 +131,33 @@
     margin-top: 0;
   }
 }
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .aboutMe {
+    padding: 70px 0 100px 0;
+    margin: 0 70px;
+  }
+
+  .aboutMe__header-name {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .aboutMe__profession {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .aboutMe__paragraph {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 270px;
+  }
+
+  .aboutMe__photo {
+    width: 270px;
+    min-height: 327px;
+  }
+} 
