@@ -5,9 +5,10 @@
   border: 1px solid red;
   margin: 0 14px;
   text-align: start;
+  padding-bottom: 70px;
 }
 
-.aboutMe__header-portfolio {
+.portfolio__header {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
@@ -15,13 +16,13 @@
   color: #A0A0A0;
 }
 
-.aboutMe__list-portfolio {
+.portfolio__list {
   padding: 0;
   list-style: none;
   margin: 40px 0 0;
 }
 
-.aboutMe__link-of-list {
+.portfolio__link-of-list {
   text-decoration: none;
   color: black;
   font-weight: 400;
@@ -34,27 +35,27 @@
   padding-top: 20px;
 }
 
-.aboutMe__link-of-list:first-child {
+.portfolio__link-of-list:first-child {
   padding-top: 0;
 }
 
-.aboutMe__link-of-list:last-child {
+.portfolio__link-of-list:last-child {
   border: none;
   padding-bottom: 0;
 }
 
-.aboutMe__link-of-list:hover {
+.portfolio__link-of-list:hover {
   opacity: 70%;
   transition: 0.4s;
 }
 
-.aboutMe__list-item {
+.portfolio__list-item {
 
   display: flex;
   justify-content: space-between;
 }
 
-.aboutMe__list-icon {
+.portfolio__list-icon {
   width: 18px;
   height: 28px;
   background-image: url(../../../images/arrow.svg);
@@ -62,6 +63,6 @@
   background-position: center;
 }
 
-.aboutMe__list-item-p {
+.portfolio__list-item-p {
   margin: 0;
 }
