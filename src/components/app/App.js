@@ -4,6 +4,7 @@ import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
 import Main from '../main/Main'
+import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
           } /> */}
 
       </Routes>
+
       {/*main routes*/}
       <Routes>
         <Route path="/"
@@ -80,6 +82,15 @@ function App() {
 
             />
           } />
+      </Routes>
+
+      {/* moviesCardLIst routes */}
+      <Routes>
+        <Route path="/movies"
+          element={
+            <MoviesCardList />
+          }
+        />
       </Routes>
 
       {/* footer routes */}
@@ -102,6 +113,7 @@ function App() {
 
 
       </Routes>
+
       {/* {404 routes} */}
       <Routes>
         <Route path="/notFound"
@@ -110,6 +122,8 @@ function App() {
           }
         />
       </Routes>
+
+
 
 
       {/* <Main /> */}
