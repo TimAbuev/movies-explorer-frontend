@@ -44,3 +44,18 @@
     row-gap: 35px;
   }
 }
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .moviesCardList {
+    margin: 0 70px;
+    padding: 70px 0 80px;
+  }
+
+  .moviesCardList__grid-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 28px;
+    row-gap: 32px;
+  }
+}
