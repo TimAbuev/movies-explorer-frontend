@@ -1,0 +1,34 @@
+/* mobile 320 */
+
+.NavTab {
+  display: flex;
+}
+
+.NavTab__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  width: 82px;
+  height: 26px;
+  background-color: #E8E8E8;
+  text-decoration: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.NavTab__link:last-child {
+  margin-right: 0;
+}
+
+.NavTab__link:hover {
+  opacity: 70%;
+  transition: 0.4s;
+}
+
+.NavTab__link-text {
+  margin: 0;
+}
