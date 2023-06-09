@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  border-radius: 10px;
 }
 
 .promo__text {
@@ -16,6 +17,21 @@
   font-weight: 400;
   font-size: 29px;
   line-height: 37px;
-  white-space: pre;
   letter-spacing: -1px;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .promo {
+    height: 834px;
+    margin: 0 20px;
+  }
+
+  .promo__text {
+    margin-top: 350px;
+    max-width: 580px;
+    font-size: 40px;
+    line-height: 52px;
+  }
 }
