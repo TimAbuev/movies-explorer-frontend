@@ -64,3 +64,20 @@
   cursor: not-allowed;
 }
 
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .moviesCard__name {
+    font-size: 15px;
+    padding: 18px;
+  }
+
+  .moviesCard__duration {
+    font-size: 13px;
+    padding: 18px;
+  }
+
+  .moviesCard__button {
+    margin: 18px 0;
+  }
+}
