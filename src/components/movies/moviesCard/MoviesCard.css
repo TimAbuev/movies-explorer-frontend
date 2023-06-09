@@ -52,16 +52,26 @@
   transition: 0.4s;
 }
 
-.moviesCard__button_disabled:hover {
+.moviesCard__button_type_disabled:hover {
   cursor: pointer;
 }
 
-.moviesCard__button_active {
+.moviesCard__button_type_active {
   background-color: #FF4062;
   background-image: url(../../../images/checked.svg);
   background-repeat: no-repeat;
   background-position: center;
   cursor: not-allowed;
+}
+
+.moviesCard__button_type_to-close {
+  background-image: url(../../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.moviesCard__button_type_to-close:hover {
+  cursor: pointer;
 }
 
 /*tablet 768 */
@@ -81,3 +91,9 @@
     margin: 18px 0;
   }
 }
+
+/* desktop 1024 */
+
+/* @media screen and (min-width: 960px) {
+
+} */

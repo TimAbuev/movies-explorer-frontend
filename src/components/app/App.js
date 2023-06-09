@@ -91,6 +91,11 @@ function App() {
             <MoviesCardList />
           }
         />
+        <Route path="/saved-movies"
+          element={
+            <MoviesCardList />
+          }
+        />
       </Routes>
 
       {/* footer routes */}
