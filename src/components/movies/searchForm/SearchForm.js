@@ -8,6 +8,7 @@ function SearchForm() {
         <input className="searchForm__input" placeholder="Фильм" />
         <button className="searchForm__button-find"></button>
         <div className="searchForm__decorate-vertical-line"></div>
+        <div className="searchForm__decorate-loupe"></div>
       </div>
       <div className="searchForm__container-for-checkbox">
         <Checkbox></Checkbox>

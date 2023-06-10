@@ -33,4 +33,14 @@
   background-image: url(../../../images/checkbox-active.svg);
 }
 
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .сheckbox__checkbox-label {
+    font-size: 13px;
+  }
+}
+
+
+
 /*end of checkbox*/

@@ -1,15 +1,17 @@
 /*mobile 320*/
 
+.searchForm {
+  border: 1px solid red;
+  box-sizing: border-box;
+  margin: 0 10px;
+  min-height: 272px;
+  position: relative;
+}
+
 .searchForm__container-for-checkbox {
   display: flex;
   justify-content: center;
   margin-top: 46px;
-}
-
-.searchForm {
-  box-sizing: border-box;
-  margin: 0 10px;
-  min-height: 272px;
 }
 
 .searchForm__container-for-input {
@@ -55,7 +57,7 @@
 
 .searchForm__decorate-line {
   border-bottom: 1px solid #E8E8E8;
-  margin: 45px 10px;
+  margin: 45px 0;
 }
 
 /*tablet 768 */
@@ -75,5 +77,33 @@
     position: absolute;
     top: 16px;
     right: calc(227px - 19px);
+  }
+
+  .searchForm__container-for-checkbox {
+    margin-top: 0;
+    position: absolute;
+    top: 96px;
+    right: 20px;
+  }
+
+  .searchForm__decorate-line {
+    margin: 109px 0 10px;
+  }
+
+  .searchForm__input {
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 63px;
+  }
+
+  .searchForm__decorate-loupe {
+    background-image: url(../../../images/loupe.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 19px;
+    left: 19px;
   }
 }
