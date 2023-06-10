@@ -1,0 +1,42 @@
+/* checkbox */
+
+.searchForm__container-for-checkbox {
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+}
+
+.searchForm__checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.searchForm__checkbox-label {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.searchForm__checkbox-label:before {
+  content: "";
+  display: inline-flex;
+  justify-content: end;
+  width: 36px;
+  height: 36px;
+  margin-top: 4px;
+  margin-right: 15px;
+  background-image: url(../../../images/checkbox-disabled.svg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+
+.searchForm__checkbox:checked + .searchForm__checkbox-label:before {
+  background-image: url(../../../images/checkbox-active.svg);
+}
+
+/*end of checkbox*/
