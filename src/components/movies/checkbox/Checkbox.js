@@ -2,10 +2,10 @@ import './Checkbox.css';
 
 function Checkbox() {
   return (
-    <div className="searchForm__container-for-checkbox">
-      <input className="searchForm__checkbox" type="checkbox" id="short-movies-checkbox" />
-      <label className="searchForm__checkbox-label" for="short-movies-checkbox">Короткометражки</label>
-    </div>
+    <>
+      <input className="сheckbox__checkbox" type="checkbox" id="short-movies-checkbox" />
+      <label className="сheckbox__checkbox-label" for="short-movies-checkbox">Короткометражки</label>
+    </>
   )
 }
 export default Checkbox;

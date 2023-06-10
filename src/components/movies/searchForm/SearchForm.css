@@ -1,5 +1,11 @@
 /*mobile 320*/
 
+.searchForm__container-for-checkbox {
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+}
+
 .searchForm {
   box-sizing: border-box;
   margin: 0 10px;
@@ -50,4 +56,24 @@
 .searchForm__decorate-line {
   border-bottom: 1px solid #E8E8E8;
   margin: 45px 10px;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .searchForm {
+    margin: 0 30px;
+  }
+
+  .searchForm__button-find {
+    right: 227px;
+  }
+
+  .searchForm__decorate-vertical-line {
+    border-left: 1px solid #CBCBCB;
+    height: 40px;
+    position: absolute;
+    top: 16px;
+    right: calc(227px - 19px);
+  }
 }

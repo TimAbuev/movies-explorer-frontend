@@ -1,18 +1,12 @@
 /* checkbox */
 
-.searchForm__container-for-checkbox {
-  display: flex;
-  justify-content: center;
-  margin-top: 46px;
-}
-
-.searchForm__checkbox {
+.сheckbox__checkbox {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
 
-.searchForm__checkbox-label {
+.сheckbox__checkbox-label {
   font-weight: 400;
   font-size: 11px;
   line-height: 18px;
@@ -21,10 +15,10 @@
   cursor: pointer;
 }
 
-.searchForm__checkbox-label:before {
+.сheckbox__checkbox-label:before {
   content: "";
   display: inline-flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 36px;
   height: 36px;
   margin-top: 4px;
@@ -35,7 +29,7 @@
   background-size: cover;
 }
 
-.searchForm__checkbox:checked + .searchForm__checkbox-label:before {
+.сheckbox__checkbox:checked + .сheckbox__checkbox-label:before {
   background-image: url(../../../images/checkbox-active.svg);
 }
 
