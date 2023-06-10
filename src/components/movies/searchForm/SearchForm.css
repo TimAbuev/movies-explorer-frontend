@@ -106,4 +106,40 @@
     top: 19px;
     left: 19px;
   }
+
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .searchForm {
+    margin: 0 70px;
+    min-height: 222px;
+  }
+
+  .searchForm__container-for-input {
+    margin-top: 70px;
+  }
+
+  .searchForm__decorate-line {
+    margin: 69px 0 10px;
+  }
+
+  .searchForm__container-for-checkbox {
+    top: 86px;
+    right: 30px;
+  }
+
+  .searchForm__input {
+    padding-right: 30px;
+  }
+
+  .searchForm__button-find {
+    right: 246px;
+  }
+
+  .searchForm__decorate-vertical-line {
+    right:226px;
+  }
+
 }
