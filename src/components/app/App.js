@@ -5,6 +5,7 @@ import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
 import Main from '../main/Main'
 import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
+import SearchForm from '../movies/searchForm/SearchForm'
 
 function App() {
   return (
@@ -82,6 +83,20 @@ function App() {
 
             />
           } />
+      </Routes>
+
+      {/*  SearchForm routes */}
+      <Routes>
+        <Route path="/movies"
+          element={
+            <SearchForm />
+          }
+        />
+        <Route path="/saved-movies"
+          element={
+            <SearchForm />
+          }
+        />
       </Routes>
 
       {/* moviesCardLIst routes */}

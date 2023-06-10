@@ -11,5 +11,6 @@
 @import url(./components/main/portfolio/Portfolio.css);
 @import url(./components/movies/moviesCardList/MoviesCardList.css);
 @import url(./components/movies/moviesCard/MoviesCard.css);
+@import url(./components/movies/searchForm/SearchForm.css);
 @import url(./components/notFound/NotFound.css);
 @import url(./components/footer/Footer.css);
