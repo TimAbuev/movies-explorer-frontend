@@ -1,0 +1,21 @@
+/* mobile 320 */
+
+.navigation { 
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+  
+.navigation__link {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 24px;
+}
+
+.navigation__link:last-child {
+  margin-bottom: 0;
+}

@@ -5,7 +5,9 @@ import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
 import Main from '../main/Main'
 import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
-import SearchForm from '../movies/searchForm/SearchForm'
+import SearchForm from '../movies/searchForm/SearchForm';
+// import Navigation from '../navigation/Navigation';
+import Menu from '../menu/Menu';
 
 function App() {
   return (
@@ -143,13 +145,23 @@ function App() {
         />
       </Routes>
 
-
+      {/* {menu} */}
+      <Routes>
+        <Route path="/menu"
+          element={
+            <Menu
+              linkName1="Главная"
+              linkName2="Фильмы"
+              linkName3="Сохранённые фильмы"
+            />
+          }
+        />
+      </Routes>
 
 
       {/* <Main /> */}
       {/* invisible components */}
       {/* <NotFound/> */}
-
 
     </div>
   );

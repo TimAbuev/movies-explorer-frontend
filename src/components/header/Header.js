@@ -1,6 +1,6 @@
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
-import Navigation from './navigation/Navigation';
+import Navigation from '../navigation/Navigation';
 
 function Header(props) {
   const {

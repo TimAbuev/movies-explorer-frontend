@@ -1,7 +1,7 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
 @import url(./components/app/App.css);
-@import url(./components/header/navigation/Navigation.css);
+@import url(./components/navigation/Navigation.css);
 @import url(./components/main/Main.css);
 @import url(./components/main/promo/Promo.css);
 @import url(./components/main/navTab/NavTab.css);
