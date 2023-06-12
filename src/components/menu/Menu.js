@@ -10,20 +10,22 @@ function Menu(props) {
   } = props;
 
   return (
-    <section className="menu">
-      <div className="menu__top-container">
-        <button className="menu__close-icon"></button>
-        <div className="menu__nav-container">
-          <Navigation
-            linkName1={linkName1}
-            linkName2={linkName2}
-            linkName3={linkName3}
-          />
+    <div className="menu__wrapper">
+      <section className="menu">
+        <div className="menu__top-container">
+          <button className="menu__close-icon"></button>
+          <div className="menu__nav-container">
+            <Navigation
+              linkName1={linkName1}
+              linkName2={linkName2}
+              linkName3={linkName3}
+            />
+          </div>
         </div>
-      </div>
 
-      <Link className="menu__link">Аккаунт</Link>
-    </section>
+        <Link className="menu__link">Аккаунт</Link>
+      </section>
+    </div>
   );
 }
 export default Menu;

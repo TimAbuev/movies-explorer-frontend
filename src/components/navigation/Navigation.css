@@ -16,6 +16,11 @@
   margin-bottom: 24px;
 }
 
+.navigation__link:hover {
+  opacity: 80%;
+  transition: 0.4s;
+}
+
 .navigation__link:last-child {
   margin-bottom: 0;
 }
