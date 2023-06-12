@@ -8,6 +8,7 @@ import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
 import SearchForm from '../movies/searchForm/SearchForm';
 // import Navigation from '../navigation/Navigation';
 import Menu from '../menu/Menu';
+import Register from '../register/Register';
 
 function App() {
   return (
@@ -63,17 +64,6 @@ function App() {
 
             />
           } />
-        <Route path="/signup"
-          element={
-            <Header
-              headerName="Добро пожаловать!"
-            />
-          } />
-
-        {/* <Route path="/404"
-          element={
-
-          } /> */}
 
       </Routes>
 
@@ -154,6 +144,15 @@ function App() {
               linkName2="Фильмы"
               linkName3="Сохранённые фильмы"
             />
+          }
+        />
+      </Routes>
+
+      {/* Register */}
+      <Routes>
+        <Route path="/signup"
+          element={
+            <Register/>
           }
         />
       </Routes>

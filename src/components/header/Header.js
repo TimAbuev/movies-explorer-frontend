@@ -1,6 +1,5 @@
-import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
 import Navigation from '../navigation/Navigation';
+import Logo from '../logo/Logo';
 
 function Header(props) {
   const {
@@ -15,9 +14,7 @@ function Header(props) {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo-link">
-        <img className="header__logo" src={logo} alt="логотип" />
-      </Link>
+      <Logo/>
       <h1>{headerName}</h1>
       <Navigation
         linkName1={linkName1}
