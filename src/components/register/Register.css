@@ -1,6 +1,7 @@
 /* mobile 320 */
 
 .register {
+  border: 1px solid red;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -91,6 +92,7 @@
 }
 
 .register__low-container {
+  border: 1px solid red;
   display: flex;
   justify-content: center;
   margin-top: 14px;
@@ -165,4 +167,16 @@
     line-height: 17px;
   }
 
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .register__top-container {
+    margin: 70px 0 0 0;
+  }
+
+  .register__low-container {
+    margin-bottom: 70px;
+  }
 }
