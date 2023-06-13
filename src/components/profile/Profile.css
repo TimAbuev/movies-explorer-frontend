@@ -94,7 +94,8 @@
   margin-top: 16px;
 }
 
-.profile__btn-edit:hover, .profile__btn-exit:hover {
+.profile__btn-edit:hover,
+.profile__btn-exit:hover {
   opacity: 80%;
   transition: 0.4s;
 }
@@ -103,7 +104,6 @@
 
 @media screen and (min-width: 631px) {
   .profile__header {
-    margin-top: 236px;
     margin: 236px 0 96px;
   }
 
@@ -118,10 +118,22 @@
     line-height: 15px;
   }
 
+  .profile__btn-exit {
+    font-size: 13px;
+    line-height: 15px;
+  }
+
 }
 
 /* desktop 1024 */
 
 @media screen and (min-width: 960px) {
+  .profile__header{
+    margin: 74px 0 123px;
+  }
 
+  .profile__low-container {
+    margin-top: 0;
+    margin-bottom: 70px;
+  }
 }
