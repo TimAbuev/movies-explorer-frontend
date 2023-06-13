@@ -9,6 +9,7 @@ import SearchForm from '../movies/searchForm/SearchForm';
 // import Navigation from '../navigation/Navigation';
 import Menu from '../menu/Menu';
 import Register from '../register/Register';
+import Login from '../login/Login';
 
 function App() {
   return (
@@ -55,13 +56,6 @@ function App() {
               toLink2="/saved-movies"
               linkName3="Аккаунт"
               toLink3="/profile"
-            />
-          } />
-
-        <Route path="/sign-in"
-          element={
-            <Header
-
             />
           } />
 
@@ -152,7 +146,16 @@ function App() {
       <Routes>
         <Route path="/signup"
           element={
-            <Register/>
+            <Register />
+          }
+        />
+      </Routes>
+
+      {/* Login */}
+      <Routes>
+        <Route path="/signin"
+          element={
+            <Login />
           }
         />
       </Routes>

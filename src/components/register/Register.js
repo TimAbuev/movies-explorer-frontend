@@ -26,7 +26,7 @@ function Register() {
 
       <div className="register__low-container">
         <p className="register__text-link">Уже зарегистрированы?</p>
-        <Link className="register__link" to="/sign-in">Войти</Link>
+        <Link className="register__link" to="/signin">Войти</Link>
       </div>
     </section>
   );
