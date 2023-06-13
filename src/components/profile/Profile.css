@@ -1,0 +1,135 @@
+/* mobile 320 */
+
+.profile {
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.profile__top-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+  border: 1px solid red;
+  width: 100%;
+  max-width: 410px;
+  min-width: 260px;
+}
+
+.profile__header {
+  margin: 62px 0 82px;
+  margin-top: 62px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.profile__low-container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 14px;
+  margin-bottom: 48px;
+  align-items: center;
+}
+
+.profile__container-for-input {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 17px;
+}
+
+.profile__container-for-input:first-of-type {
+  margin-top: 0;
+}
+
+.profile__label {
+  min-width: max-content;
+  position: absolute;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__input {
+  width: 100%;
+  text-align: right;
+  border: 0;
+  border-bottom: 1px solid #E8E8E8;
+  padding: 0 0 16px 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__container-for-input:last-child .profile__input {
+  border: 0;
+}
+
+.profile__btn-edit {
+  border: 0;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+.profile__btn-exit {
+  border: 0;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
+  color: #FF4062;
+  margin-top: 16px;
+}
+
+.profile__btn-edit:hover, .profile__btn-exit:hover {
+  opacity: 80%;
+  transition: 0.4s;
+}
+
+
+
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .profile__top-container {
+    text-align: left;
+    margin: 232px 0 0 0;
+  }
+
+  .profile__header {
+    margin-top: 40px;
+  }
+
+  .profile__low-container {
+    margin-top: 16px;
+    margin-bottom: 232px;
+  }
+
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .profile__top-container {
+    margin: 70px 0 0 0;
+  }
+
+  .profile__low-container {
+    margin-bottom: 70px;
+  }
+}

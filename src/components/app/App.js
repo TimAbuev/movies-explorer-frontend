@@ -10,6 +10,7 @@ import SearchForm from '../movies/searchForm/SearchForm';
 import Menu from '../menu/Menu';
 import Register from '../register/Register';
 import Login from '../login/Login';
+import Profile from '../profile/Profile';
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
               toLink3="/profile"
             />
           } />
-        <Route path="/profile"
+        {/* <Route path="/profile"
           element={
             <Header
               headerName="профиль пользователя"
@@ -57,7 +58,7 @@ function App() {
               linkName3="Аккаунт"
               toLink3="/profile"
             />
-          } />
+          } /> */}
 
       </Routes>
 
@@ -156,6 +157,15 @@ function App() {
         <Route path="/signin"
           element={
             <Login />
+          }
+        />
+      </Routes>
+
+      {/* Profile */}
+      <Routes>
+        <Route path="/profile"
+          element={
+            <Profile />
           }
         />
       </Routes>
