@@ -24,7 +24,6 @@
 
 .profile__header {
   margin: 62px 0 82px;
-  margin-top: 62px;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
@@ -100,24 +99,23 @@
   transition: 0.4s;
 }
 
-
-
-
 /*tablet 768 */
 
 @media screen and (min-width: 631px) {
-  .profile__top-container {
-    text-align: left;
-    margin: 232px 0 0 0;
-  }
-
   .profile__header {
-    margin-top: 40px;
+    margin-top: 236px;
+    margin: 236px 0 96px;
   }
 
   .profile__low-container {
-    margin-top: 16px;
-    margin-bottom: 232px;
+    margin-top: 210px;
+    margin-bottom: 269px;
+  }
+
+  .profile__btn-edit {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
   }
 
 }
@@ -125,11 +123,5 @@
 /* desktop 1024 */
 
 @media screen and (min-width: 960px) {
-  .profile__top-container {
-    margin: 70px 0 0 0;
-  }
 
-  .profile__low-container {
-    margin-bottom: 70px;
-  }
 }
