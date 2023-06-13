@@ -12,12 +12,11 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: 56px 0;
+  margin: 56px 0 30px;
   border: 1px solid red;
   width: 100%;
   max-width: 396px;
   min-width: 260px;
-
 }
 
 .register__header {
@@ -56,9 +55,11 @@
   box-sizing: border-box;
   padding: 0 0 10px 0;
   margin-top: 5px;
-  /* margin-bottom: 24px; */
   border: 0;
   border-bottom: 1px solid #E8E8E8;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .register__input:focus {
@@ -132,5 +133,36 @@
 @media screen and (min-width: 631px) {
   .register__top-container {
     text-align: left;
+    margin: 232px 0 0 0;
   }
+
+  .register__header {
+    margin-top: 40px;
+  }
+
+  .register__form {
+    margin: 40px 0 0 0;
+  }
+
+  .register__button {
+    margin: 134px 0 0 0;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .register__low-container {
+    margin-top: 16px;
+    margin-bottom: 232px;
+  }
+
+  .register__text-link {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .register__link {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
 }
