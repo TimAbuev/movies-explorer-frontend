@@ -1,9 +1,9 @@
 import Navigation from '../navigation/Navigation';
 import Logo from '../logo/Logo';
+import './Header.css';
 
 function Header(props) {
   const {
-    headerName,
     linkName1,
     toLink1,
     linkName2,
@@ -15,7 +15,6 @@ function Header(props) {
   return (
     <header className="header">
       <Logo/>
-      <h1>{headerName}</h1>
       <Navigation
         linkName1={linkName1}
         toLink1={toLink1}

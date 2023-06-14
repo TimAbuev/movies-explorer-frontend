@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../index.css';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../header/Header';
@@ -13,6 +14,16 @@ import Login from '../login/Login';
 import Profile from '../profile/Profile';
 
 function App() {
+  const [isMenuOpen, setMenuOpen] = React.useState(true);
+
+  function handleEditMenuClick() {
+    setMenuOpen(!isMenuOpen);
+  }
+
+  function closeAllPopups() {
+    isMenuOpen && handleEditMenuClick();
+  }
+
   return (
     <div className="App">
       {/* header routes */}
@@ -47,18 +58,6 @@ function App() {
               toLink3="/profile"
             />
           } />
-        {/* <Route path="/profile"
-          element={
-            <Header
-              headerName="профиль пользователя"
-              linkName1="Фильмы"
-              toLink1="/movies"
-              linkName2="Сохранённые фильмы"
-              toLink2="/saved-movies"
-              linkName3="Аккаунт"
-              toLink3="/profile"
-            />
-          } /> */}
 
       </Routes>
 
@@ -171,9 +170,16 @@ function App() {
       </Routes>
 
 
-      {/* <Main /> */}
+      
       {/* invisible components */}
-      {/* <NotFound/> */}
+      <Menu
+        linkName1="Фильмы"
+        toLink1="/movies"
+        linkName2="Сохранённые фильмы"
+        toLink2="/saved-movies"
+        toClose={closeAllPopups}
+        isOpen={isMenuOpen}
+      />
 
     </div>
   );
