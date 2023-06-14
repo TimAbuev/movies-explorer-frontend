@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 960px) {
   .header__conatainer {
-    visibility: hidden;
+    display: none;
   }
 
   .header {
@@ -72,5 +72,10 @@
   .header__burger {
     visibility: visible;
   }
-  
-} 
+}
+
+@media screen and (max-width: 631px) {
+  .header {
+    margin: 0 14px;
+  }
+}
