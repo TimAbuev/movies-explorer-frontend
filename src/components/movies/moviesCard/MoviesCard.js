@@ -1,4 +1,8 @@
-function MoviesCard() {
+function MoviesCard(props) {
+  const {
+    btnType,
+  } = props;
+
   return (
     <div className="moviesCard">
       <div className="moviesCard__text-container">
@@ -11,8 +15,10 @@ function MoviesCard() {
         allowfullscreen>
       </iframe>
       {/* <button className="moviesCard__button moviesCard__button_type_disabled">Сохранить</button>
-      <button className="moviesCard__button moviesCard__button_type_active"></button> */}
-      <button className="moviesCard__button moviesCard__button_type_to-close"></button>
+      <button className="moviesCard__button moviesCard__button_type_active"></button>
+      <button className="moviesCard__button moviesCard__button_type_to-close"></button> */}
+
+      <button className={`moviesCard__button moviesCard__button_type_${btnType}`}></button>
     </div>
   );
 }

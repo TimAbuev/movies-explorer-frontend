@@ -99,12 +99,16 @@ function App() {
       <Routes>
         <Route path="/movies"
           element={
-            <MoviesCardList />
+            <MoviesCardList
+              btnType="active"
+            />
           }
         />
         <Route path="/saved-movies"
           element={
-            <MoviesCardList />
+            <MoviesCardList
+              btnType="to-close"
+            />
           }
         />
       </Routes>
