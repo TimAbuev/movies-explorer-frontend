@@ -13,7 +13,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: 56px 0 30px;
+  margin: 56px 0 0;
   border: 1px solid red;
   width: 100%;
   max-width: 396px;
@@ -98,6 +98,7 @@
   margin-top: 14px;
   margin-bottom: 30px;
   align-items: center;
+  min-width: 260px;
 }
 
 .login__text-link {

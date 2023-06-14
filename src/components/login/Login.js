@@ -22,7 +22,7 @@ function Login() {
       </div>
 
       <div className="login__low-container">
-        <p className="login__text-link">Уже зарегистрированы?</p>
+        <p className="login__text-link">Ещё не зарегистрированы?</p>
         <Link className="login__link" to="/signup">Регистрация</Link>
       </div>
     </section>
