@@ -121,3 +121,12 @@
   }
 
 }
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .menu__wrapper_open {
+    visibility: hidden;
+    opacity: 0;
+  }
+} 

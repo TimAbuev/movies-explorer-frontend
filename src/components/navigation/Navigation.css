@@ -1,13 +1,13 @@
 /* mobile 320 */
 
-.navigation { 
+.navigation {
   border: 1px solid red;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-  
+
 .navigation__link {
   width: max-content;
   display: inline-block;
@@ -30,4 +30,26 @@
 
 .navigation__link_active {
   text-decoration: underline;
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .navigation {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .navigation__link {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .navigation__link:last-child {
+    margin-right: 0;
+  }
+
 }

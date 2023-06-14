@@ -31,7 +31,11 @@ function App() {
         <Route path="/"
           element={
             <Header
-
+              headerName="Фильмы"
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
             />
           } />
         <Route path="/movies"
@@ -42,8 +46,6 @@ function App() {
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
-              linkName3="Аккаунт"
-              toLink3="/profile"
             />
           } />
         <Route path="/saved-movies"
@@ -54,8 +56,16 @@ function App() {
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
-              linkName3="Аккаунт"
-              toLink3="/profile"
+            />
+          } />
+        <Route path="/profile"
+          element={
+            <Header
+              headerName="Сохранённые фильмы"
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
             />
           } />
 
@@ -170,7 +180,6 @@ function App() {
       </Routes>
 
 
-      
       {/* invisible components */}
       <Menu
         linkName1="Фильмы"

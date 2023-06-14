@@ -8,8 +8,6 @@ function Menu(props) {
     toLink1,
     linkName2,
     toLink2,
-    linkName3,
-    toLink3,
     toClose,
     isOpen
   } = props;
@@ -26,8 +24,6 @@ function Menu(props) {
               toLink1={toLink1}
               linkName2={linkName2}
               toLink2={toLink2}
-              linkName3={linkName3}
-              toLink3={toLink3}
             />
           </div>
         </div>
