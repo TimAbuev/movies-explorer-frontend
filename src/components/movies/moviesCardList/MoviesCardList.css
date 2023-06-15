@@ -34,7 +34,7 @@
 
 @media screen and (min-width: 631px) {
   .moviesCardList {
-    padding: 70px 0 30px;
+    padding: 70px 0 82px;
     margin: 0 30px;
   }
 
@@ -42,6 +42,10 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 24px;
     row-gap: 35px;
+  }
+
+  .moviesCardList__button {
+    margin-top: 97px;
   }
 }
 
