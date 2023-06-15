@@ -4,7 +4,7 @@
   box-sizing: border-box;
   border: 1px solid red;
   margin: 0 18px;
-  padding: 70px 0;
+  padding: 70px 0 64px 0;
   text-align: start;
 }
 
@@ -37,7 +37,7 @@
 
 .aboutProject__table {
   width: 100%;
-  margin: 60px auto 0;
+  margin: 7px auto 0;
   border-spacing: 0;
   font-weight: 400;
   font-size: 11px;
