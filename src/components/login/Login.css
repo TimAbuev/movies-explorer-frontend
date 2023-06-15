@@ -168,6 +168,10 @@
     line-height: 17px;
   }
 
+  .login__error {
+    margin-top: 0px;
+  }
+
 }
 
 /* desktop 1024 */
