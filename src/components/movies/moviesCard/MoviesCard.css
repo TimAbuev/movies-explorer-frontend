@@ -3,12 +3,10 @@
 .moviesCard {
   box-sizing: border-box;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid red;
   border-radius: 6px;
 }
 
 .moviesCard__text-container {
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
 }

@@ -1,7 +1,6 @@
 /* mobile 320 */
 
 .profile {
-  border: 1px solid red;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -16,7 +15,6 @@
   display: flex;
   flex-direction: column;
   margin: 0 30px;
-  border: 1px solid red;
   width: 100%;
   max-width: 410px;
   min-width: 260px;
@@ -31,7 +29,6 @@
 }
 
 .profile__low-container {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;

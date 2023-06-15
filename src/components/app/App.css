@@ -2,7 +2,6 @@
   font-family: 'Inter', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-align: center;
-  border: 1px red solid;
   display: flex;
   box-sizing: border-box;
   min-height: 100vh;

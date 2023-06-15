@@ -1,7 +1,6 @@
 /* mobile 320 */
 .not-found-section {
   box-sizing: border-box;
-  border: 1px solid blue;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +25,8 @@
   text-decoration: none;
   color: black;
   display: block;
-  margin-bottom: 30px;
+  width: max-content;
+  margin: 30px auto;
 }
 .not-found-section__go-back:hover {
   opacity: 70%;

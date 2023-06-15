@@ -7,7 +7,6 @@ import Footer from '../footer/Footer';
 import Main from '../main/Main'
 import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
 import SearchForm from '../movies/searchForm/SearchForm';
-// import Navigation from '../navigation/Navigation';
 import Menu from '../menu/Menu';
 import Register from '../register/Register';
 import Login from '../login/Login';

@@ -1,7 +1,6 @@
 /* mobile 320 */
 
 .login {
-  border: 1px solid red;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -14,7 +13,6 @@
   display: flex;
   flex-direction: column;
   margin: 56px 0 0;
-  border: 1px solid red;
   width: 100%;
   max-width: 396px;
   min-width: 260px;
@@ -92,7 +90,6 @@
 }
 
 .login__low-container {
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   margin-top: 14px;
