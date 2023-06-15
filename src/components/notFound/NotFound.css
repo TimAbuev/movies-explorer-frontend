@@ -59,4 +59,8 @@
   .not-found-section__go-back {
     margin-bottom: 60px;
   }
+
+  .not-found-section__404 {
+    margin: 246px 0 0;
+  }
 }
