@@ -37,6 +37,7 @@
 
 @media screen and (min-width: 631px) {
   .not-found-section__404 {
+    margin: 409px 0 0;
     font-size: 140px;
     line-height: 170px;
   }
