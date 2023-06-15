@@ -77,6 +77,7 @@
   .portfolio__link-of-list {
     font-size: 28px;
     line-height: 50px;
+    padding-bottom: 9px;
   }
 
   .portfolio__list-icon {
@@ -85,7 +86,12 @@
   }
 
   .portfolio {
-    padding-bottom: 90px;
+    padding-bottom: 81px;
+    margin: 0 50px;
+  }
+  
+  .portfolio__list {
+    margin: 50px 0 0;
   }
 }
 

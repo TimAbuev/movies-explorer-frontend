@@ -82,6 +82,7 @@
 @media screen and (min-width: 631px) {
   .aboutMe {
     padding: 90px 0;
+    margin: 0 50px;
   }
 
   .aboutMe__container {
@@ -112,14 +113,14 @@
   .aboutMe__profession {
     font-size: 12px;
     line-height: 18px;
-    margin-top: -4px;
+    margin-top: -75px;
   }
 
   .aboutMe__paragraph {
     font-size: 12px;
     line-height: 18px;
     margin-right: 49px;
-    margin: 0 49px 0 0;
+    margin: -66px 49px 0 0;
   }
 
   .aboutMe__biography {
