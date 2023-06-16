@@ -13,7 +13,7 @@ function Menu(props) {
   } = props;
 
   return (
-    <div className={`menu__wrapper ${isOpen ? 'menu__wrapper_open' : ''}`}>
+    <div className={`wrapper-menu ${isOpen ? 'wrapper-menu_open' : ''}`}>
       <section className="menu">
         <div className="menu__top-container">
           <button className="menu__close-icon" onClick={toClose}></button>
