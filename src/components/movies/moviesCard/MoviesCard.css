@@ -9,6 +9,7 @@
 .moviesCard__text-container {
   display: flex;
   justify-content: space-between;
+  text-align: left;
 }
 
 .moviesCard__name {
