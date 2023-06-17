@@ -1,0 +1,163 @@
+/* mobile 320 */
+
+.aboutMe {
+  box-sizing: border-box;
+  margin: 0 14px;
+  padding: 70px 0;
+  text-align: start;
+}
+
+.aboutMe__header {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.aboutMe__decorate {
+  border-bottom: 1px solid black;
+  margin-top: 28px;
+  margin-bottom: 60px;
+}
+
+.aboutMe__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutMe__photo {
+  width: 100%;
+  min-height: 352px;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.aboutMe__biography {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutMe__header-name {
+  margin: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.aboutMe__profession {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 20px 0 0;
+}
+
+.aboutMe__paragraph {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 20px 0 0;
+}
+
+.aboutMe__link-github {
+  display: inline-block;
+  margin-top: 40px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutMe__link-github:hover {
+  opacity: 70%;
+  transition: 0.4s;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .aboutMe {
+    padding: 90px 0;
+    margin: 0 50px;
+  }
+
+  .aboutMe__container {
+    flex-direction: row-reverse
+  }
+
+  .aboutMe__photo {
+    width: 255px;
+    min-height: 307px;
+    /* height: auto; */
+  }
+
+  .aboutMe__header {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .aboutMe__decorate {
+    margin-top: 23px;
+    margin-bottom: 66px;
+  }
+
+  .aboutMe__header-name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .aboutMe__profession {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: -75px;
+  }
+
+  .aboutMe__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 49px;
+    margin: -66px 49px 0 0;
+  }
+
+  .aboutMe__biography {
+    margin-top: 0;
+    justify-content: space-between;
+  }
+
+  .aboutMe__link-github {
+    margin-top: 0;
+  }
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .aboutMe {
+    padding: 110px 0 100px 0;
+    margin: 0 70px;
+  }
+
+  .aboutMe__header-name {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .aboutMe__profession {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .aboutMe__paragraph {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 270px;
+  }
+
+  .aboutMe__photo {
+    width: 270px;
+    min-height: 327px;
+  }
+} 

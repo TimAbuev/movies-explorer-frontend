@@ -1,0 +1,148 @@
+/*mobile 320*/
+
+.searchForm {
+  box-sizing: border-box;
+  margin: 0 10px;
+  min-height: 272px;
+  position: relative;
+}
+
+.searchForm__container-for-checkbox {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.searchForm__container-for-input {
+  margin-top: 80px;
+  position: relative;
+}
+
+.searchForm__input {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 25px 19px;
+  border-radius: 9px;
+  border: none;
+  outline: none;
+  background-color: #FDFDFD;
+  width: 100%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.searchForm__input:focus {
+  border-bottom: 1px solid black;
+}
+
+.searchForm__button-find {
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  width: 80px;
+  height: 34px;
+  border-radius: 48px;
+  border: none;
+  background-color: black;
+  background-image: url(../../../images/find.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.searchForm__button-find:hover {
+  opacity: 80%;
+  transition: 0.4s;
+}
+
+.searchForm__decorate-line {
+  border-bottom: 1px solid #E8E8E8;
+  margin: 45px 0;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .searchForm {
+    margin: 0 30px;
+  }
+
+  .searchForm__button-find {
+    right: 227px;
+  }
+
+  .searchForm__decorate-vertical-line {
+    border-left: 1px solid #CBCBCB;
+    height: 40px;
+    position: absolute;
+    top: 16px;
+    right: calc(227px - 19px);
+  }
+
+  .searchForm__container-for-checkbox {
+    margin-top: 0;
+    position: absolute;
+    top: 96px;
+    right: 20px;
+  }
+
+  .searchForm__decorate-line {
+    margin: 109px 0 10px;
+  }
+
+  .searchForm__input {
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 63px;
+  }
+
+  .searchForm__decorate-loupe {
+    background-image: url(../../../images/loupe.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 19px;
+    left: 19px;
+  }
+
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .searchForm {
+    margin: 0 70px;
+    min-height: 222px;
+  }
+
+  .searchForm__container-for-input {
+    margin-top: 70px;
+  }
+
+  .searchForm__decorate-line {
+    margin: 69px 0 10px;
+  }
+
+  .searchForm__container-for-checkbox {
+    top: 86px;
+    right: 30px;
+  }
+
+  .searchForm__input {
+    padding-right: 30px;
+  }
+
+  .searchForm__button-find {
+    right: 246px;
+  }
+
+  .searchForm__decorate-vertical-line {
+    right:226px;
+  }
+
+}

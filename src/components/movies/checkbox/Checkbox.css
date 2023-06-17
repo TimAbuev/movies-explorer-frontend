@@ -1,0 +1,46 @@
+/* checkbox */
+
+.сheckbox__checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.сheckbox__checkbox-label {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.сheckbox__checkbox-label:before {
+  content: "";
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 36px;
+  height: 36px;
+  margin-top: 4px;
+  margin-right: 15px;
+  background-image: url(../../../images/checkbox-disabled.svg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+
+.сheckbox__checkbox:checked + .сheckbox__checkbox-label:before {
+  background-image: url(../../../images/checkbox-active.svg);
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .сheckbox__checkbox-label {
+    font-size: 13px;
+  }
+}
+
+
+
+/*end of checkbox*/

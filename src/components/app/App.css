@@ -1,0 +1,11 @@
+.App {
+  font-family: 'Inter', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  display: flex;
+  box-sizing: border-box;
+  min-height: 100vh;
+  flex-direction: column;
+  max-width: 1280px;
+  margin: 0 auto;
+}

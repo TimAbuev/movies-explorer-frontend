@@ -1,0 +1,147 @@
+/* mobile 320 */
+
+.aboutProject {
+  box-sizing: border-box;
+  margin: 0 18px;
+  padding: 70px 0 64px 0;
+  text-align: start;
+}
+
+.aboutProject__header {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.aboutProject__decorate {
+  border-bottom: 1px solid black;
+  margin-top: 28px;
+  margin-bottom: 60px;
+}
+
+.aboutProject__paragraph {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 16px 0 56px;
+}
+
+.aboutProject__container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* table */
+
+.aboutProject__table {
+  width: 100%;
+  margin: 7px auto 0;
+  border-spacing: 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
+.aboutProject__table-header {
+  font-weight: 400;
+  height: 35px;
+}
+
+.aboutProject__table-data {
+  color: #A0A0A0;
+  padding-top: 14px;
+}
+
+.aboutProject__table-header_side_left {
+  width: 100px;
+  background-color: black;
+  color: white;
+}
+
+.aboutProject__table-header_side_right {
+  background-color: #F2F2F2;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .aboutProject {
+    padding: 90px 0;
+    margin: 0 50px;
+  }
+
+  .aboutProject__header {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .aboutProject__header_mod_h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .aboutProject__decorate {
+    margin-top: 23px;
+    margin-bottom: 70px;
+  }
+
+  .aboutProject__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 22px 0 0;
+  }
+
+  .aboutProject__container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .aboutProject__article {
+    margin-right: 30px;
+  }
+
+  .aboutProject__article:last-child {
+    margin-right: 0;
+  }
+
+  .aboutProject__table {
+    margin: 93px auto 0;
+  }
+
+  .aboutProject__table-header {
+    height: 36px;
+  }
+
+  .aboutProject__table-header_side_left {
+    width: 140px;
+  }
+}
+
+/* desktop 1024 */
+
+@media screen and (min-width: 960px) {
+  .aboutProject {
+    padding: 110px 0;
+    margin: 0 70px;
+  }
+
+  .aboutProject__article {
+    margin-right: 40px;
+  }
+
+  .aboutProject__paragraph {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 26px 0 0;
+  }
+
+  .aboutProject__table {
+    margin: 110px auto 0;
+  }
+
+  .aboutProject__table-header_side_left {
+    width: 228px;
+  }
+}

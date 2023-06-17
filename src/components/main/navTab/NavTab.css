@@ -1,0 +1,57 @@
+/* mobile 320 */
+
+.NavTab {
+  display: flex;
+  margin-bottom: 17px;
+}
+
+.NavTab__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  width: 82px;
+  height: 26px;
+  background-color: #E8E8E8;
+  text-decoration: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.NavTab__link:last-child {
+  margin-right: 0;
+}
+
+.NavTab__link:hover {
+  opacity: 70%;
+  transition: 0.4s;
+}
+
+.NavTab__link-text {
+  margin: 0;
+}
+
+/*tablet 768 */
+
+@media screen and (min-width: 631px) {
+  .NavTab {
+    margin-bottom: 30px;
+  }
+
+  .NavTab__link {
+    width: 96px;
+    height: 36px;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+}
+
+/* desktop 1024 */
+
+/* @media screen and (min-width: 960px) {
+
+} */
