@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../index.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
@@ -11,9 +11,12 @@ import Menu from '../menu/Menu';
 import Register from '../register/Register';
 import Login from '../login/Login';
 import Profile from '../profile/Profile';
+import * as Auth from '../../utils/Auth';
 
 function App() {
   const [isMenuOpen, setMenuOpen] = React.useState(true);
+
+  const navigate = useNavigate();
 
   function handleEditMenuClick() {
     setMenuOpen(!isMenuOpen);
@@ -21,6 +24,21 @@ function App() {
 
   function closeAllPopups() {
     isMenuOpen && handleEditMenuClick();
+  }
+
+  function handleRegisterSubmit(name, email, password) {
+    Auth.register(name, email, password)
+      .then((res) => {
+        if (res) {
+          // handleLuckyInfoTooltip();
+          navigate('/signin', { replace: true });
+          console.log('сработала res в handleRegisterSubmit');
+        }
+      })
+      .catch((err) => {
+        // handleUnLuckyInfoTooltip();
+        console.log(err);
+      })
   }
 
   return (
@@ -159,7 +177,7 @@ function App() {
       <Routes>
         <Route path="/signup"
           element={
-            <Register />
+            <Register handleRegisterSubmit={handleRegisterSubmit}/>
           }
         />
       </Routes>
