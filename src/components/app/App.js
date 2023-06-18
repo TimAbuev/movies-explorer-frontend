@@ -41,6 +41,22 @@ function App() {
       })
   }
 
+  function handleLogInSubmit(password, email) {
+    Auth.authorize(password, email)
+      .then((data) => {
+        if (data.jwt) {
+          localStorage.setItem('jwt', data.jwt);
+          // handleLogin();
+          navigate('/movies', { replace: true });
+          // window.location.reload();
+        }
+      })
+      .catch((err) => {
+        // handleUnLuckyInfoTooltip();
+        console.log(err);
+      })
+  }
+
   return (
     <div className="App">
       {/* header routes */}
@@ -186,7 +202,7 @@ function App() {
       <Routes>
         <Route path="/signin"
           element={
-            <Login />
+            <Login handleLogInSubmit={handleLogInSubmit}/>
           }
         />
       </Routes>
