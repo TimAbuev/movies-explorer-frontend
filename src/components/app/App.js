@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../index.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
@@ -13,16 +14,30 @@ import Login from '../login/Login';
 import Profile from '../profile/Profile';
 import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
+import api from '../../utils/MainApi';
 
 function App() {
+  const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  console.log(loggedIn);
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
     checkToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    api.getProfile()
+      .then(function (res) {
+        setCurrentUser(res)
+      })
+      .catch(function (err) {
+        console.log('ошибка', err);
+      })
+
   }, []);
 
   function handleEditMenuClick() {
@@ -63,7 +78,7 @@ function App() {
           // }
           setLoggedIn(true);
           // setUserData(data);
-          navigate('/movies', { replace: true });
+          // navigate('/movies', { replace: true });
         })
           .catch((err) => console.log(err));
       }
@@ -86,184 +101,198 @@ function App() {
       })
   }
 
+  function handleUpdateUser(data) {
+    api.editInfo(data)
+      .then(function (res) {
+        setCurrentUser(res);
+      })
+      .catch(function (err) {
+        console.log('ошибка', err);
+      })
+  }
+
   return (
-    <div className="App">
-      {/* header routes */}
-      <Routes>
-        <Route path="/"
-          element={
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              headerName="Фильмы"
-              linkName1="Фильмы"
-              toLink1="/movies"
-              linkName2="Сохранённые фильмы"
-              toLink2="/saved-movies"
-              component={Header}
-            />
-          } />
-        <Route path="/movies"
-          element={
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              headerName="Фильмы"
-              linkName1="Фильмы"
-              toLink1="/movies"
-              linkName2="Сохранённые фильмы"
-              toLink2="/saved-movies"
-              component={Header}
-            />
-          } />
-        <Route path="/saved-movies"
-          element={
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              headerName="Сохранённые фильмы"
-              linkName1="Фильмы"
-              toLink1="/movies"
-              linkName2="Сохранённые фильмы"
-              toLink2="/saved-movies"
-              component={Header}
-            />
-          } />
-        <Route path="/profile"
-          element={
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              headerName="Сохранённые фильмы"
-              linkName1="Фильмы"
-              toLink1="/movies"
-              linkName2="Сохранённые фильмы"
-              toLink2="/saved-movies"
-              component={Header}
-            />
-          } />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+        {/* header routes */}
+        <Routes>
+          <Route path="/"
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                headerName="Фильмы"
+                linkName1="Фильмы"
+                toLink1="/movies"
+                linkName2="Сохранённые фильмы"
+                toLink2="/saved-movies"
+                component={Header}
+              />
+            } />
+          <Route path="/movies"
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                headerName="Фильмы"
+                linkName1="Фильмы"
+                toLink1="/movies"
+                linkName2="Сохранённые фильмы"
+                toLink2="/saved-movies"
+                component={Header}
+              />
+            } />
+          <Route path="/saved-movies"
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                headerName="Сохранённые фильмы"
+                linkName1="Фильмы"
+                toLink1="/movies"
+                linkName2="Сохранённые фильмы"
+                toLink2="/saved-movies"
+                component={Header}
+              />
+            } />
+          <Route path="/profile"
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                headerName="Сохранённые фильмы"
+                linkName1="Фильмы"
+                toLink1="/movies"
+                linkName2="Сохранённые фильмы"
+                toLink2="/saved-movies"
+                component={Header}
+              />
+            } />
 
-      </Routes>
+        </Routes>
 
-      {/*main routes*/}
-      <Routes>
-        <Route path="/"
-          element={
-            <Main
+        {/*main routes*/}
+        <Routes>
+          <Route path="/"
+            element={
+              <Main
 
-            />
-          } />
-      </Routes>
+              />
+            } />
+        </Routes>
 
-      {/*  SearchForm routes */}
-      <Routes>
-        <Route path="/movies"
-          element={
-            <SearchForm />
-          }
+        {/*  SearchForm routes */}
+        <Routes>
+          <Route path="/movies"
+            element={
+              <SearchForm />
+            }
+          />
+          <Route path="/saved-movies"
+            element={
+              <SearchForm />
+            }
+          />
+        </Routes>
+
+        {/* moviesCardLIst routes */}
+        <Routes>
+          <Route path="/movies"
+            element={
+              <MoviesCardList
+                btnType="active"
+              />
+            }
+          />
+          <Route path="/saved-movies"
+            element={
+              <MoviesCardList
+                btnType="to-close"
+              />
+            }
+          />
+        </Routes>
+
+        {/* footer routes */}
+        <Routes>
+          <Route path="/"
+            element={
+              <Footer />
+            }
+          />
+          <Route path="/movies"
+            element={
+              <Footer />
+            }
+          />
+          <Route path="/saved-movies"
+            element={
+              <Footer />
+            }
+          />
+
+
+        </Routes>
+
+        {/* {404 routes} */}
+        <Routes>
+          <Route path="/notFound"
+            element={
+              <NotFound />
+            }
+          />
+        </Routes>
+
+        {/* {menu} */}
+        <Routes>
+          <Route path="/menu"
+            element={
+              <Menu
+                linkName1="Главная"
+                linkName2="Фильмы"
+                linkName3="Сохранённые фильмы"
+              />
+            }
+          />
+        </Routes>
+
+        {/* Register */}
+        <Routes>
+          <Route path="/signup"
+            element={
+              <Register handleRegisterSubmit={handleRegisterSubmit} />
+            }
+          />
+        </Routes>
+
+        {/* Login */}
+        <Routes>
+          <Route path="/signin"
+            element={
+              <Login handleLogInSubmit={handleLogInSubmit} />
+            }
+          />
+        </Routes>
+
+        {/* Profile */}
+        <Routes>
+          <Route path="/profile"
+            element={
+              <Profile 
+                onUpdateUser={handleUpdateUser}
+              />
+            }
+          />
+        </Routes>
+
+        {/* invisible components */}
+        <Menu
+          linkName1="Фильмы"
+          toLink1="/movies"
+          linkName2="Сохранённые фильмы"
+          toLink2="/saved-movies"
+          toClose={closeAllPopups}
+          isOpen={isMenuOpen}
         />
-        <Route path="/saved-movies"
-          element={
-            <SearchForm />
-          }
-        />
-      </Routes>
 
-      {/* moviesCardLIst routes */}
-      <Routes>
-        <Route path="/movies"
-          element={
-            <MoviesCardList
-              btnType="active"
-            />
-          }
-        />
-        <Route path="/saved-movies"
-          element={
-            <MoviesCardList
-              btnType="to-close"
-            />
-          }
-        />
-      </Routes>
-
-      {/* footer routes */}
-      <Routes>
-        <Route path="/"
-          element={
-            <Footer />
-          }
-        />
-        <Route path="/movies"
-          element={
-            <Footer />
-          }
-        />
-        <Route path="/saved-movies"
-          element={
-            <Footer />
-          }
-        />
-
-
-      </Routes>
-
-      {/* {404 routes} */}
-      <Routes>
-        <Route path="/notFound"
-          element={
-            <NotFound />
-          }
-        />
-      </Routes>
-
-      {/* {menu} */}
-      <Routes>
-        <Route path="/menu"
-          element={
-            <Menu
-              linkName1="Главная"
-              linkName2="Фильмы"
-              linkName3="Сохранённые фильмы"
-            />
-          }
-        />
-      </Routes>
-
-      {/* Register */}
-      <Routes>
-        <Route path="/signup"
-          element={
-            <Register handleRegisterSubmit={handleRegisterSubmit} />
-          }
-        />
-      </Routes>
-
-      {/* Login */}
-      <Routes>
-        <Route path="/signin"
-          element={
-            <Login handleLogInSubmit={handleLogInSubmit} />
-          }
-        />
-      </Routes>
-
-      {/* Profile */}
-      <Routes>
-        <Route path="/profile"
-          element={
-            <Profile />
-          }
-        />
-      </Routes>
-
-      {/* invisible components */}
-      <Menu
-        linkName1="Фильмы"
-        toLink1="/movies"
-        linkName2="Сохранённые фильмы"
-        toLink2="/saved-movies"
-        toClose={closeAllPopups}
-        isOpen={isMenuOpen}
-      />
-
-    </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
