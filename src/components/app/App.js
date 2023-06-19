@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
-import Main from '../main/Main'
+import Main from '../main/Main';
 import MoviesCardList from '../movies/moviesCardList/MoviesCardList';
 import SearchForm from '../movies/searchForm/SearchForm';
 import Menu from '../menu/Menu';
@@ -12,14 +12,25 @@ import Register from '../register/Register';
 import Login from '../login/Login';
 import Profile from '../profile/Profile';
 import * as Auth from '../../utils/Auth';
+import ProtectedRoute from '../ProtectedRoute';
 
 function App() {
   const [isMenuOpen, setMenuOpen] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    checkToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function handleEditMenuClick() {
     setMenuOpen(!isMenuOpen);
+  }
+
+  function handleLogin() {
+    setLoggedIn(!loggedIn);
   }
 
   function closeAllPopups() {
@@ -41,12 +52,30 @@ function App() {
       })
   }
 
+  function checkToken() {
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        Auth.getContent(jwt).then((res) => {
+          // const data = {
+          //   id: res._id,
+          //   email: res.email
+          // }
+          setLoggedIn(true);
+          // setUserData(data);
+          navigate('/movies', { replace: true });
+        })
+          .catch((err) => console.log(err));
+      }
+    }
+  }
+
   function handleLogInSubmit(password, email) {
     Auth.authorize(password, email)
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem('jwt', data.jwt);
-          // handleLogin();
+          handleLogin();
           navigate('/movies', { replace: true });
           // window.location.reload();
         }
@@ -63,42 +92,50 @@ function App() {
       <Routes>
         <Route path="/"
           element={
-            <Header
+            <ProtectedRoute
+              loggedIn={loggedIn}
               headerName="Фильмы"
               linkName1="Фильмы"
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
+              component={Header}
             />
           } />
         <Route path="/movies"
           element={
-            <Header
+            <ProtectedRoute
+              loggedIn={loggedIn}
               headerName="Фильмы"
               linkName1="Фильмы"
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
+              component={Header}
             />
           } />
         <Route path="/saved-movies"
           element={
-            <Header
+            <ProtectedRoute
+              loggedIn={loggedIn}
               headerName="Сохранённые фильмы"
               linkName1="Фильмы"
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
+              component={Header}
             />
           } />
         <Route path="/profile"
           element={
-            <Header
+            <ProtectedRoute
+              loggedIn={loggedIn}
               headerName="Сохранённые фильмы"
               linkName1="Фильмы"
               toLink1="/movies"
               linkName2="Сохранённые фильмы"
               toLink2="/saved-movies"
+              component={Header}
             />
           } />
 
@@ -193,7 +230,7 @@ function App() {
       <Routes>
         <Route path="/signup"
           element={
-            <Register handleRegisterSubmit={handleRegisterSubmit}/>
+            <Register handleRegisterSubmit={handleRegisterSubmit} />
           }
         />
       </Routes>
@@ -202,7 +239,7 @@ function App() {
       <Routes>
         <Route path="/signin"
           element={
-            <Login handleLogInSubmit={handleLogInSubmit}/>
+            <Login handleLogInSubmit={handleLogInSubmit} />
           }
         />
       </Routes>
@@ -215,7 +252,6 @@ function App() {
           }
         />
       </Routes>
-
 
       {/* invisible components */}
       <Menu
