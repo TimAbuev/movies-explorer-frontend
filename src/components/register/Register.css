@@ -66,9 +66,9 @@
   border-bottom: 1px solid black;
 }
 
-#input-password {
+/* .register__input-password_disabled {
   color: #FF4062;
-}
+} */
 
 .register__button {
   margin: calc(136px + 65px) 0 0 0;
@@ -82,6 +82,11 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+}
+
+.register__button_disabled {
+  cursor: default;
+  opacity: 80%;
 }
 
 .register__button:hover {
