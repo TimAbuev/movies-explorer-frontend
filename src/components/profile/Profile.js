@@ -4,8 +4,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile(props) {
   const {
-    onUpdateUser
-  }= props;
+    onUpdateUser,
+    handleLogin
+  } = props;
 
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -33,6 +34,11 @@ function Profile(props) {
     });
   }
 
+  function signOut() {
+    localStorage.removeItem('jwt');
+    handleLogin();
+  }
+
   return (
     <section className="profile">
       <div className="profile__top-container">
@@ -49,7 +55,7 @@ function Profile(props) {
 
       <div className="profile__low-container">
         <button className='profile__btn-edit' onClick={handleEdit}>Редактировать</button>
-        <button className='profile__btn-exit'>Выйти из аккаунта</button>
+        <button className='profile__btn-exit' onClick={signOut}>Выйти из аккаунта</button>
       </div>
     </section>
   );

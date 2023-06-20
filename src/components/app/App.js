@@ -276,6 +276,7 @@ function App() {
             element={
               <Profile 
                 onUpdateUser={handleUpdateUser}
+                handleLogin={handleLogin}
               />
             }
           />
