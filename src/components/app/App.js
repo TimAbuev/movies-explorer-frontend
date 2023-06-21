@@ -20,8 +20,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [userEmail, setEmail] = React.useState('');
-  const [userPassword, setPassword] = React.useState('');
+  // const [userEmail, setEmail] = React.useState('');
+  // const [userPassword, setPassword] = React.useState('');
 
   const navigate = useNavigate();
 
@@ -269,10 +269,10 @@ function App() {
             element={
               <Login
                handleLogInSubmit={handleLogInSubmit} 
-               email={userEmail}
-               setEmail={setEmail}
-               password={userPassword}
-               setPassword={setPassword}
+              //  email={userEmail}
+              //  setEmail={setEmail}
+              //  password={userPassword}
+              //  setPassword={setPassword}
                />
             }
           />
