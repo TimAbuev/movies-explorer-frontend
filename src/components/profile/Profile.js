@@ -8,10 +8,10 @@ function Profile(props) {
     handleLogin
   } = props;
 
+  const currentUser = React.useContext(CurrentUserContext);
+
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-
-  const currentUser = React.useContext(CurrentUserContext);
 
   //Выставляем в поля текущие значения
   React.useEffect(() => {
@@ -47,10 +47,12 @@ function Profile(props) {
           <label className='profile__label'>Имя</label>
           <input className='profile__input' placeholder="Виталий" value={name || ''} onChange={handleChangeName}></input>
         </div>
+        <span className="profile__error">Проба 1</span>
         <div className='profile__container-for-input'>
           <label className='profile__label'>E-mail</label>
           <input className='profile__input' placeholder="pochta@yandex.ru" value={email || ''} onChange={handleChangeEmail}></input>
         </div>
+        <span className="profile__error">Проба 2</span>
       </div>
 
       <div className="profile__low-container">

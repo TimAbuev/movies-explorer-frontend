@@ -27,7 +27,6 @@ function App() {
 
   React.useEffect(() => {
     checkToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -38,7 +37,6 @@ function App() {
       .catch(function (err) {
         console.log('ошибка', err);
       })
-
   }, []);
 
   function handleEditMenuClick() {

@@ -48,15 +48,6 @@ function Register(props) {
 
   };
 
-  // const resetForm = useCallback(
-  //   (newValues = {}, newErrors = {}, newIsValid = false) => {
-  //     setValues(newValues);
-  //     setErrors(newErrors);
-  //     setIsValid(newIsValid);
-  //   },
-  //   [setValues, setErrors, setIsValid]
-  // );
-
   return (
     <section className="register">
       <div className="register__top-container">

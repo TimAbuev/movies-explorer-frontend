@@ -66,10 +66,6 @@
   border-bottom: 1px solid black;
 }
 
-#input-password {
-  color: #FF4062;
-}
-
 .login__button {
   margin: calc(309px - 30px) 0 0 0; /* - span height*/
   height: 45px;
@@ -82,6 +78,11 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+}
+
+.login__button_disabled {
+  cursor: default;
+  opacity: 80%;
 }
 
 .login__button:hover {
