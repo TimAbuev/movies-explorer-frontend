@@ -20,7 +20,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  console.log(loggedIn);
+  const [userEmail, setEmail] = React.useState('');
+  const [userPassword, setPassword] = React.useState('');
 
   const navigate = useNavigate();
 
@@ -57,8 +58,7 @@ function App() {
       .then((res) => {
         if (res) {
           // handleLuckyInfoTooltip();
-          navigate('/signin', { replace: true });
-          console.log('сработала res в handleRegisterSubmit');
+          handleLogInSubmit(password, email)
         }
       })
       .catch((err) => {
@@ -256,7 +256,9 @@ function App() {
         <Routes>
           <Route path="/signup"
             element={
-              <Register handleRegisterSubmit={handleRegisterSubmit} />
+              <Register 
+              handleRegisterSubmit={handleRegisterSubmit} 
+              />
             }
           />
         </Routes>
@@ -265,7 +267,13 @@ function App() {
         <Routes>
           <Route path="/signin"
             element={
-              <Login handleLogInSubmit={handleLogInSubmit} />
+              <Login
+               handleLogInSubmit={handleLogInSubmit} 
+               email={userEmail}
+               setEmail={setEmail}
+               password={userPassword}
+               setPassword={setPassword}
+               />
             }
           />
         </Routes>

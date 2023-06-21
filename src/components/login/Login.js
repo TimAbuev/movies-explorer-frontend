@@ -6,10 +6,14 @@ import './Login.css'
 function Login(props) {
   const {
     handleLogInSubmit,
+    email,
+    setEmail,
+    password,
+    setPassword
   } = props;
 
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  // const [email, setEmail] = React.useState('');
+  // const [password, setPassword] = React.useState('');
 
   function handleChangeEmail(e) {
     setEmail(e.target.value);
