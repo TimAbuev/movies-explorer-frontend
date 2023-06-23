@@ -1,37 +1,66 @@
 import React from "react";
+import validator from "validator";
 import './Profile.css'
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import InfoTooltip from "../infoTooltip/InfoTooltip";
 
 function Profile(props) {
   const {
     onUpdateUser,
-    handleLogin
+    handleLogin,
+    isOpen
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-
-  //Выставляем в поля текущие значения
   React.useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
+    setValues(currentUser);
+    console.log(currentUser);
   }, [currentUser]);
 
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
+  const [values, setValues] = React.useState({});
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
+  const [isInputDisabled, setInputDisabled] = React.useState(true);
+  const [isBtnVisible, setBtnVisible] = React.useState(true);
+  const [isSaveBtnVisible, setSaveBtnVisible] = React.useState(false);
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
 
-  function handleEdit() {
+  function checkFormValidity() {
+    const isNameValid = validator.matches(values.name || "", /^[A-Za-zА-Яа-яЁё\s-]+$/);
+    const isEmailValid = validator.isEmail(values.email || "");
+    const isNameChanged = values.name !== currentUser.name;
+    const isEmailChanged = values.email !== currentUser.email;
+    return isNameValid && isEmailValid && (isNameChanged || isEmailChanged);
+  };
+
+  function handleChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    let error = "";
+
+    // Валидация имени
+    if (name === "name" && !/^[A-Za-zА-Яа-яЁё\s-]+$/.test(value)) {
+      error = "Имя должно содержать только латиницу, кириллицу, пробел или дефис";
+    }
+    // Валидация электронной почты
+    if (name === "email" && !validator.isEmail(value)) {
+      error = "Введите корректный адрес электронной почты";
+    }
+
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: error });
+    setIsValid(checkFormValidity());
+
+  };
+
+  function handleUpdate() {
     onUpdateUser({
-      name: name,
-      email: email,
-    });
+      name: values.name,
+      email: values.email,
+    })
   }
 
   function signOut() {
@@ -39,25 +68,67 @@ function Profile(props) {
     handleLogin();
   }
 
+  function handleEdit() {
+    setInputDisabled(!isInputDisabled)
+    setBtnVisible(!isBtnVisible);
+    setIsValid(!isValid);
+    setSaveBtnVisible(!isSaveBtnVisible);
+  }
+
   return (
     <section className="profile">
       <div className="profile__top-container">
-        <h1 className="profile__header">Привет, {name}!</h1>
+        <h1 className="profile__header">Привет, {values.name}!</h1>
         <div className='profile__container-for-input'>
           <label className='profile__label'>Имя</label>
-          <input className='profile__input' placeholder="Виталий" value={name || ''} onChange={handleChangeName}></input>
+          <input
+            className='profile__input'
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+            disabled={isInputDisabled}
+          />
         </div>
-        <span className="profile__error">Проба 1</span>
+        <span className="profile__error">{errors.name}</span>
         <div className='profile__container-for-input'>
           <label className='profile__label'>E-mail</label>
-          <input className='profile__input' placeholder="pochta@yandex.ru" value={email || ''} onChange={handleChangeEmail}></input>
+          <input
+            className='profile__input'
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            disabled={isInputDisabled}
+          />
         </div>
-        <span className="profile__error">Проба 2</span>
+        <span className="profile__error">{errors.email}</span>
       </div>
 
       <div className="profile__low-container">
-        <button className='profile__btn-edit' onClick={handleEdit}>Редактировать</button>
-        <button className='profile__btn-exit' onClick={signOut}>Выйти из аккаунта</button>
+        <button
+          className={`profile__btn-edit_visible ${isBtnVisible ? "" : "profile__btn-edit_invisible"}`}
+          onClick={handleEdit}
+        >Редактировать
+        </button>
+        <button
+          className={`profile__btn-exit_visible ${isBtnVisible ? "" : "profile__btn-exit_invisible"}`}
+          onClick={signOut}
+        >
+          Выйти из аккаунта
+        </button>
+
+        <InfoTooltip
+          isOpen={isOpen}
+          text={"При обновлении профиля произошла ошибка."}
+        />
+
+        <button
+          className={`profile__btn-save ${isSaveBtnVisible ? '' : 'profile__btn-save_invisible'} 
+                                        ${!isValid ? 'profile__btn-save_disabled' : ''}`}
+
+          onClick={handleUpdate}
+          disabled={!isValid}
+        >Сохранить
+        </button>
       </div>
     </section>
   );

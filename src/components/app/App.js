@@ -16,12 +16,12 @@ import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
 import api from '../../utils/MainApi';
 
+
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  // const [userEmail, setEmail] = React.useState('');
-  // const [userPassword, setPassword] = React.useState('');
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -38,6 +38,10 @@ function App() {
         console.log('ошибка', err);
       })
   }, []);
+
+  function handleInfoTooltip() {
+    setInfoTooltipOpen(!isInfoTooltipOpen);
+  }
 
   function handleEditMenuClick() {
     setMenuOpen(!isMenuOpen);
@@ -89,12 +93,9 @@ function App() {
         if (data.jwt) {
           localStorage.setItem('jwt', data.jwt);
           handleLogin();
-          navigate('/movies', { replace: true });
-          // window.location.reload();
         }
       })
       .catch((err) => {
-        // handleUnLuckyInfoTooltip();
         console.log(err);
       })
   }
@@ -103,8 +104,12 @@ function App() {
     api.editInfo(data)
       .then(function (res) {
         setCurrentUser(res);
+        window.location.reload();
       })
       .catch(function (err) {
+        handleInfoTooltip();
+        window.location.reload();
+        // navigate('/profile', { replace: true });
         console.log('ошибка', err);
       })
   }
@@ -254,8 +259,8 @@ function App() {
         <Routes>
           <Route path="/signup"
             element={
-              <Register 
-              handleRegisterSubmit={handleRegisterSubmit} 
+              <Register
+                handleRegisterSubmit={handleRegisterSubmit}
               />
             }
           />
@@ -266,12 +271,12 @@ function App() {
           <Route path="/signin"
             element={
               <Login
-               handleLogInSubmit={handleLogInSubmit} 
+                handleLogInSubmit={handleLogInSubmit}
               //  email={userEmail}
               //  setEmail={setEmail}
               //  password={userPassword}
               //  setPassword={setPassword}
-               />
+              />
             }
           />
         </Routes>
@@ -280,7 +285,8 @@ function App() {
         <Routes>
           <Route path="/profile"
             element={
-              <Profile 
+              <Profile
+                isOpen={isInfoTooltipOpen}
                 onUpdateUser={handleUpdateUser}
                 handleLogin={handleLogin}
               />

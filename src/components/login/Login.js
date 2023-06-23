@@ -30,11 +30,6 @@ function Login(props) {
       error = "Введите корректный адрес электронной почты";
     }
 
-    // Валидация пароля
-    // if (name === "password" && !validator.isLength(value, { min: 8 })) {
-    //   error = "Пароль должен содержать не менее 8 символов";
-    // }
-
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: error });
     setIsValid(target.closest("form").checkValidity());
@@ -82,7 +77,8 @@ function Login(props) {
           <button
             className={`login__button ${!isValid ? "login__button_disabled" : ""}`}
             type="submit"
-            disabled={!isValid}>
+            disabled={!isValid}
+          >
             Войти
           </button>
         </form>
