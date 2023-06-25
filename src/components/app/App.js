@@ -99,6 +99,7 @@ function App() {
   }
 
   function handleLogInSubmit(password, email) {
+    setPreloaderShown(true);
     Auth.authorize(password, email)
       .then((data) => {
         if (data.jwt) {
@@ -119,6 +120,9 @@ function App() {
           window.location.reload();
         }, 2000);
         console.log(err);
+      })
+      .finally(function() {
+        setPreloaderShown(false);
       })
   }
 
@@ -304,6 +308,7 @@ function App() {
                 textError={textError}
                 handleLogInSubmit={handleLogInSubmit}
                 isOpen={isInfoTooltipOpen}
+                isShown={isPreloaderShown}
               />
             }
           />

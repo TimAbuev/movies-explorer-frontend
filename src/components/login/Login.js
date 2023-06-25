@@ -4,12 +4,14 @@ import Logo from "../logo/Logo";
 import { Link } from 'react-router-dom';
 import './Login.css';
 import InfoTooltip from "../infoTooltip/InfoTooltip";
+import Preloader from "../Preloader/Preloader";
 
 function Login(props) {
   const {
     handleLogInSubmit,
     isOpen,
-    textError
+    textError,
+    isShown
   } = props;
 
   const [values, setValues] = React.useState({});
@@ -77,6 +79,11 @@ function Login(props) {
             <span className="login__error">{errors.password}</span>
 
           </fieldset>
+
+          <Preloader
+            isShown={isShown}
+          />
+
           <InfoTooltip
             isOpen={isOpen}
             text={textError}
