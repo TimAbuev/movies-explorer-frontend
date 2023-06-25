@@ -11,7 +11,12 @@ function Header(props) {
     toLink2,
     linkName3,
     toLink3,
+    handleMenu,
   } = props;
+
+  function handleBurger() {
+    handleMenu();
+  }
 
   return (
     <header className="header">
@@ -27,7 +32,7 @@ function Header(props) {
         />
         <Link className="header__link-account" to="/profile">Аккаунт</Link>
       </div>
-      <button className="header__burger"></button>
+      <button className="header__burger" onClick={handleBurger}></button>
     </header>
 
   );

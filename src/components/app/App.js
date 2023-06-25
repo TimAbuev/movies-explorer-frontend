@@ -18,7 +18,7 @@ import api from '../../utils/MainApi';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
-  const [isMenuOpen, setMenuOpen] = React.useState(true);
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
@@ -44,7 +44,7 @@ function App() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
   }
 
-  function handleEditMenuClick() {
+  function handleMenu() {
     setMenuOpen(!isMenuOpen);
   }
 
@@ -53,7 +53,7 @@ function App() {
   }
 
   function closeAllPopups() {
-    isMenuOpen && handleEditMenuClick();
+    isMenuOpen && handleMenu();
   }
 
   function handleRegisterSubmit(name, email, password) {
@@ -160,6 +160,7 @@ function App() {
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
                 toLink2="/saved-movies"
+                handleMenu={handleMenu}
                 component={Header}
               />
             } />
@@ -172,6 +173,7 @@ function App() {
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
                 toLink2="/saved-movies"
+                handleMenu={handleMenu}
                 component={Header}
               />
             } />
@@ -184,6 +186,7 @@ function App() {
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
                 toLink2="/saved-movies"
+                handleMenu={handleMenu}
                 component={Header}
               />
             } />
@@ -196,6 +199,7 @@ function App() {
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
                 toLink2="/saved-movies"
+                handleMenu={handleMenu}
               // component={Header}
               />
             } />
