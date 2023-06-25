@@ -3,12 +3,14 @@ import validator from "validator";
 import './Profile.css'
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import InfoTooltip from "../infoTooltip/InfoTooltip";
+import Preloader from "../Preloader/Preloader";
 
 function Profile(props) {
   const {
     onUpdateUser,
     handleLogin,
-    isOpen
+    isOpen,
+    isShown
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -119,13 +121,19 @@ function Profile(props) {
           text={"При обновлении профиля произошла ошибка."}
         />
 
+        <Preloader
+          isShown={isShown}
+        />
+
         <button
+
           className={`profile__btn-save ${isSaveBtnVisible ? '' : 'profile__btn-save_invisible'} 
                                         ${!isValid ? 'profile__btn-save_disabled' : ''}`}
           onClick={handleUpdate}
           disabled={!isValid}
         >Сохранить
         </button>
+
       </div>
     </section>
   );

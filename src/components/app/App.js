@@ -22,6 +22,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
+  const [isPreloaderShown, setPreloaderShown] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -49,6 +50,10 @@ function App() {
 
   function handleLogin() {
     setLoggedIn(!loggedIn);
+  }
+
+  function handlePreloader() {
+    setPreloaderShown(!isPreloaderShown);
   }
 
   function closeAllPopups() {
@@ -119,6 +124,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    handlePreloader();
     api.editInfo(data)
       .then(function (res) {
         setCurrentUser(res);
@@ -131,6 +137,9 @@ function App() {
         }, 2000);
         // navigate('/profile', { replace: true });
         console.log('ошибка', err);
+      })
+      .finally(function() {
+        handlePreloader();
       })
   }
 
@@ -311,6 +320,7 @@ function App() {
                 onUpdateUser={handleUpdateUser}
                 handleLogin={handleLogin}
                 component={Profile}
+                isShown={isPreloaderShown}
               />
             }
           />
