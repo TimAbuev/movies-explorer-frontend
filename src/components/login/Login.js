@@ -2,11 +2,14 @@ import React from "react";
 import validator from "validator";
 import Logo from "../logo/Logo";
 import { Link } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
+import InfoTooltip from "../infoTooltip/InfoTooltip";
 
 function Login(props) {
   const {
     handleLogInSubmit,
+    isOpen,
+    textError
   } = props;
 
   const [values, setValues] = React.useState({});
@@ -74,6 +77,10 @@ function Login(props) {
             <span className="login__error">{errors.password}</span>
 
           </fieldset>
+          <InfoTooltip
+            isOpen={isOpen}
+            text={textError}
+          />
           <button
             className={`login__button ${!isValid ? "login__button_disabled" : ""}`}
             type="submit"

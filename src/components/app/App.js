@@ -16,12 +16,12 @@ import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
 import api from '../../utils/MainApi';
 
-
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  const [textError, setTextError] = React.useState('');
 
   const navigate = useNavigate();
 
@@ -64,7 +64,10 @@ function App() {
         }
       })
       .catch((err) => {
-        // handleUnLuckyInfoTooltip();
+        handleInfoTooltip();
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
         console.log(err);
       })
   }
@@ -74,11 +77,15 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         Auth.getContent(jwt).then((res) => {
+
+
+
           // const data = {
           //   id: res._id,
           //   email: res.email
           // }
-          setLoggedIn(true);
+          // setLoggedIn(true);
+          handleLogin();
           // setUserData(data);
           // navigate('/movies', { replace: true });
         })
@@ -93,9 +100,20 @@ function App() {
         if (data.jwt) {
           localStorage.setItem('jwt', data.jwt);
           handleLogin();
+          navigate('/movies', { replace: true });
         }
       })
       .catch((err) => {
+        handleInfoTooltip();
+        if (err === 'Ошибка 401') {
+          setTextError('Вы ввели неправильный логин или пароль. ');
+        }
+         else {
+          setTextError(' При авторизации произошла ошибка.');
+        }
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
         console.log(err);
       })
   }
@@ -108,7 +126,9 @@ function App() {
       })
       .catch(function (err) {
         handleInfoTooltip();
-        window.location.reload();
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
         // navigate('/profile', { replace: true });
         console.log('ошибка', err);
       })
@@ -157,14 +177,14 @@ function App() {
             } />
           <Route path="/profile"
             element={
-              <ProtectedRoute
+              <Header
                 loggedIn={loggedIn}
                 headerName="Сохранённые фильмы"
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
                 toLink2="/saved-movies"
-                component={Header}
+              // component={Header}
               />
             } />
 
@@ -260,6 +280,7 @@ function App() {
           <Route path="/signup"
             element={
               <Register
+                isOpen={isInfoTooltipOpen}
                 handleRegisterSubmit={handleRegisterSubmit}
               />
             }
@@ -271,11 +292,9 @@ function App() {
           <Route path="/signin"
             element={
               <Login
+                textError={textError}
                 handleLogInSubmit={handleLogInSubmit}
-              //  email={userEmail}
-              //  setEmail={setEmail}
-              //  password={userPassword}
-              //  setPassword={setPassword}
+                isOpen={isInfoTooltipOpen}
               />
             }
           />
@@ -285,10 +304,13 @@ function App() {
         <Routes>
           <Route path="/profile"
             element={
-              <Profile
+              <ProtectedRoute
+                // ProtectedRoute
+                loggedIn={loggedIn}
                 isOpen={isInfoTooltipOpen}
                 onUpdateUser={handleUpdateUser}
                 handleLogin={handleLogin}
+                component={Profile}
               />
             }
           />

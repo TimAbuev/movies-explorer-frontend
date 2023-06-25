@@ -12,10 +12,10 @@ function Profile(props) {
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
+  const nameRegEXp = /^(?! )(?!.* $)[A-Za-zА-Яа-яЁё\s-]+$/;
 
   React.useEffect(() => {
     setValues(currentUser);
-    console.log(currentUser);
   }, [currentUser]);
 
   const [values, setValues] = React.useState({});
@@ -27,7 +27,7 @@ function Profile(props) {
 
 
   function checkFormValidity() {
-    const isNameValid = validator.matches(values.name || "", /^[A-Za-zА-Яа-яЁё\s-]+$/);
+    const isNameValid = validator.matches(values.name || "", nameRegEXp);
     const isEmailValid = validator.isEmail(values.email || "");
     const isNameChanged = values.name !== currentUser.name;
     const isEmailChanged = values.email !== currentUser.email;
@@ -42,9 +42,9 @@ function Profile(props) {
     let error = "";
 
     // Валидация имени
-    if (name === "name" && !/^[A-Za-zА-Яа-яЁё\s-]+$/.test(value)) {
-      error = "Имя должно содержать только латиницу, кириллицу, пробел или дефис";
-    }
+    if (name === "name" && !nameRegEXp.test(value)) {
+      error = "Имя должно содержать только латиницу, кириллицу, пробел или дефис, при этом пробел не может быть первым и последним символом";
+    }    
     // Валидация электронной почты
     if (name === "email" && !validator.isEmail(value)) {
       error = "Введите корректный адрес электронной почты";
@@ -52,8 +52,7 @@ function Profile(props) {
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: error });
-    setIsValid(checkFormValidity());
-
+    setIsValid(checkFormValidity());    
   };
 
   function handleUpdate() {
@@ -71,7 +70,6 @@ function Profile(props) {
   function handleEdit() {
     setInputDisabled(!isInputDisabled)
     setBtnVisible(!isBtnVisible);
-    setIsValid(!isValid);
     setSaveBtnVisible(!isSaveBtnVisible);
   }
 
@@ -124,7 +122,6 @@ function Profile(props) {
         <button
           className={`profile__btn-save ${isSaveBtnVisible ? '' : 'profile__btn-save_invisible'} 
                                         ${!isValid ? 'profile__btn-save_disabled' : ''}`}
-
           onClick={handleUpdate}
           disabled={!isValid}
         >Сохранить

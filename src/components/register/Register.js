@@ -4,10 +4,12 @@ import validator from "validator";
 import Logo from "../logo/Logo";
 import { Link } from 'react-router-dom';
 import './Register.css'
+import InfoTooltip from "../infoTooltip/InfoTooltip";
 
 function Register(props) {
   const {
     handleRegisterSubmit,
+    isOpen
   } = props;
 
   const [values, setValues] = React.useState({});
@@ -100,7 +102,10 @@ function Register(props) {
           </button>
         </form>
       </div>
-
+      <InfoTooltip
+        isOpen={isOpen}
+        text={"При регистрации пользователя произошла ошибка."}
+      />
       <div className="register__low-container">
         <p className="register__text-link">Уже зарегистрированы?</p>
         <Link className="register__link" to="/signin">Войти</Link>
