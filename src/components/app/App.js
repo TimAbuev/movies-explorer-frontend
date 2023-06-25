@@ -57,10 +57,10 @@ function App() {
   }
 
   function handleRegisterSubmit(name, email, password) {
+    setPreloaderShown(true);
     Auth.register(name, email, password)
       .then((res) => {
         if (res) {
-          // handleLuckyInfoTooltip();
           handleLogInSubmit(password, email)
         }
       })
@@ -70,6 +70,9 @@ function App() {
           window.location.reload();
         }, 2000);
         console.log(err);
+      })
+      .finally(function() {
+        setPreloaderShown(false);
       })
   }
 
@@ -287,6 +290,7 @@ function App() {
               <Register
                 isOpen={isInfoTooltipOpen}
                 handleRegisterSubmit={handleRegisterSubmit}
+                isShown={isPreloaderShown}
               />
             }
           />

@@ -126,14 +126,12 @@ function Profile(props) {
         />
 
         <button
-
           className={`profile__btn-save ${isSaveBtnVisible ? '' : 'profile__btn-save_invisible'} 
                                         ${!isValid ? 'profile__btn-save_disabled' : ''}`}
           onClick={handleUpdate}
           disabled={!isValid}
         >Сохранить
         </button>
-
       </div>
     </section>
   );

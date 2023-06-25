@@ -5,11 +5,13 @@ import Logo from "../logo/Logo";
 import { Link } from 'react-router-dom';
 import './Register.css'
 import InfoTooltip from "../infoTooltip/InfoTooltip";
+import Preloader from "../Preloader/Preloader";
 
 function Register(props) {
   const {
     handleRegisterSubmit,
-    isOpen
+    isOpen,
+    isShown
   } = props;
 
   const [values, setValues] = React.useState({});
@@ -94,6 +96,9 @@ function Register(props) {
             />
             <span className="register__error" name="label-password">{errors.password}</span>
           </fieldset>
+          <Preloader
+            isShown={isShown}
+          />
           <button
             className={`register__button ${!isValid ? "register__button_disabled" : ""}`}
             type="submit"
