@@ -52,10 +52,6 @@ function App() {
     setLoggedIn(!loggedIn);
   }
 
-  function handlePreloader() {
-    setPreloaderShown(!isPreloaderShown);
-  }
-
   function closeAllPopups() {
     isMenuOpen && handleEditMenuClick();
   }
@@ -124,7 +120,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    handlePreloader();
+    setPreloaderShown(true);
     api.editInfo(data)
       .then(function (res) {
         setCurrentUser(res);
@@ -139,7 +135,7 @@ function App() {
         console.log('ошибка', err);
       })
       .finally(function() {
-        handlePreloader();
+        setPreloaderShown(false);
       })
   }
 
