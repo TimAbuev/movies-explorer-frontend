@@ -23,7 +23,7 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
-
+  console.log(loggedIn);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -71,7 +71,7 @@ function App() {
         }, 2000);
         console.log(err);
       })
-      .finally(function() {
+      .finally(function () {
         setPreloaderShown(false);
       })
   }
@@ -113,7 +113,7 @@ function App() {
         if (err === 'Ошибка 401') {
           setTextError('Вы ввели неправильный логин или пароль. ');
         }
-         else {
+        else {
           setTextError(' При авторизации произошла ошибка.');
         }
         setTimeout(function () {
@@ -121,7 +121,7 @@ function App() {
         }, 2000);
         console.log(err);
       })
-      .finally(function() {
+      .finally(function () {
         setPreloaderShown(false);
       })
   }
@@ -141,7 +141,7 @@ function App() {
         // navigate('/profile', { replace: true });
         console.log('ошибка', err);
       })
-      .finally(function() {
+      .finally(function () {
         setPreloaderShown(false);
       })
   }
@@ -153,55 +153,104 @@ function App() {
         <Routes>
           <Route path="/"
             element={
-              <ProtectedRoute
-                loggedIn={loggedIn}
-                headerName="Фильмы"
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                component={Header}
-              />
+              loggedIn ?
+                <Header
+                  linkName1="Фильмы"
+                  toLink1="/movies"
+                  linkName2="Сохранённые фильмы"
+                  toLink2="/saved-movies"
+                  handleMenu={handleMenu}
+                  toHideAccount={false}
+                  toHideBtnLogin={true}
+                  toHideBurger={false}
+                />
+                :
+                <Header
+                  linkName1="Регистрация"
+                  toLink1="/signup"
+                  toHideAccount={true}
+                  toHideBtnLogin={false}
+                  toHideBurger={true}
+                />
             } />
           <Route path="/movies"
             element={
-              <ProtectedRoute
-                loggedIn={loggedIn}
-                headerName="Фильмы"
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                component={Header}
-              />
+              loggedIn ?
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Фильмы"
+                  toLink1="/movies"
+                  linkName2="Сохранённые фильмы"
+                  toLink2="/saved-movies"
+                  handleMenu={handleMenu}
+                  toHideAccount={false}
+                  toHideBtnLogin={true}
+                  toHideBurger={false}
+                  component={Header}
+                />
+                :
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Регистрация"
+                  toLink1="/signup"
+                  toHideAccount={true}
+                  toHideBtnLogin={false}
+                  toHideBurger={true}
+                  component={Header}
+                />
+
             } />
           <Route path="/saved-movies"
             element={
-              <ProtectedRoute
-                loggedIn={loggedIn}
-                headerName="Сохранённые фильмы"
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                component={Header}
-              />
+              loggedIn ?
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Фильмы"
+                  toLink1="/movies"
+                  linkName2="Сохранённые фильмы"
+                  toLink2="/saved-movies"
+                  handleMenu={handleMenu}
+                  toHideAccount={false}
+                  toHideBtnLogin={true}
+                  toHideBurger={false}
+                  component={Header}
+                />
+                :
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Регистрация"
+                  toLink1="/signup"
+                  toHideAccount={true}
+                  toHideBtnLogin={false}
+                  toHideBurger={true}
+                  component={Header}
+                />
             } />
           <Route path="/profile"
             element={
-              <Header
-                loggedIn={loggedIn}
-                headerName="Сохранённые фильмы"
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-              // component={Header}
-              />
+              loggedIn ?
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Фильмы"
+                  toLink1="/movies"
+                  linkName2="Сохранённые фильмы"
+                  toLink2="/saved-movies"
+                  handleMenu={handleMenu}
+                  toHideAccount={false}
+                  toHideBtnLogin={true}
+                  toHideBurger={false}
+                  component={Header}
+                />
+                :
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  linkName1="Регистрация"
+                  toLink1="/signup"
+                  toHideAccount={true}
+                  toHideBtnLogin={false}
+                  toHideBurger={true}
+                  component={Header}
+                />
             } />
 
         </Routes>
@@ -278,19 +327,6 @@ function App() {
           />
         </Routes>
 
-        {/* {menu} */}
-        <Routes>
-          <Route path="/menu"
-            element={
-              <Menu
-                linkName1="Главная"
-                linkName2="Фильмы"
-                linkName3="Сохранённые фильмы"
-              />
-            }
-          />
-        </Routes>
-
         {/* Register */}
         <Routes>
           <Route path="/signup"
@@ -323,7 +359,6 @@ function App() {
           <Route path="/profile"
             element={
               <ProtectedRoute
-                // ProtectedRoute
                 loggedIn={loggedIn}
                 isOpen={isInfoTooltipOpen}
                 onUpdateUser={handleUpdateUser}
