@@ -23,22 +23,22 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
-  console.log(loggedIn);
   const navigate = useNavigate();
+  console.log(loggedIn);
 
   React.useEffect(() => {
     checkToken();
   }, []);
 
-  React.useEffect(() => {
-    api.getProfile()
-      .then(function (res) {
-        setCurrentUser(res)
-      })
-      .catch(function (err) {
-        console.log('ошибка', err);
-      })
-  }, []);
+  // React.useEffect(() => {
+  //   api.getProfile()
+  //     .then(function (res) {
+  //       setCurrentUser(res)
+  //     })
+  //     .catch(function (err) {
+  //       console.log('ошибка', err);
+  //     })
+  // }, []);
 
   function handleInfoTooltip() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
@@ -81,19 +81,12 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         Auth.getContent(jwt).then((res) => {
-
-
-
-          // const data = {
-          //   id: res._id,
-          //   email: res.email
-          // }
-          // setLoggedIn(true);
-          handleLogin();
-          // setUserData(data);
-          // navigate('/movies', { replace: true });
+          setLoggedIn(true);
+          setCurrentUser(res);          
         })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
   }
