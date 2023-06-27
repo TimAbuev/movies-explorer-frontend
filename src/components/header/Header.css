@@ -48,6 +48,10 @@
   margin-left: 10px;
 }
 
+.header__link-signup {
+  background-color: transparent;
+}
+
 .header__burger {
   width: 44px;
   height: 44px;
@@ -75,7 +79,7 @@
 /* less than 960 px */
 
 @media screen and (max-width: 960px) {
-  .header__conatainer {
+  .header__conatainer, .header__link-account {
     display: none;
   }
 

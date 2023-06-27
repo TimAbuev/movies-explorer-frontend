@@ -161,15 +161,13 @@ function App() {
                   toLink2="/saved-movies"
                   handleMenu={handleMenu}
                   toHideAccount={false}
-                  toHideBtnLogin={true}
+                  toHideBtn={true}
                   toHideBurger={false}
                 />
                 :
                 <Header
-                  linkName1="Регистрация"
-                  toLink1="/signup"
                   toHideAccount={true}
-                  toHideBtnLogin={false}
+                  toHideBtn={false}
                   toHideBurger={true}
                 />
             } />
@@ -184,17 +182,15 @@ function App() {
                   toLink2="/saved-movies"
                   handleMenu={handleMenu}
                   toHideAccount={false}
-                  toHideBtnLogin={true}
+                  toHideBtn={true}
                   toHideBurger={false}
                   component={Header}
                 />
                 :
                 <ProtectedRoute
                   loggedIn={loggedIn}
-                  linkName1="Регистрация"
-                  toLink1="/signup"
                   toHideAccount={true}
-                  toHideBtnLogin={false}
+                  toHideBtn={false}
                   toHideBurger={true}
                   component={Header}
                 />
@@ -211,17 +207,15 @@ function App() {
                   toLink2="/saved-movies"
                   handleMenu={handleMenu}
                   toHideAccount={false}
-                  toHideBtnLogin={true}
+                  toHideBtn={true}
                   toHideBurger={false}
                   component={Header}
                 />
                 :
                 <ProtectedRoute
                   loggedIn={loggedIn}
-                  linkName1="Регистрация"
-                  toLink1="/signup"
                   toHideAccount={true}
-                  toHideBtnLogin={false}
+                  toHideBtn={false}
                   toHideBurger={true}
                   component={Header}
                 />
@@ -237,17 +231,15 @@ function App() {
                   toLink2="/saved-movies"
                   handleMenu={handleMenu}
                   toHideAccount={false}
-                  toHideBtnLogin={true}
+                  toHideBtn={true}
                   toHideBurger={false}
                   component={Header}
                 />
                 :
                 <ProtectedRoute
                   loggedIn={loggedIn}
-                  linkName1="Регистрация"
-                  toLink1="/signup"
                   toHideAccount={true}
-                  toHideBtnLogin={false}
+                  toHideBtn={false}
                   toHideBurger={true}
                   component={Header}
                 />

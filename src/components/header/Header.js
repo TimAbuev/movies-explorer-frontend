@@ -13,7 +13,7 @@ function Header(props) {
     toLink3,
     handleMenu,
     toHideAccount,
-    toHideBtnLogin,
+    toHideBtn,
     toHideBurger
   } = props;
 
@@ -33,17 +33,22 @@ function Header(props) {
           linkName3={linkName3}
           toLink3={toLink3}
         />
-        <Link
-          className={`header__link header__link-signin ${toHideBtnLogin ? "header__link_invisible" : ''}`}
-          to="/signin">
-          Войти
-        </Link>
-        <Link
-          className={`header__link ${toHideAccount ? "header__link_invisible" : ''}`}
-          to="/profile">
-          Аккаунт
-        </Link>
       </div>
+      <Link
+        className={`header__link header__link-signup ${toHideBtn ? "header__link_invisible" : ''}`}
+        to="/signup">
+        Регистрация
+      </Link>
+      <Link
+        className={`header__link header__link-signin ${toHideBtn ? "header__link_invisible" : ''}`}
+        to="/signin">
+        Войти
+      </Link>
+      <Link
+        className={`header__link header__link-account ${toHideAccount ? "header__link_invisible" : ''}`}
+        to="/profile">
+        Аккаунт
+      </Link>
       <button
         className={`header__burger ${toHideBurger ? "header__burger_invisible" : ''}`}
         onClick={handleBurger}>
