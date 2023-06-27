@@ -11,9 +11,15 @@
   position: relative;
 }
 
-.header__conatainer {
+.header__nav-container {
   display: flex;
   flex-direction: row;
+}
+
+.header__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .header__link {
@@ -29,7 +35,6 @@
   font-size: 14px;
   line-height: 16px;
   border-radius: 20px;
-  margin-left: 50px;
 }
 
 .header__link_invisible {
@@ -45,7 +50,8 @@
   background-color: black;
   color: white;
   border-radius: 3px;
-  margin-left: 10px;
+  margin-left: 30px;
+  width: 76px;
 }
 
 .header__link-signup {
@@ -79,7 +85,9 @@
 /* less than 960 px */
 
 @media screen and (max-width: 960px) {
-  .header__conatainer, .header__link-account {
+
+  .header__nav-container,
+  .header__link-account {
     display: none;
   }
 
@@ -92,8 +100,18 @@
   }
 }
 
+/* less than 631px*/
+
 @media screen and (max-width: 631px) {
   .header {
     margin: 0 14px;
   }
+
+  .header__link-signin {
+    margin-left: 14px;
+    width: 54px;
+    height: 26px;
+  }
+
+
 }
