@@ -1,6 +1,7 @@
 import Checkbox from "../checkbox/Checkbox";
 
 function SearchForm() {
+
   return (
     <section className="searchForm">
 
