@@ -11,8 +11,8 @@ function MoviesCard(props) {
       </div>
       <iframe className="moviesCard__iframe" src="https://www.youtube.com/embed/GVV06jTYjeY"
         title="YouTube video player"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
+        frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen>
       </iframe>
       {/* <button className="moviesCard__button moviesCard__button_type_disabled">Сохранить</button>
       <button className="moviesCard__button moviesCard__button_type_active"></button>
