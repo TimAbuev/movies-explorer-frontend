@@ -181,7 +181,7 @@ function App() {
             </>
           )} />
 
-          <Route path="/movies" element={loggedIn ? (
+          <Route path="/movies" element={
             <>
               <ProtectedRoute
                 loggedIn={loggedIn}
@@ -199,17 +199,9 @@ function App() {
               <MoviesCardList btnType="active" />
               <Footer />
             </>
-          ) : (
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              toHideAccount={true}
-              toHideBtn={false}
-              toHideBurger={true}
-              component={Header}
-            />
-          )} />
+          } />
 
-          <Route path="/saved-movies" element={loggedIn ? (
+          <Route path="/saved-movies" element={
             <>
               <ProtectedRoute
                 loggedIn={loggedIn}
@@ -227,17 +219,9 @@ function App() {
               <MoviesCardList btnType="to-close" />
               <Footer />
             </>
-          ) : (
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              toHideAccount={true}
-              toHideBtn={false}
-              toHideBurger={true}
-              component={Header}
-            />
-          )} />
+          } />
 
-          <Route path="/profile" element={loggedIn ? (
+          <Route path="/profile" element={
             <>
               <ProtectedRoute
                 loggedIn={loggedIn}
@@ -260,15 +244,7 @@ function App() {
                 isShown={isPreloaderShown}
               />
             </>
-          ) : (
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              toHideAccount={true}
-              toHideBtn={false}
-              toHideBurger={true}
-              component={Header}
-            />
-          )} />
+          } />
 
           <Route path="/notFound" element={<NotFound />} />
 
