@@ -14,8 +14,7 @@ import Login from '../login/Login';
 import Profile from '../profile/Profile';
 import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
-import api from '../../utils/MainApi';
-import moviesApi from '../../utils/MoviesApi';
+import mainApi from '../../utils/MainApi';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -24,31 +23,10 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
-  const [movies, setMovies] = React.useState([]);
   const navigate = useNavigate();
 
   React.useEffect(() => {
     checkToken();
-  }, []);
-
-  // React.useEffect(() => {
-  //   api.getProfile()
-  //     .then(function (res) {
-  //       setCurrentUser(res)
-  //     })
-  //     .catch(function (err) {
-  //       console.log('ошибка', err);
-  //     })
-  // }, []);
-
-  React.useEffect(() => {
-    moviesApi.getMovies()
-      .then(function (res) {
-        setMovies(res);
-      })
-      .catch(function (err) {
-        console.log('ошибка', err);
-      })
   }, []);
 
   function handleInfoTooltip() {
@@ -132,7 +110,7 @@ function App() {
 
   function handleUpdateUser(data) {
     setPreloaderShown(true);
-    api.editInfo(data)
+    mainApi.editInfo(data)
       .then(function (res) {
         setCurrentUser(res);
         window.location.reload();
@@ -196,7 +174,9 @@ function App() {
                 component={Header}
               />
               <SearchForm />
-              <MoviesCardList btnType="active" />
+              <MoviesCardList
+                btnType="active"
+              />
               <Footer />
             </>
           } />
