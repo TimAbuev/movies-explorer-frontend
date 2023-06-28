@@ -9,13 +9,10 @@ function MoviesCardList(props) {
   return (
     <section className="moviesCardList">
       <div className="moviesCardList__grid-container">
+        {
+          
+        }
         <MoviesCard btnType={btnType}/>
-        <MoviesCard btnType={btnType}/>
-        <MoviesCard btnType={btnType}/>
-        <MoviesCard btnType={btnType}/>
-        <MoviesCard btnType={btnType}/>
-        <MoviesCard btnType={btnType}/>
-
       </div>
       <button className="moviesCardList__button">Ещё</button>
     </section>
