@@ -10,7 +10,7 @@ class MoviesApi {
     this._url = 'https://api.nomoreparties.co/beatfilm-movies';
     this._headers = {
       "content-type": "application/json",
-      "authorization": `Bearer ${localStorage.getItem('jwt')}`,
+      // "authorization": `Bearer ${localStorage.getItem('jwt')}`,
     };
   }
 
