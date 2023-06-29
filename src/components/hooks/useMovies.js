@@ -89,6 +89,7 @@ export const useMovies = () => {
   const handleSetShortMovies = useCallback((e) => {
     const { checked } = e.currentTarget;
     setShortMovies(checked);
+    console.log(checked);
   }, []);
 
 
