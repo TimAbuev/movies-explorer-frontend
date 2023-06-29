@@ -96,8 +96,6 @@ export const useMovies = () => {
   return {
     state,
     handleSetSearch,
-    search,
     handleSetShortMovies,
-    shortMovies,
   };
 }

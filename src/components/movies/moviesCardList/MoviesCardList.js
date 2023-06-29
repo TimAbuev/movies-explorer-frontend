@@ -3,7 +3,7 @@ import { useMovies } from '../../hooks/useMovies';
 
 function MoviesCardList(props) {
   const { btnType } = props;
-  const { state } = useMovies();
+  // const { state } = useMovies();
 
   // if (state.loading) {
   //   return <div>Loading...</div>;
