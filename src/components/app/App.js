@@ -15,6 +15,8 @@ import Profile from '../profile/Profile';
 import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
 import mainApi from '../../utils/MainApi';
+import { useMovies } from '../hooks/useMovies';
+
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -23,6 +25,7 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
+  const { state: moviesState } = useMovies();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -175,7 +178,8 @@ function App() {
               />
               <SearchForm />
               <MoviesCardList
-                btnType="active"
+                moviesState={moviesState}
+                keyOfObject={"movies"}
               />
               <Footer />
             </>
@@ -196,7 +200,10 @@ function App() {
                 component={Header}
               />
               <SearchForm />
-              <MoviesCardList btnType="to-close" />
+              <MoviesCardList
+                moviesState={moviesState}
+                keyOfObject={"myMovies"}
+              />
               <Footer />
             </>
           } />

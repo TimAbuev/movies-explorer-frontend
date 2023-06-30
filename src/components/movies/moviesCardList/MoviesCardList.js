@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import MoviesCard from "../moviesCard/MoviesCard";
-import { useMovies } from '../../hooks/useMovies';
 
-function MoviesCardList(props) {
-  const { btnType } = props;
-  const { state } = useMovies();
+function MoviesCardList (props) {
+  const {
+    moviesState,
+    keyOfObject,
+  } = props;
+
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
 
   useEffect(() => {
@@ -45,18 +47,21 @@ function MoviesCardList(props) {
     setMoviesToShow((prevMoviesToShow) => prevMoviesToShow + getMoviesToAdd());
   };
 
-  if (state.loading) {
+  if (moviesState.loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <section className="moviesCardList">
       <div className="moviesCardList__grid-container">
-        {state.movies.slice(0, moviesToShow).map((movie) => (
-          <MoviesCard key={movie._id} movie={movie} btnType={btnType} />
+        {moviesState[keyOfObject].slice(0, moviesToShow).map((movie) => (
+          <MoviesCard
+            key={movie._id}
+            movie={movie}
+          />
         ))}
       </div>
-      {moviesToShow < state.movies.length && (
+      {moviesToShow < moviesState[keyOfObject].length && (
         <button className="moviesCardList__button" onClick={handleClickLoadMore}>
           Ещё
         </button>

@@ -29,6 +29,11 @@ class Api {
       .then(this.#onResponse);
   }
 
+  getMyMovies() {
+    return fetch(`${this._url}/movies`, { headers: this._headers })
+      .then(this.#onResponse);
+  }
+
 
 }
 

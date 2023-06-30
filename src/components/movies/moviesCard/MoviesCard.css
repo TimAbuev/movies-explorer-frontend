@@ -29,9 +29,16 @@
   color: #A0A0A0;
 }
 
-.moviesCard__iframe {
+.moviesCard__link {
+  /* width: 100%;
+  height: 168px; */
+}
+
+.moviesCard__img {
   width: 100%;
   height: 168px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .moviesCard__button {
@@ -44,6 +51,7 @@
   line-height: 11px;
   margin: 14px 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .moviesCard__button:hover {
