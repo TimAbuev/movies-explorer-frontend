@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../index.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation  } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
@@ -19,7 +19,6 @@ import { useMovies } from '../hooks/useMovies';
 
 
 function App() {
-  const [isMovieSaved, setMovieSaved] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -28,6 +27,7 @@ function App() {
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
   const { state: moviesState, setState: setMoviesState } = useMovies();
   const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
     checkToken();
@@ -132,23 +132,18 @@ function App() {
       })
   }
 
-  function handleCreateMovie(data) {
-    console.log('handleCreateMovie is completed');
-    setMovieSaved(true);
-    // mainApi.createMovie(data)
-    //   .then(function (res) {
-    //     setMoviesState.myMovies.push(res);
-    //     // window.location.reload();
-    //   })
-    //   .catch(function (err) {
-    //     // handleInfoTooltip();
-    //     console.log('ошибка', err);
-    //   })
-  }
-
-  function handleDeleteMovie() {
-    console.log('handleDeleteMovie is completed');
-  }
+  // function handleCreateMovie(data) {
+  //   console.log('handleCreateMovie is completed');
+  //   mainApi.createMovie(data)
+  //     .then(function (res) {
+  //       setMoviesState.myMovies.push(res);
+  //       // window.location.reload();
+  //     })
+  //     .catch(function (err) {
+  //       // handleInfoTooltip();
+  //       console.log('ошибка', err);
+  //     })
+  // }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -199,10 +194,7 @@ function App() {
               <MoviesCardList
                 moviesState={moviesState}
                 keyOfObject={"movies"}
-                onCreateMovie={handleCreateMovie}
-                btnType={"save"}
-                handleClickBtnMovie={handleCreateMovie}
-                isMovieSaved={isMovieSaved}
+                currentRoute={location.pathname}
               />
               <Footer />
             </>
@@ -226,8 +218,7 @@ function App() {
               <MoviesCardList
                 moviesState={moviesState}
                 keyOfObject={"myMovies"}
-                btnType={"close"}
-                handleClickBtnMovie={handleDeleteMovie}
+                currentRoute={location.pathname}
               />
               <Footer />
             </>

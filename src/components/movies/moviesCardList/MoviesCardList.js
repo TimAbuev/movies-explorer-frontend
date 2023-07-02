@@ -5,10 +5,7 @@ function MoviesCardList (props) {
   const {
     moviesState,
     keyOfObject,
-    onCreateMovie,
-    handleClickBtnMovie,
-    btnType,
-    isMovieSaved
+    currentRoute,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -62,10 +59,7 @@ function MoviesCardList (props) {
           <MoviesCard
             key={movie.id}
             movie={movie}
-            onCreateMovie={onCreateMovie}
-            handleClickBtnMovie={handleClickBtnMovie}
-            btnType={btnType}
-            isMovieSaved={isMovieSaved}
+            currentRoute={currentRoute}
           />
         ))}
       </div>

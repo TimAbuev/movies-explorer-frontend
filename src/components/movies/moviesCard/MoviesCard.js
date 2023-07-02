@@ -4,18 +4,27 @@ import { Link } from "react-router-dom";
 function MoviesCard(props) {
   const {
     movie,
-    onCreateMovie,
-    handleClickBtnMovie,
-    btnType,
-    isMovieSaved
+    currentRoute,
   } = props;
 
+  const [isClicked, setClicked] = useState(false);
 
-  // function handleClickBtnSave() {
-  //   // setIsClicked(true);
-  //   onCreateMovie(movie);
-  //   console.log('click on handleClickBtnSave');
-  // }
+  const buttonClassName = currentRoute === '/movies'
+    ? `${isClicked ? 'moviesCard__button_clicked' : `moviesCard__button-to-save`}`
+    : `${isClicked ? 'moviesCard__button-to-close' : `moviesCard__button-to-close`}`;
+
+  function handleClick() {
+    currentRoute === '/movies'
+    ? saveMovie()
+    : deleteMovie()
+  }
+
+  function saveMovie() {
+    console.log('click on saveMovie');
+  }
+  function deleteMovie() {
+    console.log('click on deleteMovie');
+  }
 
   return (
     <div className="moviesCard">
@@ -32,16 +41,9 @@ function MoviesCard(props) {
       </Link>
 
       <button
-        className={`${isMovieSaved ? 'moviesCard__button_clicked' : `moviesCard__button-to-${btnType}`}`}
-        // className={`moviesCard__button-to-${btnType}`}
-        onClick={handleClickBtnMovie}
-        // disabled={isClicked ? true : false}
-      >
-
-      </button>
-
-      {/* <button className="moviesCard__button moviesCard__button_type_active"></button>
-      <button className="moviesCard__button moviesCard__button_type_to-close"></button> */}
+        className={buttonClassName}
+        onClick={handleClick}
+      ></button>
 
     </div>
   );
