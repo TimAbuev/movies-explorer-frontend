@@ -5,6 +5,10 @@ function MoviesCardList (props) {
   const {
     moviesState,
     keyOfObject,
+    onCreateMovie,
+    handleClickBtnMovie,
+    btnType,
+    isMovieSaved
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -56,8 +60,12 @@ function MoviesCardList (props) {
       <div className="moviesCardList__grid-container">
         {moviesState[keyOfObject].slice(0, moviesToShow).map((movie) => (
           <MoviesCard
-            key={movie._id}
+            key={movie.id}
             movie={movie}
+            onCreateMovie={onCreateMovie}
+            handleClickBtnMovie={handleClickBtnMovie}
+            btnType={btnType}
+            isMovieSaved={isMovieSaved}
           />
         ))}
       </div>

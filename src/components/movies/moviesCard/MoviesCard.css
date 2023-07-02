@@ -41,7 +41,20 @@
   object-position: center;
 }
 
-.moviesCard__button {
+/* .moviesCard__button {
+  min-width: 100px;
+  height: 29px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  margin: 14px 0;
+  padding: 0;
+  cursor: pointer;
+} */
+
+.moviesCard__button-to-save {
   min-width: 100px;
   height: 29px;
   border: none;
@@ -54,31 +67,46 @@
   cursor: pointer;
 }
 
-.moviesCard__button:hover {
+.moviesCard__button-to-save::before {
+  content: "Сохранить";
+}
+
+.moviesCard__button-to-save:hover, .moviesCard__button-to-save:hover::before, .moviesCard__button-to-close:hover {
   opacity: 70%;
   transition: 0.4s;
 }
 
-.moviesCard__button_type_disabled:hover {
+.moviesCard__button-to-close {
+  min-width: 100px;
+  height: 29px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  margin: 14px 0;
+  padding: 0;
   cursor: pointer;
-}
-
-.moviesCard__button_type_active {
-  background-color: #FF4062;
-  background-image: url(../../../images/checked.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: not-allowed;
-}
-
-.moviesCard__button_type_to-close {
   background-image: url(../../../images/close-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.moviesCard__button_type_to-close:hover {
-  cursor: pointer;
+.moviesCard__button_clicked {
+  min-width: 100px;
+  height: 29px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  margin: 14px 0;
+  padding: 0;
+  background-color: #FF4062;
+  background-image: url(../../../images/checked.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: not-allowed;
 }
 
 /*tablet 768 */

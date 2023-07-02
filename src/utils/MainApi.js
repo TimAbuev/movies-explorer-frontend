@@ -5,7 +5,7 @@ class Api {
     }
     return Promise.reject({ message: "Ошибка на стороне сервера", res })
   }
- 
+
   constructor() {
     this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'http://localhost:3000';
     // this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'https://api.carousel.nomoredomains.rocks';
@@ -31,6 +31,15 @@ class Api {
 
   getMyMovies() {
     return fetch(`${this._url}/movies`, { headers: this._headers })
+      .then(this.#onResponse);
+  }
+
+  createMovie(data) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
       .then(this.#onResponse);
   }
 

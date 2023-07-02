@@ -19,13 +19,14 @@ import { useMovies } from '../hooks/useMovies';
 
 
 function App() {
+  const [isMovieSaved, setMovieSaved] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
-  const { state: moviesState } = useMovies();
+  const { state: moviesState, setState: setMoviesState } = useMovies();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -58,9 +59,9 @@ function App() {
       })
       .catch((err) => {
         handleInfoTooltip();
-        setTimeout(function () {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(function () {
+        //   window.location.reload();
+        // }, 2000);
         console.log(err);
       })
       .finally(function () {
@@ -101,9 +102,9 @@ function App() {
         else {
           setTextError(' При авторизации произошла ошибка.');
         }
-        setTimeout(function () {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(function () {
+        //   window.location.reload();
+        // }, 2000);
         console.log(err);
       })
       .finally(function () {
@@ -129,6 +130,24 @@ function App() {
       .finally(function () {
         setPreloaderShown(false);
       })
+  }
+
+  function handleCreateMovie(data) {
+    console.log('handleCreateMovie is completed');
+    setMovieSaved(true);
+    // mainApi.createMovie(data)
+    //   .then(function (res) {
+    //     setMoviesState.myMovies.push(res);
+    //     // window.location.reload();
+    //   })
+    //   .catch(function (err) {
+    //     // handleInfoTooltip();
+    //     console.log('ошибка', err);
+    //   })
+  }
+
+  function handleDeleteMovie() {
+    console.log('handleDeleteMovie is completed');
   }
 
   return (
@@ -180,6 +199,10 @@ function App() {
               <MoviesCardList
                 moviesState={moviesState}
                 keyOfObject={"movies"}
+                onCreateMovie={handleCreateMovie}
+                btnType={"save"}
+                handleClickBtnMovie={handleCreateMovie}
+                isMovieSaved={isMovieSaved}
               />
               <Footer />
             </>
@@ -203,6 +226,8 @@ function App() {
               <MoviesCardList
                 moviesState={moviesState}
                 keyOfObject={"myMovies"}
+                btnType={"close"}
+                handleClickBtnMovie={handleDeleteMovie}
               />
               <Footer />
             </>
