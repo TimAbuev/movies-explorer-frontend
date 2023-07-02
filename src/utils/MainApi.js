@@ -7,8 +7,8 @@ class Api {
   }
  
   constructor() {
-    // this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'http://localhost:3000';
-    this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'https://api.carousel.nomoredomains.rocks';
+    this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'http://localhost:3000';
+    // this._url = process.env.NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'https://api.carousel.nomoredomains.rocks';
     this._headers = {
       "content-type": "application/json",
       "authorization": `Bearer ${localStorage.getItem('jwt')}`,

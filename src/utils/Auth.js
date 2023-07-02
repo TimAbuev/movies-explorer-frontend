@@ -1,7 +1,7 @@
 import {checkResponse} from '../utils/checkResponse';
 const { NODE_ENV } = process.env;
-//export const BASE_URL = NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'http://localhost:3000';
-export const BASE_URL = NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'https://api.carousel.nomoredomains.rocks';
+export const BASE_URL = NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'http://localhost:3000';
+//export const BASE_URL = NODE_ENV === 'production' ? 'https://api.carousel.nomoredomains.rocks' : 'https://api.carousel.nomoredomains.rocks';
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
