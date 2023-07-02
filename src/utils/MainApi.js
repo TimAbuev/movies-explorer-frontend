@@ -43,6 +43,13 @@ class Api {
       .then(this.#onResponse);
   }
 
+  deleteMovie(id) {
+    return fetch(`${this._url}/movies/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this.#onResponse);
+  }
 
 }
 

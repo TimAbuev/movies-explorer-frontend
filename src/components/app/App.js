@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../index.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { Route, Routes, useNavigate, useLocation  } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
@@ -132,6 +132,20 @@ function App() {
       })
   }
 
+  function handleDeleteMovie(movie) {
+    console.log("and now ......." + movie._id);
+    mainApi.deleteMovie(movie._id)
+      .then(() => {
+        setMoviesState((prevState) => ({
+          ...prevState, myMovies:
+            prevState.myMovies.filter((m) => m.id !== movie.id)
+        }));
+      })
+      .catch(function (err) {
+        console.log('ошибка', err);
+      })
+  }
+
   // function handleCreateMovie(data) {
   //   console.log('handleCreateMovie is completed');
   //   mainApi.createMovie(data)
@@ -219,6 +233,7 @@ function App() {
                 moviesState={moviesState}
                 keyOfObject={"myMovies"}
                 currentRoute={location.pathname}
+                onMovieDelete={handleDeleteMovie}
               />
               <Footer />
             </>

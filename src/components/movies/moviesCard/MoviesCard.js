@@ -5,13 +5,14 @@ function MoviesCard(props) {
   const {
     movie,
     currentRoute,
+    onMovieDelete
   } = props;
 
   const [isClicked, setClicked] = useState(false);
 
   const buttonClassName = currentRoute === '/movies'
     ? `${isClicked ? 'moviesCard__button_clicked' : `moviesCard__button-to-save`}`
-    : `${isClicked ? 'moviesCard__button-to-close' : `moviesCard__button-to-close`}`;
+    : `moviesCard__button-to-close`;
 
   function handleClick() {
     currentRoute === '/movies'
@@ -20,10 +21,12 @@ function MoviesCard(props) {
   }
 
   function saveMovie() {
+    setClicked(true)
     console.log('click on saveMovie');
   }
   function deleteMovie() {
     console.log('click on deleteMovie');
+    onMovieDelete(movie);
   }
 
   return (
