@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../index.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
@@ -16,22 +15,39 @@ import * as Auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import { useMovies } from '../hooks/useMovies';
+import { useUser } from '../hooks/useUser';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState({});
   const [isMenuOpen, setMenuOpen] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
   const { state: moviesState, setState: setMoviesState } = useMovies();
+  const user = useUser();
+  const isLogged = Boolean(user);
+  console.log({user, isLogged});
   const navigate = useNavigate();
   const location = useLocation();
 
-  React.useEffect(() => {
-    checkToken();
-  }, []);
+  // React.useEffect(() => {
+  //   checkToken();
+  // }, []);
+
+  // function checkToken() {
+  //   if (localStorage.getItem('jwt')) {
+  //     const jwt = localStorage.getItem('jwt');
+  //     if (jwt) {
+  //       Auth.getContent(jwt).then((res) => {
+  //         setLoggedIn(true);
+  //         setCurrentUser(res);
+  //       })
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     }
+  //   }
+  // }
 
   function handleInfoTooltip() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
@@ -41,9 +57,9 @@ function App() {
     setMenuOpen(!isMenuOpen);
   }
 
-  function handleLogin() {
-    setLoggedIn(!loggedIn);
-  }
+  // function handleLogin() {
+  //   setUserState(!isLogged);
+  // }
 
   function closeAllPopups() {
     isMenuOpen && handleMenu();
@@ -69,28 +85,13 @@ function App() {
       })
   }
 
-  function checkToken() {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
-        Auth.getContent(jwt).then((res) => {
-          setLoggedIn(true);
-          setCurrentUser(res);
-        })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }
-  }
-
   function handleLogInSubmit(password, email) {
     setPreloaderShown(true);
     Auth.authorize(password, email)
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem('jwt', data.jwt);
-          handleLogin();
+          // handleLogin();
           navigate('/movies', { replace: true });
         }
       })
@@ -116,7 +117,7 @@ function App() {
     setPreloaderShown(true);
     mainApi.editInfo(data)
       .then(function (res) {
-        setCurrentUser(res);
+        // setCurrentUser(res);
         window.location.reload();
       })
       .catch(function (err) {
@@ -162,10 +163,9 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
         <Routes>
-          <Route path="/" element={loggedIn ? (
+          <Route path="/" element={isLogged ? (
             <>
               <Header
                 linkName1="Фильмы"
@@ -195,7 +195,7 @@ function App() {
           <Route path="/movies" element={
             <>
               <ProtectedRoute
-                loggedIn={loggedIn}
+                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -220,7 +220,7 @@ function App() {
           <Route path="/saved-movies" element={
             <>
               <ProtectedRoute
-                loggedIn={loggedIn}
+                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -245,7 +245,7 @@ function App() {
           <Route path="/profile" element={
             <>
               <ProtectedRoute
-                loggedIn={loggedIn}
+                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -257,10 +257,10 @@ function App() {
                 component={Header}
               />
               <ProtectedRoute
-                loggedIn={loggedIn}
+                loggedIn={isLogged}
                 isOpen={isInfoTooltipOpen}
                 onUpdateUser={handleUpdateUser}
-                handleLogin={handleLogin}
+                // handleLogin={handleLogin}
                 component={Profile}
                 isShown={isPreloaderShown}
               />
@@ -298,7 +298,6 @@ function App() {
           isOpen={isMenuOpen}
         />
       </div>
-    </CurrentUserContext.Provider>
   );
 
 }
