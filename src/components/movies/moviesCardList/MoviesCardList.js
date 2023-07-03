@@ -7,6 +7,7 @@ function MoviesCardList (props) {
     keyOfObject,
     currentRoute,
     onMovieDelete,
+    onMovieSave,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -62,6 +63,7 @@ function MoviesCardList (props) {
             movie={movie}
             currentRoute={currentRoute}
             onMovieDelete={onMovieDelete}
+            onMovieSave={onMovieSave}
           />
         ))}
       </div>

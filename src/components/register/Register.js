@@ -59,7 +59,7 @@ function Register(props) {
         <h1 className="register__header">Добро пожаловать!</h1>
         <form className="register__form" name="register-form" onSubmit={handleSubmit}>
           <fieldset className="register__fieldset">
-            <label className="register__input-label" for="input-name">Имя</label>
+            <label className="register__input-label" htmlFor="input-name">Имя</label>
             <input
               className="register__input"
               name="name"
@@ -72,7 +72,7 @@ function Register(props) {
             />
             <span className="register__error" name="label-name">{errors.name}</span>
 
-            <label className="register__input-label" for="input-email">E-mail</label>
+            <label className="register__input-label" htmlFor="input-email">E-mail</label>
             <input
               className="register__input"
               name="email"
@@ -84,7 +84,7 @@ function Register(props) {
             />
             <span className="register__error" name="label-email">{errors.email}</span>
 
-            <label className="register__input-label" for="input-password">Пароль</label>
+            <label className="register__input-label" htmlFor="input-password">Пароль</label>
             <input
               className={`register__input`}
               name="password"

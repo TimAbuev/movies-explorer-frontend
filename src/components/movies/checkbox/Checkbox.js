@@ -11,7 +11,7 @@ function Checkbox() {
         type="checkbox" id="short-movies-checkbox"
         onChange={handleSetShortMovies}
       />
-      <label className="сheckbox__checkbox-label" for="short-movies-checkbox">Короткометражки</label>
+      <label className="сheckbox__checkbox-label" htmlFor="short-movies-checkbox">Короткометражки</label>
     </>
   )
 }

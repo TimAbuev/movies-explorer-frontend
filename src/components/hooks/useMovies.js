@@ -47,6 +47,7 @@ export const useMovies = () => {
     // eslint-disable-next-line
   }, []);
 
+// показать все фильмы
   useEffect(() => {
     setState({
       ...state,
@@ -115,7 +116,8 @@ export const useMovies = () => {
     }
 
     return result;
-  }, [search, shortMovies, state]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, shortMovies, state.movies]); 
 
   const handleSetSearch = useCallback((value) => {
     setSearch(value);

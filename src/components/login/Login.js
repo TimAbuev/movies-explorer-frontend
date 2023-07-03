@@ -56,7 +56,7 @@ function Login(props) {
         <h1 className="login__header">Рады видеть!</h1>
         <form className="login__form" name="login-form" onSubmit={handleSubmit}>
           <fieldset className="login__fieldset">
-            <label className="login__input-label" for="input-email">E-mail</label>
+            <label className="login__input-label" htmlFor="input-email">E-mail</label>
             <input className="login__input"
               name="email"
               id="input-email"
@@ -67,7 +67,7 @@ function Login(props) {
             />
             <span className="login__error">{errors.email}</span>
 
-            <label className="login__input-label" for="input-password">Пароль</label>
+            <label className="login__input-label" htmlFor="input-password">Пароль</label>
             <input className="login__input"
               name="password"
               type="password"

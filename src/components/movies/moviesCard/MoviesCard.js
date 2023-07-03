@@ -5,7 +5,8 @@ function MoviesCard(props) {
   const {
     movie,
     currentRoute,
-    onMovieDelete
+    onMovieDelete,
+    onMovieSave,
   } = props;
 
   const [isClicked, setClicked] = useState(false);
@@ -22,10 +23,10 @@ function MoviesCard(props) {
 
   function saveMovie() {
     setClicked(true)
-    console.log('click on saveMovie');
+    onMovieSave(movie);
   }
+
   function deleteMovie() {
-    console.log('click on deleteMovie');
     onMovieDelete(movie);
   }
 
@@ -46,6 +47,7 @@ function MoviesCard(props) {
       <button
         className={buttonClassName}
         onClick={handleClick}
+        disabled={isClicked}
       ></button>
 
     </div>

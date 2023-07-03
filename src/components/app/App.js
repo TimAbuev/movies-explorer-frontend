@@ -146,18 +146,20 @@ function App() {
       })
   }
 
-  // function handleCreateMovie(data) {
-  //   console.log('handleCreateMovie is completed');
-  //   mainApi.createMovie(data)
-  //     .then(function (res) {
-  //       setMoviesState.myMovies.push(res);
-  //       // window.location.reload();
-  //     })
-  //     .catch(function (err) {
-  //       // handleInfoTooltip();
-  //       console.log('ошибка', err);
-  //     })
-  // }
+  function handleCreateMovie(data) {
+    mainApi.createMovie(data)
+      .then(function (res) {
+        setMoviesState((prevState) => ({
+          ...prevState, myMovies:
+          prevState.myMovies.push(res)
+        }));
+        // window.location.reload();
+      })
+      .catch(function (err) {
+        // handleInfoTooltip();
+        console.log('ошибка', err);
+      })
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -209,6 +211,7 @@ function App() {
                 moviesState={moviesState}
                 keyOfObject={"movies"}
                 currentRoute={location.pathname}
+                onMovieSave={handleCreateMovie}
               />
               <Footer />
             </>
