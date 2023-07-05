@@ -24,25 +24,14 @@ function MoviesCard(props) {
 
   function saveOrDeleteMovie() {
     if (isClicked === true) {
-      setClicked(!isClicked)
-      deleteMovieFromDatabaseOnly();
+      setClicked(!isClicked);
+      onMovieDelete(movie)
     }
     else if (isClicked === false) {
-      setClicked(!isClicked)
+      setClicked(!isClicked);
       onMovieSave(movie);
     }
 
-  }
-
-  function deleteMovieFromDatabaseOnly() {
-    console.log(movie.id);
-    mainApi.deleteMovie(movie.id)
-    .then(() => {
-      console.log('movies is deleted from DB');
-    })
-    .catch(function (err) {
-      console.log('ошибка', err);
-    })
   }
 
   return (

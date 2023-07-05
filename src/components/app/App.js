@@ -186,6 +186,7 @@ function App() {
                 moviesState={moviesState}
                 currentRoute={location.pathname}
                 onMovieSave={handleCreateMovie}
+                onMovieDelete={handleDeleteMovie}
               />
               <Footer />
             </>
