@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import mainApi from '../../../utils/MainApi';
 
 function MoviesCard(props) {
   const {
@@ -7,10 +8,7 @@ function MoviesCard(props) {
     currentRoute,
     onMovieDelete,
     onMovieSave,
-    additionalMovie,
   } = props;
-
-
 
   const [isClicked, setClicked] = useState(false);
 
@@ -32,20 +30,19 @@ function MoviesCard(props) {
     else if (isClicked === false) {
       setClicked(!isClicked)
       onMovieSave(movie);
-      console.log(movie);
     }
 
   }
 
   function deleteMovieFromDatabaseOnly() {
-    console.log(additionalMovie);
-    // mainApi.deleteMovie(additionalMovie._id)
-    // .then(() => {
-    //   console.log('movies is deleted from DB');
-    // })
-    // .catch(function (err) {
-    //   console.log('ошибка', err);
-    // })
+    console.log(movie.id);
+    mainApi.deleteMovie(movie.id)
+    .then(() => {
+      console.log('movies is deleted from DB');
+    })
+    .catch(function (err) {
+      console.log('ошибка', err);
+    })
   }
 
   return (

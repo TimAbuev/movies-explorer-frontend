@@ -1,7 +1,7 @@
 import React from "react";
 import validator from "validator";
 import './Profile.css'
-
+import { useNavigate } from 'react-router-dom';
 import InfoTooltip from "../infoTooltip/InfoTooltip";
 import Preloader from "../Preloader/Preloader";
 
@@ -16,8 +16,11 @@ function Profile(props) {
   const nameRegEXp = /^(?! )(?!.* $)[A-Za-zА-Яа-яЁё\s-]+$/;
 
   React.useEffect(() => {
-    setValues(currentUser);
+    if (currentUser) {
+      setValues(currentUser);
+    }
   }, [currentUser]);
+  
 
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
@@ -25,6 +28,7 @@ function Profile(props) {
   const [isInputDisabled, setInputDisabled] = React.useState(true);
   const [isBtnVisible, setBtnVisible] = React.useState(true);
   const [isSaveBtnVisible, setSaveBtnVisible] = React.useState(false);
+  const navigate = useNavigate();
 
 
   function checkFormValidity() {
@@ -65,7 +69,9 @@ function Profile(props) {
 
   function signOut() {
     localStorage.removeItem('jwt');
+    window.location.reload();
     // handleLogin();
+    // navigate('/signin', { replace: true });
   }
 
   function handleEdit() {

@@ -17,37 +17,18 @@ import mainApi from '../../utils/MainApi';
 import { useMovies } from '../hooks/useMovies';
 import { useUser } from '../hooks/useUser';
 
-
 function App() {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
+
   const { state: moviesState, setState: setMoviesState } = useMovies();
+  const navigate = useNavigate();
+  const location = useLocation();
   const user = useUser();
   const isLogged = Boolean(user);
   console.log(user, isLogged);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // React.useEffect(() => {
-  //   checkToken();
-  // }, []);
-
-  // function checkToken() {
-  //   if (localStorage.getItem('jwt')) {
-  //     const jwt = localStorage.getItem('jwt');
-  //     if (jwt) {
-  //       Auth.getContent(jwt).then((res) => {
-  //         setLoggedIn(true);
-  //         setCurrentUser(res);
-  //       })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     }
-  //   }
-  // }
 
   function handleInfoTooltip() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
@@ -56,10 +37,6 @@ function App() {
   function handleMenu() {
     setMenuOpen(!isMenuOpen);
   }
-
-  // function handleLogin() {
-  //   setUserState(!isLogged);
-  // }
 
   function closeAllPopups() {
     isMenuOpen && handleMenu();
@@ -91,8 +68,8 @@ function App() {
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem('jwt', data.jwt);
-          // handleLogin();
           navigate('/movies', { replace: true });
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -131,8 +108,8 @@ function App() {
   }
 
   function handleDeleteMovie(movie) {
-    console.log("and now ......." + movie._id);
-    mainApi.deleteMovie(movie._id)
+    console.log("and now ......." + movie.id);
+    mainApi.deleteMovie(movie.id)
       .then(() => {
         setMoviesState((prevState) => ({
           ...prevState, myMovies:
@@ -194,7 +171,6 @@ function App() {
           <Route path="/movies" element={
             <>
               <ProtectedRoute
-                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -218,7 +194,6 @@ function App() {
           <Route path="/saved-movies" element={
             <>
               <ProtectedRoute
-                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -242,7 +217,6 @@ function App() {
           <Route path="/profile" element={
             <>
               <ProtectedRoute
-                loggedIn={isLogged}
                 linkName1="Фильмы"
                 toLink1="/movies"
                 linkName2="Сохранённые фильмы"
@@ -254,7 +228,6 @@ function App() {
                 component={Header}
               />
               <ProtectedRoute
-                loggedIn={isLogged}
                 isOpen={isInfoTooltipOpen}
                 onUpdateUser={handleUpdateUser}
                 // handleLogin={handleLogin}

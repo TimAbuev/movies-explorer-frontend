@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
 
       try {
         fetchedUser = await Auth.getContent(jwt);
+        console.log('сработал fetchedUser = await Auth.getContent(jwt);');
       }
       catch (err) {
         console.log(err);
@@ -34,8 +35,8 @@ export const UserProvider = ({ children }) => {
         })
       }
     }
-    console.log('сработал useEffect в UserProvider');
     getUser();
+    console.log('сработал useEffect в UserProvider');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

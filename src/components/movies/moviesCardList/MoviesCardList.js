@@ -61,14 +61,10 @@ function MoviesCardList(props) {
     <section className="moviesCardList">
     <div className="moviesCardList__grid-container">
       {arrayOfMovieState.slice(0, moviesToShow).map((movie) => {
-        // Добавляем условие для выбора массива, из которого берется дополнительный movie
-        const additionalMovie = currentRoute === '/movies' ? arrayOfMovieState.find((m) => m.id === movie.id) : null;
-
         return (
           <MoviesCard
             key={movie.id}
             movie={movie}
-            additionalMovie={additionalMovie}
             currentRoute={currentRoute}
             onMovieDelete={onMovieDelete}
             onMovieSave={onMovieSave}
