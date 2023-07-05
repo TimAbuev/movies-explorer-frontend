@@ -70,8 +70,6 @@ function Profile(props) {
   function signOut() {
     localStorage.removeItem('jwt');
     window.location.reload();
-    // handleLogin();
-    // navigate('/signin', { replace: true });
   }
 
   function handleEdit() {

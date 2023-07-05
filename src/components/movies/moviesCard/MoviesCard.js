@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import mainApi from '../../../utils/MainApi';
 
 function MoviesCard(props) {
   const {
@@ -10,7 +9,9 @@ function MoviesCard(props) {
     onMovieSave,
   } = props;
 
-  const [isClicked, setClicked] = useState(false);
+  const [isClicked, setClicked] = useState(
+    localStorage.getItem(`movie_${movie.id}_clicked`) === "true" // Проверяем сохраненное состояние в localStorage при загрузке компонента
+  );
 
   const buttonClassName = currentRoute === '/movies'
     ? `${isClicked ? 'moviesCard__button_clicked' : `moviesCard__button-to-save`}`
@@ -19,20 +20,31 @@ function MoviesCard(props) {
   function handleClick() {
     currentRoute === '/movies'
       ? saveOrDeleteMovie()
-      : onMovieDelete(movie)
+      : deleteMovie()
   }
 
   function saveOrDeleteMovie() {
-    if (isClicked === true) {
-      setClicked(!isClicked);
-      onMovieDelete(movie)
-    }
-    else if (isClicked === false) {
-      setClicked(!isClicked);
+    if (isClicked) {
+      setClicked(false);
+      localStorage.setItem(`movie_${movie.id}_clicked`, "false"); // Сохраняем состояние в localStorage при нажатии кнопки
+      onMovieDelete(movie);
+    } else {
+      setClicked(true);
+      localStorage.setItem(`movie_${movie.id}_clicked`, "true"); // Сохраняем состояние в localStorage при нажатии кнопки
       onMovieSave(movie);
     }
-
   }
+
+  function deleteMovie() {
+    onMovieDelete(movie);
+    localStorage.setItem(`movie_${movie.id}_clicked`, "false");
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem(`movie_${movie.id}_clicked`) === "true") {
+      setClicked(true);
+    }
+  }, [movie.id]);
 
   return (
     <div className="moviesCard">
