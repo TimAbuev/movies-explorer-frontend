@@ -7,11 +7,11 @@ function Checkbox() {
   return (
     <>
       <input
-        className="сheckbox__checkbox"
+        className="checkbox__checkbox"
         type="checkbox" id="short-movies-checkbox"
         onChange={handleSetShortMovies}
       />
-      <label className="сheckbox__checkbox-label" htmlFor="short-movies-checkbox">Короткометражки</label>
+      <label className="checkbox__checkbox-label" htmlFor="short-movies-checkbox">Короткометражки</label>
     </>
   )
 }
