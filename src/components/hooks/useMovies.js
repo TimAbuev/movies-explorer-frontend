@@ -99,13 +99,12 @@ export const useMovies = () => {
   }, []);
 
 
-  console.log({ state, filteredMovies, search, shortMovies });
-
+  // console.log({ state, filteredMovies, search, shortMovies });
+  console.log({ state });
   return {
     setState,
     state,
     handleSetSearch,
     handleSetShortMovies,
-    filteredMovies,
   };
 }
