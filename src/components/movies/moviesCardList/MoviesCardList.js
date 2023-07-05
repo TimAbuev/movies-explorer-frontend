@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import MoviesCard from "../moviesCard/MoviesCard";
 
-function MoviesCardList (props) {
+function MoviesCardList(props) {
   const {
     moviesState,
-    keyOfObject,
     currentRoute,
     onMovieDelete,
     onMovieSave,
@@ -54,20 +53,30 @@ function MoviesCardList (props) {
     return <div>Loading...</div>;
   }
 
+  const arrayOfMovieState = currentRoute === '/movies'
+    ? moviesState.movies
+    : moviesState.myMovies // '/saved-movies'
+   
   return (
     <section className="moviesCardList">
-      <div className="moviesCardList__grid-container">
-        {moviesState[keyOfObject].slice(0, moviesToShow).map((movie) => (
+    <div className="moviesCardList__grid-container">
+      {arrayOfMovieState.slice(0, moviesToShow).map((movie) => {
+        // Добавляем условие для выбора массива, из которого берется дополнительный movie
+        const additionalMovie = currentRoute === '/movies' ? arrayOfMovieState.find((m) => m.id === movie.id) : null;
+
+        return (
           <MoviesCard
             key={movie.id}
             movie={movie}
+            additionalMovie={additionalMovie}
             currentRoute={currentRoute}
             onMovieDelete={onMovieDelete}
             onMovieSave={onMovieSave}
           />
-        ))}
-      </div>
-      {moviesToShow < moviesState[keyOfObject].length && (
+        );
+      })}
+    </div>
+      {moviesToShow < arrayOfMovieState.length && (
         <button className="moviesCardList__button" onClick={handleClickLoadMore}>
           Ещё
         </button>

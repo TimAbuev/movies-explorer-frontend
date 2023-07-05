@@ -7,7 +7,10 @@ function MoviesCard(props) {
     currentRoute,
     onMovieDelete,
     onMovieSave,
+    additionalMovie,
   } = props;
+
+
 
   const [isClicked, setClicked] = useState(false);
 
@@ -17,17 +20,32 @@ function MoviesCard(props) {
 
   function handleClick() {
     currentRoute === '/movies'
-    ? saveMovie()
-    : deleteMovie()
+      ? saveOrDeleteMovie()
+      : onMovieDelete(movie)
   }
 
-  function saveMovie() {
-    setClicked(true)
-    onMovieSave(movie);
+  function saveOrDeleteMovie() {
+    if (isClicked === true) {
+      setClicked(!isClicked)
+      deleteMovieFromDatabaseOnly();
+    }
+    else if (isClicked === false) {
+      setClicked(!isClicked)
+      onMovieSave(movie);
+      console.log(movie);
+    }
+
   }
 
-  function deleteMovie() {
-    onMovieDelete(movie);
+  function deleteMovieFromDatabaseOnly() {
+    console.log(additionalMovie);
+    // mainApi.deleteMovie(additionalMovie._id)
+    // .then(() => {
+    //   console.log('movies is deleted from DB');
+    // })
+    // .catch(function (err) {
+    //   console.log('ошибка', err);
+    // })
   }
 
   return (
@@ -47,9 +65,7 @@ function MoviesCard(props) {
       <button
         className={buttonClassName}
         onClick={handleClick}
-        disabled={isClicked}
       ></button>
-
     </div>
   );
 }

@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
     user: null,
   })
 
+  // если есть токен в localStorage, то получаем данные о пользователе
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
@@ -33,7 +34,7 @@ export const UserProvider = ({ children }) => {
         })
       }
     }
-
+    console.log('сработал useEffect в UserProvider');
     getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

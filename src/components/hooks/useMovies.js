@@ -15,17 +15,20 @@ export const useMovies = () => {
 
   const SHORT_DURATION = 40;
 
-  // показать мои фильмы
   useEffect(() => {
     setState({
       ...state,
       loading: true,
     })
-    const handleFetchMyMovies = async () => {
+
+    const handleFetchMovies = async () => {
       try {
+        const movies = await moviesApi.getMovies();
         const myMovies = await mainApi.getMyMovies();
+
         setState(state => ({
           ...state,
+          movies,
           myMovies,
         }));
       }
@@ -41,40 +44,6 @@ export const useMovies = () => {
           loading: false,
         }));
       }
-
-    };
-    handleFetchMyMovies();
-    // eslint-disable-next-line
-  }, []);
-
-// показать все фильмы
-  useEffect(() => {
-    setState({
-      ...state,
-      loading: true,
-    })
-    const handleFetchMovies = async () => {
-      try {
-        const movies = await moviesApi.getMovies();
-
-        setState(state => ({
-          ...state,
-          movies,
-        }));
-      }
-      catch (error) {
-        setState(state => ({
-          ...state,
-          error: error.status,
-        }));
-      }
-      finally {
-        setState(state => ({
-          ...state,
-          loading: false,
-        }));
-      }
-
     };
     handleFetchMovies();
     // eslint-disable-next-line
@@ -116,8 +85,8 @@ export const useMovies = () => {
     }
 
     return result;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, shortMovies, state.movies]); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, shortMovies, state.movies]);
 
   const handleSetSearch = useCallback((value) => {
     setSearch(value);

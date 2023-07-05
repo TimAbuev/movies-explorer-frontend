@@ -1,20 +1,23 @@
 import React from "react";
 import validator from "validator";
 import './Profile.css'
+
 import InfoTooltip from "../infoTooltip/InfoTooltip";
 import Preloader from "../Preloader/Preloader";
-import { useUser } from '../hooks/useUser';
-
 
 function Profile(props) {
   const {
     onUpdateUser,
     isOpen,
-    isShown
+    isShown,
+    currentUser,
   } = props;
 
-  const user = useUser();
   const nameRegEXp = /^(?! )(?!.* $)[A-Za-zА-Яа-яЁё\s-]+$/;
+
+  React.useEffect(() => {
+    setValues(currentUser);
+  }, [currentUser]);
 
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
@@ -23,11 +26,12 @@ function Profile(props) {
   const [isBtnVisible, setBtnVisible] = React.useState(true);
   const [isSaveBtnVisible, setSaveBtnVisible] = React.useState(false);
 
+
   function checkFormValidity() {
     const isNameValid = validator.matches(values.name || "", nameRegEXp);
     const isEmailValid = validator.isEmail(values.email || "");
-    const isNameChanged = values.name !== user.name;
-    const isEmailChanged = values.email !== user.email;
+    const isNameChanged = values.name !== currentUser.name;
+    const isEmailChanged = values.email !== currentUser.email;
     return isNameValid && isEmailValid && (isNameChanged || isEmailChanged);
   };
 

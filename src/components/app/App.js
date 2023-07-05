@@ -26,7 +26,7 @@ function App() {
   const { state: moviesState, setState: setMoviesState } = useMovies();
   const user = useUser();
   const isLogged = Boolean(user);
-  console.log({user, isLogged});
+  console.log(user, isLogged);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -103,9 +103,6 @@ function App() {
         else {
           setTextError(' При авторизации произошла ошибка.');
         }
-        // setTimeout(function () {
-        //   window.location.reload();
-        // }, 2000);
         console.log(err);
       })
       .finally(function () {
@@ -150,10 +147,12 @@ function App() {
   function handleCreateMovie(data) {
     mainApi.createMovie(data)
       .then(function (res) {
+        // console.log(res);
         setMoviesState((prevState) => ({
-          ...prevState, myMovies:
-          prevState.myMovies.push(res)
+          ...prevState,
+          myMovies: [...prevState.myMovies, res],
         }));
+        console.log(moviesState.myMovies);
         // window.location.reload();
       })
       .catch(function (err) {
@@ -209,7 +208,6 @@ function App() {
               <SearchForm />
               <MoviesCardList
                 moviesState={moviesState}
-                keyOfObject={"movies"}
                 currentRoute={location.pathname}
                 onMovieSave={handleCreateMovie}
               />
@@ -234,7 +232,6 @@ function App() {
               <SearchForm />
               <MoviesCardList
                 moviesState={moviesState}
-                keyOfObject={"myMovies"}
                 currentRoute={location.pathname}
                 onMovieDelete={handleDeleteMovie}
               />
@@ -263,6 +260,7 @@ function App() {
                 // handleLogin={handleLogin}
                 component={Profile}
                 isShown={isPreloaderShown}
+                currentUser={user}
               />
             </>
           } />

@@ -53,7 +53,8 @@
   content: "Сохранить";
 }
 
-.moviesCard__button-to-save:hover, .moviesCard__button-to-save:hover::before, .moviesCard__button-to-close:hover {
+.moviesCard__button-to-save:hover, .moviesCard__button-to-save:hover::before, .moviesCard__button-to-close:hover, 
+.moviesCard__button_clicked:hover {
   opacity: 70%;
   transition: 0.4s;
 }
@@ -88,7 +89,7 @@
   background-image: url(../../../images/checked.svg);
   background-repeat: no-repeat;
   background-position: center;
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 /*tablet 768 */
