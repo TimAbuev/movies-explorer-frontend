@@ -87,6 +87,44 @@ export const useMovies = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, shortMovies, state.movies]);
 
+  const filteredMyMovies = useMemo(() => {
+    const { myMovies } = state;
+
+    if (!search && !shortMovies) {
+      return myMovies;
+    }
+
+    const result = [];
+
+    for (const movie of myMovies) {
+      const { nameEN, duration } = movie;
+
+      const isSearched = search && nameEN.includes(search); // !
+      const isShort = shortMovies && duration <= SHORT_DURATION; // !
+      
+      if (search && shortMovies) {
+        if (isSearched && isShort) {
+          result.push(movie);
+        }
+      }
+      
+      if (search && !shortMovies) {
+        if (isSearched) {
+          result.push(movie);
+        }
+      }
+      
+      if (!search && shortMovies) {
+        if (isShort) {
+          result.push(movie);
+        }
+      }
+    }
+
+    return result;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, shortMovies, state.myMovies]);
+
   const handleSetSearch = useCallback((value) => {
     setSearch(value);
   }, []);
@@ -105,5 +143,6 @@ export const useMovies = () => {
     handleSetSearch,
     handleSetShortMovies,
     filteredMovies,
+    filteredMyMovies,
   };
 }

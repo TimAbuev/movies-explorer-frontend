@@ -29,6 +29,7 @@ function App() {
     handleSetSearch,
     handleSetShortMovies,
     filteredMovies,
+    filteredMyMovies,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -197,6 +198,7 @@ function App() {
               onMovieSave={handleCreateMovie}
               onMovieDelete={handleDeleteMovie}
               filteredMovies={filteredMovies}
+              filteredMyMovies={filteredMyMovies}
             />
             <Footer />
           </>
@@ -224,6 +226,7 @@ function App() {
               currentRoute={location.pathname}
               onMovieDelete={handleDeleteMovie}
               filteredMovies={filteredMovies}
+              filteredMyMovies={filteredMyMovies}
             />
             <Footer />
           </>

@@ -8,6 +8,7 @@ function MoviesCardList(props) {
     onMovieDelete,
     onMovieSave,
     filteredMovies,
+    filteredMyMovies,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -55,8 +56,8 @@ function MoviesCardList(props) {
   }
 
   const oneOfTwoArray = currentRoute === '/movies'
-    ? filteredMovies.movies
-    : filteredMovies.myMovies // '/saved-movies'
+    ? filteredMovies
+    : filteredMyMovies // '/saved-movies'
    
   return (
     <section className="moviesCardList">
