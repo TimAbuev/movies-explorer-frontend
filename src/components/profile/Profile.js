@@ -69,6 +69,7 @@ function Profile(props) {
 
   function signOut() {
     localStorage.removeItem('jwt');
+    navigate('/');
     window.location.reload();
   }
 
