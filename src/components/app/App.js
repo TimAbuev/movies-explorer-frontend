@@ -23,7 +23,7 @@ function App() {
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
 
-  const { state: moviesState, setState: setMoviesState } = useMovies();
+  const { state: moviesState, setState: setMoviesState, filteredMoviesState } = useMovies();
   const navigate = useNavigate();
   const location = useLocation();
   const user = useUser();
@@ -187,6 +187,7 @@ function App() {
                 currentRoute={location.pathname}
                 onMovieSave={handleCreateMovie}
                 onMovieDelete={handleDeleteMovie}
+                filteredMoviesState={filteredMoviesState}
               />
               <Footer />
             </>

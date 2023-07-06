@@ -12,6 +12,7 @@ export const useMovies = () => {
 
   const [search, setSearch] = useState('');
   const [shortMovies, setShortMovies] = useState(false);
+  const [filteredMoviesState, setFilteredMoviesState] = useState([]);
 
   const SHORT_DURATION = 40;
 
@@ -49,43 +50,27 @@ export const useMovies = () => {
     // eslint-disable-next-line
   }, []);
 
-  const filteredMovies = useMemo(() => {
-    const { movies } = state;
-
-    if (!search && !shortMovies) {
-      return movies;
-    }
-
-    const result = [];
-
-    for (const movie of movies) {
+  useEffect(() => {
+    const filteredMovies = state.movies.filter(movie => {
       const { nameEN, duration } = movie;
-
-      const isSearched = search && nameEN.includes(search); // !
-      const isShort = shortMovies && duration <= SHORT_DURATION; // !
+      const isSearched = search && nameEN.includes(search);
+      const isShort = shortMovies && duration <= SHORT_DURATION;
       
       if (search && shortMovies) {
-        if (isSearched && isShort) {
-          result.push(movie);
-        }
+        return isSearched && isShort;
+      } else if (search) {
+        return isSearched;
+      } else if (shortMovies) {
+        return isShort;
       }
       
-      if (search && !shortMovies) {
-        if (isSearched) {
-          result.push(movie);
-        }
-      }
-      
-      if (!search && shortMovies) {
-        if (isShort) {
-          result.push(movie);
-        }
-      }
-    }
+      return true;
+    });
+    
+    setFilteredMoviesState(filteredMovies);
 
-    return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, shortMovies, state.movies]);
+  }, [state.movies, search, shortMovies]);
+
 
   const handleSetSearch = useCallback((value) => {
     setSearch(value);
@@ -98,12 +83,13 @@ export const useMovies = () => {
   }, []);
 
 
-  console.log({ state, filteredMovies, search, shortMovies });
+  console.log({ state, filteredMoviesState, search, shortMovies });
 
   return {
     setState,
     state,
     handleSetSearch,
     handleSetShortMovies,
+    filteredMoviesState,
   };
 }
