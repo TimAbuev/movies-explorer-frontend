@@ -1,10 +1,12 @@
 import Checkbox from "../checkbox/Checkbox";
-import { useMovies } from '../../hooks/useMovies';
 import { useState } from "react";
 
-function SearchForm() {
+function SearchForm(props) {
+  const {
+    handleSetShortMovies,
+    handleSetSearch,
+  } = props;
 
-  const { handleSetSearch } = useMovies();
   const [inputState, setInputState] = useState('');
 
   function handlerSubmit(e) {
@@ -37,7 +39,7 @@ function SearchForm() {
         <div className="searchForm__decorate-loupe"></div>
       </form>
       <div className="searchForm__container-for-checkbox">
-        <Checkbox></Checkbox>
+        <Checkbox handleSetShortMovies={handleSetShortMovies} />
       </div>
 
       <div className="searchForm__decorate-line"></div>

@@ -7,6 +7,7 @@ function MoviesCardList(props) {
     currentRoute,
     onMovieDelete,
     onMovieSave,
+    filteredMovies,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -53,14 +54,14 @@ function MoviesCardList(props) {
     return <div>Loading...</div>;
   }
 
-  const arrayOfMovieState = currentRoute === '/movies'
-    ? moviesState.movies
-    : moviesState.myMovies // '/saved-movies'
+  const oneOfTwoArray = currentRoute === '/movies'
+    ? filteredMovies.movies
+    : filteredMovies.myMovies // '/saved-movies'
    
   return (
     <section className="moviesCardList">
     <div className="moviesCardList__grid-container">
-      {arrayOfMovieState.slice(0, moviesToShow).map((movie) => {
+      {oneOfTwoArray.slice(0, moviesToShow).map((movie) => {
         return (
           <MoviesCard
             key={movie.id}
@@ -72,7 +73,7 @@ function MoviesCardList(props) {
         );
       })}
     </div>
-      {moviesToShow < arrayOfMovieState.length && (
+      {moviesToShow < oneOfTwoArray.length && (
         <button className="moviesCardList__button" onClick={handleClickLoadMore}>
           Ещё
         </button>

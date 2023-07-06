@@ -23,12 +23,18 @@ function App() {
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
 
-  const { state: moviesState, setState: setMoviesState } = useMovies();
+  const {
+    state: moviesState,
+    setState: setMoviesState,
+    handleSetSearch,
+    handleSetShortMovies,
+    filteredMovies,
+  } = useMovies();
+
   const navigate = useNavigate();
   const location = useLocation();
   const user = useUser();
   const isLogged = Boolean(user);
-  console.log(user, isLogged);
 
   function handleInfoTooltip() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
@@ -139,137 +145,150 @@ function App() {
   }
 
   return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element={isLogged ? (
-            <>
-              <Header
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                toHideAccount={false}
-                toHideBtn={true}
-                toHideBurger={false}
-              />
-              <Main />
-              <Footer />
-            </>
-          ) : (
-            <>
-              <Header
-                toHideAccount={true}
-                toHideBtn={false}
-                toHideBurger={true}
-              />
-              <Main />
-              <Footer />
-            </>
-          )} />
-
-          <Route path="/movies" element={
-            <>
-              <ProtectedRoute
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                toHideAccount={false}
-                toHideBtn={true}
-                toHideBurger={false}
-                component={Header}
-              />
-              <SearchForm />
-              <MoviesCardList
-                moviesState={moviesState}
-                currentRoute={location.pathname}
-                onMovieSave={handleCreateMovie}
-                onMovieDelete={handleDeleteMovie}
-              />
-              <Footer />
-            </>
-          } />
-
-          <Route path="/saved-movies" element={
-            <>
-              <ProtectedRoute
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                toHideAccount={false}
-                toHideBtn={true}
-                toHideBurger={false}
-                component={Header}
-              />
-              <SearchForm />
-              <MoviesCardList
-                moviesState={moviesState}
-                currentRoute={location.pathname}
-                onMovieDelete={handleDeleteMovie}
-              />
-              <Footer />
-            </>
-          } />
-
-          <Route path="/profile" element={
-            <>
-              <ProtectedRoute
-                linkName1="Фильмы"
-                toLink1="/movies"
-                linkName2="Сохранённые фильмы"
-                toLink2="/saved-movies"
-                handleMenu={handleMenu}
-                toHideAccount={false}
-                toHideBtn={true}
-                toHideBurger={false}
-                component={Header}
-              />
-              <ProtectedRoute
-                isOpen={isInfoTooltipOpen}
-                onUpdateUser={handleUpdateUser}
-                // handleLogin={handleLogin}
-                component={Profile}
-                isShown={isPreloaderShown}
-                currentUser={user}
-              />
-            </>
-          } />
-
-          <Route path="/notFound" element={<NotFound />} />
-
-          <Route path="/signup" element={(
-            <Register
-              isOpen={isInfoTooltipOpen}
-              handleRegisterSubmit={handleRegisterSubmit}
-              isShown={isPreloaderShown}
+    <div className="App">
+      <Routes>
+        <Route path="/" element={isLogged ? (
+          <>
+            <Header
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
+              handleMenu={handleMenu}
+              toHideAccount={false}
+              toHideBtn={true}
+              toHideBurger={false}
             />
-          )} />
-
-          <Route path="/signin" element={(
-            <Login
-              textError={textError}
-              handleLogInSubmit={handleLogInSubmit}
-              isOpen={isInfoTooltipOpen}
-              isShown={isPreloaderShown}
+            <Main />
+            <Footer />
+          </>
+        ) : (
+          <>
+            <Header
+              toHideAccount={true}
+              toHideBtn={false}
+              toHideBurger={true}
             />
-          )} />
+            <Main />
+            <Footer />
+          </>
+        )} />
 
-        </Routes>
+        <Route path="/movies" element={
+          <>
+            <ProtectedRoute
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
+              handleMenu={handleMenu}
+              toHideAccount={false}
+              toHideBtn={true}
+              toHideBurger={false}
+              component={Header}
+            />
+            <SearchForm
+              handleSetShortMovies={handleSetShortMovies}
+              handleSetSearch={handleSetSearch}
+            />
+            <MoviesCardList
+              moviesState={moviesState}
+              currentRoute={location.pathname}
+              onMovieSave={handleCreateMovie}
+              onMovieDelete={handleDeleteMovie}
+              filteredMovies={filteredMovies}
+            />
+            <Footer />
+          </>
+        } />
 
-        {/* invisible components */}
-        <Menu
-          linkName1="Фильмы"
-          toLink1="/movies"
-          linkName2="Сохранённые фильмы"
-          toLink2="/saved-movies"
-          toClose={closeAllPopups}
-          isOpen={isMenuOpen}
+        <Route path="/saved-movies" element={
+          <>
+            <ProtectedRoute
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
+              handleMenu={handleMenu}
+              toHideAccount={false}
+              toHideBtn={true}
+              toHideBurger={false}
+              component={Header}
+            />
+            <SearchForm
+              handleSetShortMovies={handleSetShortMovies}
+              handleSetSearch={handleSetSearch}
+            />
+            <MoviesCardList
+              moviesState={moviesState}
+              currentRoute={location.pathname}
+              onMovieDelete={handleDeleteMovie}
+              filteredMovies={filteredMovies}
+            />
+            <Footer />
+          </>
+        } />
+
+        <Route path="/profile" element={
+          <>
+            <ProtectedRoute
+              linkName1="Фильмы"
+              toLink1="/movies"
+              linkName2="Сохранённые фильмы"
+              toLink2="/saved-movies"
+              handleMenu={handleMenu}
+              toHideAccount={false}
+              toHideBtn={true}
+              toHideBurger={false}
+              component={Header}
+            />
+            <ProtectedRoute
+              isOpen={isInfoTooltipOpen}
+              onUpdateUser={handleUpdateUser}
+              // handleLogin={handleLogin}
+              component={Profile}
+              isShown={isPreloaderShown}
+              currentUser={user}
+            />
+          </>
+        } />
+
+        <Route path="/notFound" element={<NotFound />} />
+
+        <Route path="/signup" element={(
+          <Register
+            isOpen={isInfoTooltipOpen}
+            handleRegisterSubmit={handleRegisterSubmit}
+            isShown={isPreloaderShown}
+          />
+        )} />
+
+        <Route path="/signin" element={(
+          <Login
+            textError={textError}
+            handleLogInSubmit={handleLogInSubmit}
+            isOpen={isInfoTooltipOpen}
+            isShown={isPreloaderShown}
+          />
+        )} />
+
+        <Route
+          path='*'
+          element={<NotFound />}
         />
-      </div>
+
+      </Routes>
+
+      {/* invisible components */}
+      <Menu
+        linkName1="Фильмы"
+        toLink1="/movies"
+        linkName2="Сохранённые фильмы"
+        toLink2="/saved-movies"
+        toClose={closeAllPopups}
+        isOpen={isMenuOpen}
+      />
+    </div>
   );
 
 }

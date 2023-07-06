@@ -1,8 +1,9 @@
 import './Checkbox.css';
-import { useMovies } from '../../hooks/useMovies';
 
-function Checkbox() {
-  const { handleSetShortMovies } = useMovies();
+function Checkbox(props) {
+  const {
+    handleSetShortMovies
+  } = props;
 
   return (
     <>
