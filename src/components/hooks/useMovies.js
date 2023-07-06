@@ -52,7 +52,6 @@ export const useMovies = () => {
   const filteredMovies = useMemo(() => {
     const { movies } = state;
 
-    //  тру заполненная строка/тру короткометражки
     if (!search && !shortMovies) {
       return movies;
     }
@@ -64,19 +63,19 @@ export const useMovies = () => {
 
       const isSearched = search && nameEN.includes(search); // !
       const isShort = shortMovies && duration <= SHORT_DURATION; // !
-      // false строка/false короткометражки
+      
       if (search && shortMovies) {
         if (isSearched && isShort) {
           result.push(movie);
         }
       }
-      // false строка|true короткометражки
+      
       if (search && !shortMovies) {
         if (isSearched) {
           result.push(movie);
         }
       }
-      // true строка/false короткометражки
+      
       if (!search && shortMovies) {
         if (isShort) {
           result.push(movie);
@@ -99,8 +98,8 @@ export const useMovies = () => {
   }, []);
 
 
-  // console.log({ state, filteredMovies, search, shortMovies });
-  console.log({ state });
+  console.log({ state, filteredMovies, search, shortMovies });
+
   return {
     setState,
     state,
