@@ -7,13 +7,10 @@ function MoviesCardList(props) {
     currentRoute,
     onMovieDelete,
     onMovieSave,
-    filteredMoviesState,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
 
-  console.log(filteredMoviesState);
-  
   useEffect(() => {
     function handleResize() {
       setMoviesToShow(getInitialMoviesToShow());
@@ -22,7 +19,6 @@ function MoviesCardList(props) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-    
   }, []);
 
   function getInitialMoviesToShow() {
@@ -58,7 +54,7 @@ function MoviesCardList(props) {
   }
 
   const arrayOfMovieState = currentRoute === '/movies'
-    ? filteredMoviesState
+    ? moviesState.movies
     : moviesState.myMovies // '/saved-movies'
    
   return (
