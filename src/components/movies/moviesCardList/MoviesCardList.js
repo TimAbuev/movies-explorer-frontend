@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MoviesCard from "../moviesCard/MoviesCard";
+import Preloader from '../../Preloader/Preloader';
 
 function MoviesCardList(props) {
   const {
@@ -52,7 +53,7 @@ function MoviesCardList(props) {
   };
 
   if (moviesState.loading) {
-    return <div>Loading...</div>;
+    return <Preloader isShown={true}/>
   }
 
   const oneOfTwoArray = currentRoute === '/movies'
