@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../index.css';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Header from '../header/Header';
 import NotFound from '../notFound/NotFound';
 import Footer from '../footer/Footer';
@@ -258,7 +258,9 @@ function App() {
 
         <Route path="/notFound" element={<NotFound />} />
 
-        <Route path="/signup" element={(
+        <Route path="/signup" element={isLogged ? (
+          <Navigate to="/" />
+        ) : (
           <Register
             isOpen={isInfoTooltipOpen}
             handleRegisterSubmit={handleRegisterSubmit}
@@ -266,7 +268,9 @@ function App() {
           />
         )} />
 
-        <Route path="/signin" element={(
+        <Route path="/signin" element={isLogged ? (
+          <Navigate to="/" />
+        ) : (
           <Login
             textError={textError}
             handleLogInSubmit={handleLogInSubmit}
