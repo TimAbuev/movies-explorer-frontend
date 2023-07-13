@@ -5,6 +5,7 @@ function SearchForm(props) {
   const {
     handleSetShortMovies,
     handleSetSearch,
+    handleFetchMovies,
   } = props;
 
   const [inputState, setInputState] = useState('');
@@ -12,6 +13,7 @@ function SearchForm(props) {
   function handlerSubmit(e) {
     e.preventDefault();
     handleSetSearch(inputState);
+    handleFetchMovies();
   }
 
   function handleChange(e) {

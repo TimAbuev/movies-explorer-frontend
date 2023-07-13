@@ -32,6 +32,7 @@ function App() {
     filteredMyMovies,
     moviesNotFound,
     myMoviesNotFound,
+    handleFetchMovies,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -193,6 +194,7 @@ function App() {
             <SearchForm
               handleSetShortMovies={handleSetShortMovies}
               handleSetSearch={handleSetSearch}
+              handleFetchMovies={handleFetchMovies}
             />
             <MoviesCardList
               moviesState={moviesState}
@@ -223,6 +225,7 @@ function App() {
             <SearchForm
               handleSetShortMovies={handleSetShortMovies}
               handleSetSearch={handleSetSearch}
+              handleFetchMovies={handleFetchMovies}
             />
             <MoviesCardList
               moviesState={moviesState}
