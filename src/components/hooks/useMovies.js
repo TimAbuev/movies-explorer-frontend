@@ -60,7 +60,7 @@ export const useMovies = () => {
     for (const movie of movies) {
       const { nameEN, duration } = movie;
 
-      const isSearched = search && nameEN.includes(search); // !
+      const isSearched = search && nameEN.toLowerCase().includes(search.toLocaleLowerCase()); // !
       const isShort = shortMovies && duration <= SHORT_DURATION; // !
 
       if (search && shortMovies) {
