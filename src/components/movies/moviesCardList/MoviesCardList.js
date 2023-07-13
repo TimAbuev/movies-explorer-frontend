@@ -10,6 +10,8 @@ function MoviesCardList(props) {
     onMovieSave,
     filteredMovies,
     filteredMyMovies,
+    moviesNotFound,
+    myMoviesNotFound,
   } = props;
 
   const [moviesToShow, setMoviesToShow] = useState(getInitialMoviesToShow());
@@ -54,6 +56,14 @@ function MoviesCardList(props) {
 
   if (moviesState.loading) {
     return <Preloader isShown={true}/>
+  }
+
+  if (moviesNotFound) {
+    return <div>Ничего не найдено</div>
+  }
+
+  if (myMoviesNotFound) {
+    return <div>Ничего не найдено</div>
   }
 
   const oneOfTwoArray = currentRoute === '/movies'

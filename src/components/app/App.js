@@ -30,6 +30,8 @@ function App() {
     handleSetShortMovies,
     filteredMovies,
     filteredMyMovies,
+    moviesNotFound,
+    myMoviesNotFound,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -199,6 +201,7 @@ function App() {
               onMovieDelete={handleDeleteMovie}
               filteredMovies={filteredMovies}
               filteredMyMovies={filteredMyMovies}
+              moviesNotFound={moviesNotFound}
             />
             <Footer />
           </>
@@ -227,6 +230,7 @@ function App() {
               onMovieDelete={handleDeleteMovie}
               filteredMovies={filteredMovies}
               filteredMyMovies={filteredMyMovies}
+              myMoviesNotFound={myMoviesNotFound}
             />
             <Footer />
           </>

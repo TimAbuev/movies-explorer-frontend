@@ -49,8 +49,7 @@ export const useMovies = () => {
     // eslint-disable-next-line
   }, []);
 
-  const filteredMovies = useMemo(() => {
-    const { movies } = state;
+  const filterMovies = useCallback((movies) => {
 
     if (!search && !shortMovies) {
       return movies;
@@ -63,19 +62,19 @@ export const useMovies = () => {
 
       const isSearched = search && nameEN.includes(search); // !
       const isShort = shortMovies && duration <= SHORT_DURATION; // !
-      
+
       if (search && shortMovies) {
         if (isSearched && isShort) {
           result.push(movie);
         }
       }
-      
+
       if (search && !shortMovies) {
         if (isSearched) {
           result.push(movie);
         }
       }
-      
+
       if (!search && shortMovies) {
         if (isShort) {
           result.push(movie);
@@ -85,45 +84,23 @@ export const useMovies = () => {
 
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, shortMovies, state.movies]);
+  }, [search, shortMovies, state.movies, state.myMovies]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const filteredMovies = useMemo(() => {
+    const { movies } = state;
+    return filterMovies(movies);
+  });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const filteredMyMovies = useMemo(() => {
     const { myMovies } = state;
+    return filterMovies(myMovies);
+  });
 
-    if (!search && !shortMovies) {
-      return myMovies;
-    }
+  const moviesNotFound = (search || shortMovies) && filteredMovies.length === 0;
+  const myMoviesNotFound = (search || shortMovies) && filteredMyMovies.length === 0;
 
-    const result = [];
-
-    for (const movie of myMovies) {
-      const { nameEN, duration } = movie;
-
-      const isSearched = search && nameEN.includes(search); // !
-      const isShort = shortMovies && duration <= SHORT_DURATION; // !
-      
-      if (search && shortMovies) {
-        if (isSearched && isShort) {
-          result.push(movie);
-        }
-      }
-      
-      if (search && !shortMovies) {
-        if (isSearched) {
-          result.push(movie);
-        }
-      }
-      
-      if (!search && shortMovies) {
-        if (isShort) {
-          result.push(movie);
-        }
-      }
-    }
-
-    return result;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, shortMovies, state.myMovies]);
 
   const handleSetSearch = useCallback((value) => {
     setSearch(value);
@@ -144,5 +121,7 @@ export const useMovies = () => {
     handleSetShortMovies,
     filteredMovies,
     filteredMyMovies,
+    moviesNotFound,
+    myMoviesNotFound,
   };
 }
