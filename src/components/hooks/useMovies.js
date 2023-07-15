@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 
@@ -14,6 +14,13 @@ export const useMovies = () => {
   const [shortMovies, setShortMovies] = useState(false);
 
   const SHORT_DURATION = 40;
+
+  useEffect(() => {
+    const storedCheckbox = localStorage.getItem('checkbox');
+    if (storedCheckbox) {
+      setShortMovies(storedCheckbox);
+    }
+  }, []);
 
   const handleFetchMovies = async () => {
     setState(state => ({
@@ -104,6 +111,8 @@ export const useMovies = () => {
   const handleSetShortMovies = useCallback((e) => {
     const { checked } = e.currentTarget;
     setShortMovies(checked);
+    handleFetchMovies();
+    localStorage.setItem('checkbox', shortMovies);
   }, []);
 
 
@@ -119,5 +128,6 @@ export const useMovies = () => {
     moviesNotFound,
     myMoviesNotFound,
     handleFetchMovies,
+    shortMovies,
   };
 }

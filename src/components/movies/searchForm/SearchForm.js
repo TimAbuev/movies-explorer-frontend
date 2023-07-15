@@ -1,19 +1,28 @@
 import Checkbox from "../checkbox/Checkbox";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function SearchForm(props) {
   const {
     handleSetShortMovies,
     handleSetSearch,
     handleFetchMovies,
+    shortMovies,
   } = props;
 
   const [inputState, setInputState] = useState('');
+
+  useEffect(() => {
+    const storedInputValue = localStorage.getItem('inputValue');
+    if (storedInputValue) {
+      setInputState(storedInputValue);
+    }
+  }, []);
 
   function handlerSubmit(e) {
     e.preventDefault();
     handleSetSearch(inputState);
     handleFetchMovies();
+    localStorage.setItem('inputValue', inputState);
   }
 
   function handleChange(e) {
@@ -31,6 +40,7 @@ function SearchForm(props) {
           minLength="2"
           maxLength="17"
           onChange={handleChange}
+          value={inputState}
         />
         <button
           className="searchForm__button-find"
@@ -41,7 +51,7 @@ function SearchForm(props) {
         <div className="searchForm__decorate-loupe"></div>
       </form>
       <div className="searchForm__container-for-checkbox">
-        <Checkbox handleSetShortMovies={handleSetShortMovies} />
+        <Checkbox handleSetShortMovies={handleSetShortMovies} shortMovies={shortMovies}/>
       </div>
 
       <div className="searchForm__decorate-line"></div>

@@ -33,6 +33,7 @@ function App() {
     moviesNotFound,
     myMoviesNotFound,
     handleFetchMovies,
+    shortMovies,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -195,6 +196,7 @@ function App() {
               handleSetShortMovies={handleSetShortMovies}
               handleSetSearch={handleSetSearch}
               handleFetchMovies={handleFetchMovies}
+              shortMovies={shortMovies}
             />
             <MoviesCardList
               moviesState={moviesState}
@@ -226,6 +228,7 @@ function App() {
               handleSetShortMovies={handleSetShortMovies}
               handleSetSearch={handleSetSearch}
               handleFetchMovies={handleFetchMovies}
+              shortMovies={shortMovies}
             />
             <MoviesCardList
               moviesState={moviesState}

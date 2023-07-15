@@ -69,6 +69,8 @@ function Profile(props) {
 
   function signOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('checkbox');
+    localStorage.removeItem('inputValue');
     navigate('/');
     window.location.reload();
   }
