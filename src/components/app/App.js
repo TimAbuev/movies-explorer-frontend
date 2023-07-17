@@ -34,6 +34,7 @@ function App() {
     myMoviesNotFound,
     handleFetchMovies,
     shortMovies,
+    handleDeleteMovie,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -115,20 +116,6 @@ function App() {
       })
       .finally(function () {
         setPreloaderShown(false);
-      })
-  }
-
-  function handleDeleteMovie(movie) {
-    console.log("and now ......." + movie.id);
-    mainApi.deleteMovie(movie.id)
-      .then(() => {
-        setMoviesState((prevState) => ({
-          ...prevState, myMovies:
-            prevState.myMovies.filter((m) => m.id !== movie.id)
-        }));
-      })
-      .catch(function (err) {
-        console.log('ошибка', err);
       })
   }
 

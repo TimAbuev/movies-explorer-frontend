@@ -115,6 +115,23 @@ export const useMovies = () => {
     localStorage.setItem('checkbox', shortMovies);
   }, []);
 
+  function handleDeleteMovie(movie) {
+    console.log("and now ......." + movie.id);
+    mainApi.deleteMovie(movie.id)
+      .then(() => {
+        setState((prevState) => ({
+          ...prevState, myMovies:
+            prevState.myMovies.filter((m) => m.id !== movie.id)
+        }));
+      })
+      .catch(function (error) {
+        console.log('ошибка', error);
+        setState(state => ({
+          ...state,
+          error: error.status,
+        }));
+      })
+  }
 
   console.log({ state, filteredMovies, search, shortMovies });
 
@@ -129,5 +146,6 @@ export const useMovies = () => {
     myMoviesNotFound,
     handleFetchMovies,
     shortMovies,
+    handleDeleteMovie,
   };
 }

@@ -55,7 +55,18 @@ function MoviesCardList(props) {
   };
 
   if (moviesState.loading) {
-    return <Preloader isShown={true}/>
+    return <Preloader isShown={true} />
+  }
+
+  if (moviesState.error !== null) {
+    return (
+      <section className="moviesCardList">
+        <div className="moviesCardList__error-message">
+          Во время запроса произошла ошибка. Возможно,
+          проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.
+        </div>
+      </section>
+    );
   }
 
   if (moviesNotFound) {
@@ -69,22 +80,22 @@ function MoviesCardList(props) {
   const oneOfTwoArray = currentRoute === '/movies'
     ? filteredMovies
     : filteredMyMovies // '/saved-movies'
-   
+
   return (
     <section className="moviesCardList">
-    <div className="moviesCardList__grid-container">
-      {oneOfTwoArray.slice(0, moviesToShow).map((movie) => {
-        return (
-          <MoviesCard
-            key={movie.id}
-            movie={movie}
-            currentRoute={currentRoute}
-            onMovieDelete={onMovieDelete}
-            onMovieSave={onMovieSave}
-          />
-        );
-      })}
-    </div>
+      <div className="moviesCardList__grid-container">
+        {oneOfTwoArray.slice(0, moviesToShow).map((movie) => {
+          return (
+            <MoviesCard
+              key={movie.id}
+              movie={movie}
+              currentRoute={currentRoute}
+              onMovieDelete={onMovieDelete}
+              onMovieSave={onMovieSave}
+            />
+          );
+        })}
+      </div>
       {moviesToShow < oneOfTwoArray.length && (
         <button className="moviesCardList__button" onClick={handleClickLoadMore}>
           Ещё
