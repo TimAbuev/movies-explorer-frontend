@@ -10,12 +10,10 @@ function AboutMe() {
       <div className="aboutMe__container">
         <img className="aboutMe__photo" alt="student's face" src={photo} />
         <article className="aboutMe__biography">
-          <h3 className="aboutMe__header-name">Виталий</h3>
+          <h3 className="aboutMe__header-name">Тимур</h3>
           <h4 className="aboutMe__profession">Фронтенд-разработчик, 29 лет</h4>
-          <p className="aboutMe__paragraph">Я родился и живу в Саратове,
-            закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку,
-            а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур».
-            После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+          <p className="aboutMe__paragraph">Большую сознательную жизнь прожил в Выборге и Санкт-Петербурге. 
+          Увлекаюсь DAW Fl Studio и гитарой, английским языком.</p>
           <Link className="aboutMe__link-github" to='https://github.com/TimAbuev'>Github</Link>
         </article>
       </div>
