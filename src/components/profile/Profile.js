@@ -68,9 +68,7 @@ function Profile(props) {
   }
 
   function signOut() {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('checkbox');
-    localStorage.removeItem('inputValue');
+    localStorage.clear();
     navigate('/');
     window.location.reload();
   }

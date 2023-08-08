@@ -38,7 +38,6 @@ function MoviesCard(props) {
   function deleteMovie() {
     onMovieDelete(movie);
     localStorage.setItem(`movie_${movie.id}_clicked`, "false");
-    
   }
 
   useEffect(() => {
