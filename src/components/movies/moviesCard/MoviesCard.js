@@ -47,7 +47,10 @@ function MoviesCard(props) {
         console.log("Проверка на filteredMyMovies");
         setClicked(true);
         localStorage.setItem(`movie_${movie.id}_clicked`, "true");
-        break;
+      } else {
+        console.log("Проверка на filteredMyMovies, else");
+        setClicked(false);
+        localStorage.setItem(`movie_${movie.id}_clicked`, "false");
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
