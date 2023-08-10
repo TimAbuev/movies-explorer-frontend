@@ -41,21 +41,23 @@ function MoviesCard(props) {
     localStorage.setItem(`movie_${movie.id}_clicked`, "false");
   }
 
+
+// в случае ошибки сервера состояние клика и LocalStorage перепроверятся исходя из массива сохр фильмов
   useEffect(() => {
-    for (let i = 0; i < filteredMyMovies.length; i++) {
-      if (filteredMyMovies[i].id === movie.id) {
-        console.log("Проверка на filteredMyMovies");
-        setClicked(true);
-        localStorage.setItem(`movie_${movie.id}_clicked`, "true");
-      } else {
-        console.log("Проверка на filteredMyMovies, else");
-        setClicked(false);
-        localStorage.setItem(`movie_${movie.id}_clicked`, "false");
-      }
+    const idsInFilteredMyMovies = filteredMyMovies.map(movie => movie.id);
+    const clickedMovies = idsInFilteredMyMovies.includes(movie.id);
+  
+    if (clickedMovies) {
+      setClicked(true);
+      localStorage.setItem(`movie_${movie.id}_clicked`, "true");
+    } else {
+      setClicked(false);
+      localStorage.setItem(`movie_${movie.id}_clicked`, "false");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
+  
   return (
     <div className="moviesCard">
       <div className="moviesCard__text-container">
