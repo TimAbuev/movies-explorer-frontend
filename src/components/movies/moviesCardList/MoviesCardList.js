@@ -92,6 +92,7 @@ function MoviesCardList(props) {
               currentRoute={currentRoute}
               onMovieDelete={onMovieDelete}
               onMovieSave={onMovieSave}
+              filteredMyMovies={filteredMyMovies}
             />
           );
         })}

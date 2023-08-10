@@ -7,6 +7,7 @@ function MoviesCard(props) {
     currentRoute,
     onMovieDelete,
     onMovieSave,
+    filteredMyMovies,
   } = props;
 
   const [isClicked, setClicked] = useState(
@@ -41,10 +42,15 @@ function MoviesCard(props) {
   }
 
   useEffect(() => {
-    if (localStorage.getItem(`movie_${movie.id}_clicked`) === "true") {
-      setClicked(true);
+    for (let i = 0; i < filteredMyMovies.length; i++) {
+      if (filteredMyMovies[i].id === movie.id) {
+        console.log("Проверка на filteredMyMovies");
+        setClicked(true);
+        localStorage.setItem(`movie_${movie.id}_clicked`, "true");
+        break;
+      }
     }
-  }, [movie.id]);
+  }, []);
 
   return (
     <div className="moviesCard">
