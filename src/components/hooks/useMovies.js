@@ -15,13 +15,6 @@ export const useMovies = () => {
 
   const SHORT_DURATION = 40;
 
-  useEffect(() => {
-    const storedCheckbox = localStorage.getItem('checkbox');
-    if (storedCheckbox) {
-      setShortMovies(storedCheckbox);
-    }
-  }, []);
-
   const handleFetchMovies = async () => {
     setState(state => ({
       ...state,
@@ -113,6 +106,7 @@ export const useMovies = () => {
     setShortMovies(checked);
     handleFetchMovies();
     localStorage.setItem('checkbox', shortMovies);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleDeleteMovie(movie) {

@@ -64,9 +64,6 @@ function App() {
       })
       .catch((err) => {
         handleInfoTooltip();
-        // setTimeout(function () {
-        //   window.location.reload();
-        // }, 2000);
         console.log(err);
       })
       .finally(function () {
@@ -102,8 +99,7 @@ function App() {
   function handleUpdateUser(data) {
     setPreloaderShown(true);
     mainApi.editInfo(data)
-      .then(function (res) {
-        // setCurrentUser(res);
+      .then(function () {
         window.location.reload();
       })
       .catch(function (err) {
@@ -111,7 +107,6 @@ function App() {
         setTimeout(function () {
           window.location.reload();
         }, 2000);
-        // navigate('/profile', { replace: true });
         console.log('ошибка', err);
       })
       .finally(function () {
@@ -122,13 +117,11 @@ function App() {
   function handleCreateMovie(data) {
     mainApi.createMovie(data)
       .then(function (res) {
-        // console.log(res);
         setMoviesState((prevState) => ({
           ...prevState,
           myMovies: [...prevState.myMovies, res],
         }));
         console.log(moviesState.myMovies);
-        // window.location.reload();
       })
       .catch(function (err) {
         // handleInfoTooltip();
