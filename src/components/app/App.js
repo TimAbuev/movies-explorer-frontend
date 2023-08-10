@@ -25,7 +25,6 @@ function App() {
 
   const {
     state: moviesState,
-    setState: setMoviesState,
     handleSetSearch,
     handleSetShortMovies,
     filteredMovies,
@@ -35,6 +34,7 @@ function App() {
     handleFetchMovies,
     shortMovies,
     handleDeleteMovie,
+    handleCreateMovie,
   } = useMovies();
 
   const navigate = useNavigate();
@@ -114,20 +114,7 @@ function App() {
       })
   }
 
-  function handleCreateMovie(data) {
-    mainApi.createMovie(data)
-      .then(function (res) {
-        setMoviesState((prevState) => ({
-          ...prevState,
-          myMovies: [...prevState.myMovies, res],
-        }));
-        console.log(moviesState.myMovies);
-      })
-      .catch(function (err) {
-        // handleInfoTooltip();
-        console.log('ошибка', err);
-      })
-  }
+
 
   return (
     <div className="App">
@@ -213,6 +200,7 @@ function App() {
             <MoviesCardList
               moviesState={moviesState}
               currentRoute={location.pathname}
+              onMovieSave={handleCreateMovie}
               onMovieDelete={handleDeleteMovie}
               filteredMovies={filteredMovies}
               filteredMyMovies={filteredMyMovies}

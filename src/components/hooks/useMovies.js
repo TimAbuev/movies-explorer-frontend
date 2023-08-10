@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo, useEffect } from "react";
+import { useCallback, useState, useMemo } from "react";
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 
@@ -127,6 +127,24 @@ export const useMovies = () => {
       })
   }
 
+  function handleCreateMovie(data) {
+    mainApi.createMovie(data)
+      .then(function (res) {
+        setState((prevState) => ({
+          ...prevState,
+          myMovies: [...prevState.myMovies, res],
+        }));
+        console.log(state.myMovies);
+      })
+      .catch(function (error) {
+        console.log('ошибка', error);
+        setState(state => ({
+          ...state,
+          error: error.status,
+        }));
+      })
+  }
+
   console.log({ state, filteredMovies, search, shortMovies });
 
   return {
@@ -141,5 +159,6 @@ export const useMovies = () => {
     handleFetchMovies,
     shortMovies,
     handleDeleteMovie,
+    handleCreateMovie,
   };
 }
