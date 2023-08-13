@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
     const jwt = localStorage.getItem('jwt');
 
     if (!jwt) {
+      localStorage.clear();
       return;
     }
 
