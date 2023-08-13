@@ -53,9 +53,15 @@ export const useMovies = () => {
     const result = [];
 
     for (const movie of movies) {
-      const { nameEN, duration } = movie;
+      const { nameEN, duration, nameRU } = movie;
 
-      const isSearched = search && nameEN.toLowerCase().includes(search.toLocaleLowerCase()); // !
+      // const isSearched = search && nameEN.toLowerCase().includes(search.toLowerCase()); // !
+
+      const isSearched =
+        (search &&
+          (nameEN.toLowerCase().includes(search.toLowerCase()) ||
+            nameRU.toLowerCase().includes(search.toLowerCase())))
+
       const isShort = shortMovies && duration <= SHORT_DURATION; // !
 
       if (search && shortMovies) {
@@ -106,7 +112,7 @@ export const useMovies = () => {
     setShortMovies(checked);
     handleFetchMovies();
     localStorage.setItem('checkbox', shortMovies);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleDeleteMovie(movie) {
