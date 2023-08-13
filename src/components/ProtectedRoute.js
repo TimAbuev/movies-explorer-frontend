@@ -4,7 +4,7 @@ function ProtectedRoute({ component: Component, ...props }) {
   const jwt = localStorage.getItem('jwt');
 
   return jwt ? <Component {...props}/> : 
-  <Navigate to="/signin"/>
+  <Navigate to="/"/>
   // < Component {...props}/>
 }
 export default ProtectedRoute;
