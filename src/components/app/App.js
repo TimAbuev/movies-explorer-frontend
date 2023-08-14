@@ -165,6 +165,7 @@ function App() {
               handleFetchMovies={handleFetchMovies}
               shortMovies={shortMovies}
               moviesState={moviesState}
+              currentRoute={location.pathname}
             />
             <MoviesCardList
               moviesState={moviesState}

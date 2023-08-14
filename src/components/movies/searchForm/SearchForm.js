@@ -8,6 +8,7 @@ function SearchForm(props) {
     handleFetchMovies,
     shortMovies,
     moviesState,
+    currentRoute,
   } = props;
 
   const [inputState, setInputState] = useState('');
@@ -16,23 +17,36 @@ function SearchForm(props) {
     const storedInputValue = localStorage.getItem('inputValue');
     if (storedInputValue) {
       setInputState(storedInputValue);
+      handleSetSearch(storedInputValue);
+      handleFetchMovies();
+      console.log(`выполнился useEffect ${storedInputValue}`);
     }
   }, []);
 
-  // ОБРАЩАЕМСЯ К СЕРВЕРУ ТОЛЬКО КОГДА МАССИВ = FALSE, Т.Е. ПРИ ПЕРВОМ ЗАПРОСЕ
   function handlerSubmit(e) {
+    e.preventDefault();
+    localStorage.setItem('inputValue', inputState);
+
+    currentRoute === '/movies'
+      ? handlerSubmitForMoviesRoute()
+      : handlerSubmitForMyMoviesRoute()
+  }
+
+  function handlerSubmitForMoviesRoute() {
     if (moviesState.movies && moviesState.movies.length > 0) {
-      e.preventDefault();
       handleSetSearch(inputState);
-      localStorage.setItem('inputValue', inputState);
+      console.log('Yeah!');
     }
     else {
-      e.preventDefault();
-      handleSetSearch(inputState);
       handleFetchMovies();
-      localStorage.setItem('inputValue', inputState);
+      handleSetSearch(inputState);
+      console.log('oh no!');
     }
+  }
 
+  function handlerSubmitForMyMoviesRoute() {
+    console.log('its handlerSubmitForMyMoviesRoute !!');
+    handleSetSearch(inputState);
   }
 
   function handleChange(e) {

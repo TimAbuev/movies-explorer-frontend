@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 
@@ -22,12 +22,10 @@ export const useMovies = () => {
     }));
     try {
       const movies = await moviesApi.getMovies();
-      const myMovies = await mainApi.getMyMovies();
 
       setState(state => ({
         ...state,
         movies,
-        myMovies,
       }));
     }
     catch (error) {
@@ -43,6 +41,38 @@ export const useMovies = () => {
       }));
     }
   };
+
+  useEffect(() => {
+    const handleFetchMyMovies = async () => {
+      setState(state => ({
+        ...state,
+        loading: true,
+      }));
+      try {
+        const myMovies = await mainApi.getMyMovies();
+
+        setState(state => ({
+          ...state,
+          myMovies,
+        }));
+      }
+      catch (error) {
+        setState(state => ({
+          ...state,
+          error: error.status,
+        }));
+      }
+      finally {
+        setState(state => ({
+          ...state,
+          loading: false,
+        }));
+      }
+    };
+    handleFetchMyMovies();
+  }, []);
+
+
 
   const filterMovies = useCallback((movies) => {
 
