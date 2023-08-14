@@ -7,6 +7,7 @@ function SearchForm(props) {
     handleSetSearch,
     handleFetchMovies,
     shortMovies,
+    moviesState,
   } = props;
 
   const [inputState, setInputState] = useState('');
@@ -18,11 +19,20 @@ function SearchForm(props) {
     }
   }, []);
 
+  // ОБРАЩАЕМСЯ К СЕРВЕРУ ТОЛЬКО КОГДА МАССИВ = FALSE, Т.Е. ПРИ ПЕРВОМ ЗАПРОСЕ
   function handlerSubmit(e) {
-    e.preventDefault();
-    handleSetSearch(inputState);
-    handleFetchMovies();
-    localStorage.setItem('inputValue', inputState);
+    if (moviesState.movies && moviesState.movies.length > 0) {
+      e.preventDefault();
+      handleSetSearch(inputState);
+      localStorage.setItem('inputValue', inputState);
+    }
+    else {
+      e.preventDefault();
+      handleSetSearch(inputState);
+      handleFetchMovies();
+      localStorage.setItem('inputValue', inputState);
+    }
+
   }
 
   function handleChange(e) {
@@ -51,7 +61,7 @@ function SearchForm(props) {
         <div className="searchForm__decorate-loupe"></div>
       </form>
       <div className="searchForm__container-for-checkbox">
-        <Checkbox handleSetShortMovies={handleSetShortMovies} shortMovies={shortMovies}/>
+        <Checkbox handleSetShortMovies={handleSetShortMovies} shortMovies={shortMovies} />
       </div>
 
       <div className="searchForm__decorate-line"></div>

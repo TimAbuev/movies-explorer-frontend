@@ -164,6 +164,7 @@ function App() {
               handleSetSearch={handleSetSearch}
               handleFetchMovies={handleFetchMovies}
               shortMovies={shortMovies}
+              moviesState={moviesState}
             />
             <MoviesCardList
               moviesState={moviesState}
@@ -196,6 +197,7 @@ function App() {
               handleSetSearch={handleSetSearch}
               handleFetchMovies={handleFetchMovies}
               shortMovies={shortMovies}
+              moviesState={moviesState}
             />
             <MoviesCardList
               moviesState={moviesState}
