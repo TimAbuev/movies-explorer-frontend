@@ -14,13 +14,19 @@ function SearchForm(props) {
   const [inputState, setInputState] = useState('');
 
   useEffect(() => {
-    const storedInputValue = localStorage.getItem('inputValue');
-    if (storedInputValue) {
-      setInputState(storedInputValue);
-      handleSetSearch(storedInputValue);
-      handleFetchMovies();
-      console.log(`выполнился useEffect ${storedInputValue}`);
+    if (currentRoute === '/movies') {
+      const storedInputValue = localStorage.getItem('inputValue');
+
+      if (storedInputValue) {
+        setInputState(storedInputValue);
+        handleSetSearch(storedInputValue);
+        handleFetchMovies();
+        console.log(`выполнился useEffect ${storedInputValue}`);
+      }
+    } else {
+      console.log('myMoviesPage');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handlerSubmit(e) {

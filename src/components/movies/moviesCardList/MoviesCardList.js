@@ -93,7 +93,6 @@ function MoviesCardList(props) {
               onMovieDelete={onMovieDelete}
               onMovieSave={onMovieSave}
               filteredMyMovies={filteredMyMovies}
-              filteredMovies={filteredMovies}
             />
           );
         })}

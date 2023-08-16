@@ -72,7 +72,16 @@ export const useMovies = () => {
     handleFetchMyMovies();
   }, []);
 
-
+  useEffect(() => {
+    const storedCheckboxValue = localStorage.getItem('checkbox');
+    if (storedCheckboxValue === 'true') {
+      setShortMovies(true);
+      console.log(`выполнился useEffect storedCheckboxValue = ${storedCheckboxValue}`);
+    } else {
+      setShortMovies(false);
+      console.log(`выполнился useEffect storedCheckboxValue else = ${storedCheckboxValue}`);
+    }
+  }, []);
 
   const filterMovies = useCallback((movies) => {
 
@@ -139,9 +148,16 @@ export const useMovies = () => {
 
   const handleSetShortMovies = useCallback((e) => {
     const { checked } = e.currentTarget;
-    setShortMovies(checked);
-    handleFetchMovies();
-    localStorage.setItem('checkbox', shortMovies);
+    if (state.movies && state.movies.length > 0) {
+      setShortMovies(checked);
+      localStorage.setItem('checkbox', checked);
+      // console.log(`handleSetShortMovies сработал if ${checked}`);
+    } else {
+      handleFetchMovies();
+      setShortMovies(checked);
+      localStorage.setItem('checkbox', checked);
+      // console.log(`handleSetShortMovies сработал else ${checked}`);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -194,6 +210,7 @@ export const useMovies = () => {
     myMoviesNotFound,
     handleFetchMovies,
     shortMovies,
+    setShortMovies,
     handleDeleteMovie,
     handleCreateMovie,
   };
