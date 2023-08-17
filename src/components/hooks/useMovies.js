@@ -1,4 +1,5 @@
 import { useCallback, useState, useMemo, useEffect } from "react";
+// import { useLocation } from 'react-router-dom';
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 
@@ -10,10 +11,13 @@ export const useMovies = () => {
     myMovies: [],
   });
 
+  // const location = useLocation();
+
   const [search, setSearch] = useState('');
   const [shortMovies, setShortMovies] = useState(false);
 
   const SHORT_DURATION = 40;
+  // const currentRoute = location.pathname;
 
   const handleFetchMovies = async () => {
     setState(state => ({
@@ -72,16 +76,6 @@ export const useMovies = () => {
     handleFetchMyMovies();
   }, []);
 
-  useEffect(() => {
-    const storedCheckboxValue = localStorage.getItem('checkbox');
-    if (storedCheckboxValue === 'true') {
-      setShortMovies(true);
-      console.log(`выполнился useEffect storedCheckboxValue = ${storedCheckboxValue}`);
-    } else {
-      setShortMovies(false);
-      console.log(`выполнился useEffect storedCheckboxValue else = ${storedCheckboxValue}`);
-    }
-  }, []);
 
   const filterMovies = useCallback((movies) => {
 
@@ -146,18 +140,9 @@ export const useMovies = () => {
     setSearch(value);
   }, []);
 
-  const handleSetShortMovies = useCallback((e) => {
-    const { checked } = e.currentTarget;
-    if (state.movies && state.movies.length > 0) {
-      setShortMovies(checked);
-      localStorage.setItem('checkbox', checked);
-      // console.log(`handleSetShortMovies сработал if ${checked}`);
-    } else {
-      handleFetchMovies();
-      setShortMovies(checked);
-      localStorage.setItem('checkbox', checked);
-      // console.log(`handleSetShortMovies сработал else ${checked}`);
-    }
+  const handleSetShortMovies = useCallback((value) => {
+      setShortMovies(value);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -16,7 +16,6 @@ function SearchForm(props) {
   useEffect(() => {
     if (currentRoute === '/movies') {
       const storedInputValue = localStorage.getItem('inputValue');
-
       if (storedInputValue) {
         setInputState(storedInputValue);
         handleSetSearch(storedInputValue);
@@ -26,7 +25,7 @@ function SearchForm(props) {
     } else {
       console.log('myMoviesPage');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handlerSubmit(e) {
@@ -81,7 +80,12 @@ function SearchForm(props) {
         <div className="searchForm__decorate-loupe"></div>
       </form>
       <div className="searchForm__container-for-checkbox">
-        <Checkbox handleSetShortMovies={handleSetShortMovies} shortMovies={shortMovies} />
+        <Checkbox 
+        handleSetShortMovies={handleSetShortMovies} 
+        shortMovies={shortMovies} 
+        moviesState={moviesState}
+        handleFetchMovies={handleFetchMovies}
+        />
       </div>
 
       <div className="searchForm__decorate-line"></div>
