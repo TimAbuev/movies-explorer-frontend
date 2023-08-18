@@ -12,46 +12,41 @@ function SearchForm(props) {
   } = props;
 
   const [inputState, setInputState] = useState('');
+  const [checkboxState, setCheckboxState] = useState(false);
+  const storedInputValue = localStorage.getItem('inputValue');
 
   useEffect(() => {
     if (currentRoute === '/movies') {
-      const storedInputValue = localStorage.getItem('inputValue');
       if (storedInputValue) {
         setInputState(storedInputValue);
-        handleSetSearch(storedInputValue);
-        handleFetchMovies();
+        checkArrayAndGetMovies(storedInputValue);
         console.log(`выполнился useEffect ${storedInputValue}`);
       }
     } else {
+      setInputState('');
+      setCheckboxState(false);
+      handleSetSearch('');
       console.log('myMoviesPage');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentRoute]);
 
-  function handlerSubmit(e) {
-    e.preventDefault();
-    localStorage.setItem('inputValue', inputState);
-
-    currentRoute === '/movies'
-      ? handlerSubmitForMoviesRoute()
-      : handlerSubmitForMyMoviesRoute()
-  }
-
-  function handlerSubmitForMoviesRoute() {
+  function checkArrayAndGetMovies(trueOrfalse) {
     if (moviesState.movies && moviesState.movies.length > 0) {
-      handleSetSearch(inputState);
+      handleSetSearch(trueOrfalse);
       console.log('Yeah!');
     }
     else {
       handleFetchMovies();
-      handleSetSearch(inputState);
+      handleSetSearch(trueOrfalse);
       console.log('oh no!');
     }
   }
 
-  function handlerSubmitForMyMoviesRoute() {
-    console.log('its handlerSubmitForMyMoviesRoute !!');
-    handleSetSearch(inputState);
+  function handlerSubmit(e) {
+    e.preventDefault();
+    localStorage.setItem('inputValue', inputState);
+    checkArrayAndGetMovies(inputState);
   }
 
   function handleChange(e) {
@@ -80,11 +75,14 @@ function SearchForm(props) {
         <div className="searchForm__decorate-loupe"></div>
       </form>
       <div className="searchForm__container-for-checkbox">
-        <Checkbox 
-        handleSetShortMovies={handleSetShortMovies} 
-        shortMovies={shortMovies} 
-        moviesState={moviesState}
-        handleFetchMovies={handleFetchMovies}
+        <Checkbox
+          handleSetShortMovies={handleSetShortMovies}
+          shortMovies={shortMovies}
+          moviesState={moviesState}
+          handleFetchMovies={handleFetchMovies}
+          checkboxState={checkboxState}
+          setCheckboxState={setCheckboxState}
+          currentRoute={currentRoute}
         />
       </div>
 

@@ -13,16 +13,10 @@ function Checkbox(props) {
 
   const storedCheckboxValue = localStorage.getItem('checkbox');
 
-  function handleChange(e) {
-    const value = e.target.checked;
-    setCheckboxState(value);
-  }
-
   useEffect(() => {
     if (storedCheckboxValue === "true") {
       setCheckboxState(true);
     }
-
     setInitialized(true);
   }, []);
 
@@ -39,6 +33,11 @@ function Checkbox(props) {
       }
     }
   }, [checkboxState]);
+
+  function handleChange(e) {
+    const value = e.target.checked;
+    setCheckboxState(value);
+  }
 
   return (
     <>
