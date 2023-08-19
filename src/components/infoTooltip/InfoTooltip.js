@@ -3,9 +3,12 @@ import './InfoTooltip.css'
 
 function InfoTooltip(props) {
   return (
-    <div className={`infoTooltip ${props.isOpen ? 'infoTooltip_opened' : ''}`}>
-      <p className="infoTooltip__text">{props.text}</p>
-    </div>
+    <>
+      <div className={`infoTooltip ${props.isOpen || props.isSuccessToolTipOpen ? 'infoTooltip_opened' : ''}`}>
+        <p className={`${props.isSuccessToolTipOpen ? 'infoTooltip__text_green' : 'infoTooltip__text'} `}>{props.text}</p>
+      </div>
+
+    </>
   );
 }
 export default InfoTooltip;

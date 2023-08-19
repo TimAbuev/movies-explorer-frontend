@@ -1,5 +1,4 @@
 import { useCallback, useState, useMemo, useEffect } from "react";
-// import { useLocation } from 'react-router-dom';
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 
@@ -11,13 +10,10 @@ export const useMovies = () => {
     myMovies: [],
   });
 
-  // const location = useLocation();
-
   const [search, setSearch] = useState('');
   const [shortMovies, setShortMovies] = useState(false);
 
   const SHORT_DURATION = 40;
-  // const currentRoute = location.pathname;
 
   const handleFetchMovies = async () => {
     setState(state => ({
@@ -87,8 +83,6 @@ export const useMovies = () => {
 
     for (const movie of movies) {
       const { nameEN, duration, nameRU } = movie;
-
-      // const isSearched = search && nameEN.toLowerCase().includes(search.toLowerCase()); // !
 
       const isSearched =
         (search &&

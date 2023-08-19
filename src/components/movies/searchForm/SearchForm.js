@@ -26,7 +26,7 @@ function SearchForm(props) {
         setCheckboxState(storedCheckboxValue);
         console.log('/movies if storedCheckboxValue');
       }
-    } 
+    }
     else {
       setInputState('');
       setCheckboxState(false);
@@ -60,6 +60,18 @@ function SearchForm(props) {
   function handleChange(e) {
     const value = e.target.value;
     setInputState(value);
+    truncateInputText();
+  }
+
+  function truncateInputText() {
+    const inputElement = document.querySelector('.searchForm__input');
+    const maxLength = 16;
+    if (inputElement.value.length > maxLength) {
+      console.log('where????');
+      inputElement.classList.add('searchForm__input_extra');
+    } else {
+      inputElement.classList.remove('searchForm__input_extra');
+    }
   }
 
   return (
@@ -69,8 +81,6 @@ function SearchForm(props) {
         <input
           className="searchForm__input"
           placeholder="Фильм"
-          minLength="2"
-          maxLength="17"
           onChange={handleChange}
           value={inputState}
         />

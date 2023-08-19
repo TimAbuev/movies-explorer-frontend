@@ -20,8 +20,10 @@ import { useUser } from '../hooks/useUser';
 function App() {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  const [isSuccessToolTipOpen, setSuccessToolTipOpen] = React.useState(false);
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
+
 
   const {
     state: moviesState,
@@ -44,6 +46,10 @@ function App() {
 
   function handleInfoTooltip() {
     setInfoTooltipOpen(!isInfoTooltipOpen);
+  }
+
+  function handleSuccessToolTip() {
+    setSuccessToolTipOpen(!isSuccessToolTipOpen);
   }
 
   function handleMenu() {
@@ -100,6 +106,7 @@ function App() {
     setPreloaderShown(true);
     mainApi.editInfo(data)
       .then(function () {
+        handleSuccessToolTip();
         window.location.reload();
       })
       .catch(function (err) {
@@ -227,7 +234,7 @@ function App() {
             <ProtectedRoute
               isOpen={isInfoTooltipOpen}
               onUpdateUser={handleUpdateUser}
-              // handleLogin={handleLogin}
+              isSuccessToolTipOpen={isSuccessToolTipOpen}
               component={Profile}
               isShown={isPreloaderShown}
               currentUser={user}

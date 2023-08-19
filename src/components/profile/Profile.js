@@ -11,6 +11,7 @@ function Profile(props) {
     isOpen,
     isShown,
     currentUser,
+    isSuccessToolTipOpen,
   } = props;
 
   const nameRegEXp = /^(?! )(?!.* $)[A-Za-zА-Яа-яЁё\s-]+$/;
@@ -20,7 +21,7 @@ function Profile(props) {
       setValues(currentUser);
     }
   }, [currentUser]);
-  
+
 
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
@@ -49,7 +50,7 @@ function Profile(props) {
     // Валидация имени
     if (name === "name" && !nameRegEXp.test(value)) {
       error = "Имя должно содержать только латиницу, кириллицу, пробел или дефис, при этом пробел не может быть первым и последним символом";
-    }    
+    }
     // Валидация электронной почты
     if (name === "email" && !validator.isEmail(value)) {
       error = "Введите корректный адрес электронной почты";
@@ -57,7 +58,7 @@ function Profile(props) {
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: error });
-    setIsValid(checkFormValidity());    
+    setIsValid(checkFormValidity());
   };
 
   function handleUpdate() {
@@ -78,6 +79,13 @@ function Profile(props) {
     setBtnVisible(!isBtnVisible);
     setSaveBtnVisible(!isSaveBtnVisible);
   }
+
+  // if (isSuccessToolTipOpen) {
+  //   console.log('testttttttttttt');
+  //   <diV >
+  //     Изменения были успешно внесены
+  //   </diV>
+  // }
 
   return (
     <section className="profile">
@@ -123,6 +131,11 @@ function Profile(props) {
         <InfoTooltip
           isOpen={isOpen}
           text={"При обновлении профиля произошла ошибка."}
+        />
+
+        <InfoTooltip
+          isSuccessToolTipOpen={isSuccessToolTipOpen}
+          text={"Изменения были успешно внесены"}
         />
 
         <Preloader
