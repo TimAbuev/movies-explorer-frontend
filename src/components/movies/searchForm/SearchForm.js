@@ -6,7 +6,6 @@ function SearchForm(props) {
     handleSetShortMovies,
     handleSetSearch,
     handleFetchMovies,
-    shortMovies,
     moviesState,
     currentRoute,
   } = props;
@@ -14,6 +13,7 @@ function SearchForm(props) {
   const [inputState, setInputState] = useState('');
   const [checkboxState, setCheckboxState] = useState(false);
   const storedInputValue = localStorage.getItem('inputValue');
+  const storedCheckboxValue = localStorage.getItem('checkbox');
 
   useEffect(() => {
     if (currentRoute === '/movies') {
@@ -22,7 +22,12 @@ function SearchForm(props) {
         checkArrayAndGetMovies(storedInputValue);
         console.log(`выполнился useEffect ${storedInputValue}`);
       }
-    } else {
+      if (storedCheckboxValue === 'true') {
+        setCheckboxState(storedCheckboxValue);
+        console.log('/movies if storedCheckboxValue');
+      }
+    } 
+    else {
       setInputState('');
       setCheckboxState(false);
       handleSetSearch('');
@@ -45,7 +50,10 @@ function SearchForm(props) {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    localStorage.setItem('inputValue', inputState);
+
+    if (currentRoute === '/movies') {
+      localStorage.setItem('inputValue', inputState);
+    }
     checkArrayAndGetMovies(inputState);
   }
 
@@ -77,11 +85,11 @@ function SearchForm(props) {
       <div className="searchForm__container-for-checkbox">
         <Checkbox
           handleSetShortMovies={handleSetShortMovies}
-          shortMovies={shortMovies}
           moviesState={moviesState}
           handleFetchMovies={handleFetchMovies}
           checkboxState={checkboxState}
           setCheckboxState={setCheckboxState}
+          storedCheckboxValue={storedCheckboxValue}
           currentRoute={currentRoute}
         />
       </div>

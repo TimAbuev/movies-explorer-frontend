@@ -6,12 +6,13 @@ function Checkbox(props) {
     handleSetShortMovies,
     moviesState,
     handleFetchMovies,
+    checkboxState,
+    setCheckboxState,
+    storedCheckboxValue,
+    currentRoute,
   } = props;
 
-  const [checkboxState, setCheckboxState] = useState(false);
   const [initialized, setInitialized] = useState(false);
-
-  const storedCheckboxValue = localStorage.getItem('checkbox');
 
   useEffect(() => {
     if (storedCheckboxValue === "true") {
@@ -22,7 +23,6 @@ function Checkbox(props) {
 
   useEffect(() => {
     if (initialized) {
-      localStorage.setItem('checkbox', checkboxState);
       handleSetShortMovies(checkboxState);
 
       if (moviesState.movies && moviesState.movies.length > 0) {
@@ -37,6 +37,10 @@ function Checkbox(props) {
   function handleChange(e) {
     const value = e.target.checked;
     setCheckboxState(value);
+
+    if (currentRoute === '/movies') {
+      localStorage.setItem('checkbox', value);
+    }
   }
 
   return (
