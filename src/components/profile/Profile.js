@@ -16,13 +16,6 @@ function Profile(props) {
 
   const nameRegEXp = /^(?! )(?!.* $)[A-Za-zА-Яа-яЁё\s-]+$/;
 
-  React.useEffect(() => {
-    if (currentUser) {
-      setValues(currentUser);
-    }
-  }, [currentUser]);
-
-
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
@@ -31,32 +24,52 @@ function Profile(props) {
   const [isSaveBtnVisible, setSaveBtnVisible] = React.useState(false);
   const navigate = useNavigate();
 
+  let isNameChanged = false;
+  let isEmailChanged = false;
+
+  React.useEffect(() => {
+    if (currentUser) {
+      setValues(currentUser);
+    }
+  }, [currentUser]);
 
   function checkFormValidity() {
     const isNameValid = validator.matches(values.name || "", nameRegEXp);
     const isEmailValid = validator.isEmail(values.email || "");
-    const isNameChanged = values.name !== currentUser.name;
-    const isEmailChanged = values.email !== currentUser.email;
-    return isNameValid && isEmailValid && (isNameChanged || isEmailChanged);
+
+    return isNameValid && isEmailValid && isNameChanged && isEmailChanged;
   };
 
   function handleChange(event) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
-
     let error = "";
 
-    // Валидация имени
+    // выводим ошибку для поля имени в случае, если оно не прошлло валидацию регулярным выражением
     if (name === "name" && !nameRegEXp.test(value)) {
       error = "Имя должно содержать только латиницу, кириллицу, пробел или дефис, при этом пробел не может быть первым и последним символом";
     }
-    // Валидация электронной почты
+    // имя нельзя сохранить, если оно совпадает с текущим
+    else {
+      isNameChanged = value !== currentUser.name;
+      console.log(`isNameChanged = ${isNameChanged}`);
+      console.log(`value = ${value}`);
+      console.log(`currentUser.name = ${currentUser.name}`);
+    }
+    // выводим ошибку для поля мыла в случае, если оно не прошлло валидацию регулярным выражением
     if (name === "email" && !validator.isEmail(value)) {
       error = "Введите корректный адрес электронной почты";
     }
+    // мыло нельзя сохранить, если оно совпадает с текущим
+    else {
+      isEmailChanged = value !== currentUser.email
+      console.log(`isEmailChanged = ${isEmailChanged}`);
+      console.log(`value = ${value}`);
+      console.log(`currentUser.email = ${currentUser.email}`);
+    }
 
-    setValues({ ...values, [name]: value });
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
     setErrors({ ...errors, [name]: error });
     setIsValid(checkFormValidity());
   };
@@ -79,13 +92,6 @@ function Profile(props) {
     setBtnVisible(!isBtnVisible);
     setSaveBtnVisible(!isSaveBtnVisible);
   }
-
-  // if (isSuccessToolTipOpen) {
-  //   console.log('testttttttttttt');
-  //   <diV >
-  //     Изменения были успешно внесены
-  //   </diV>
-  // }
 
   return (
     <section className="profile">
