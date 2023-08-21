@@ -12,38 +12,48 @@ function SearchForm(props) {
 
   const [inputState, setInputState] = useState('');
   const [checkboxState, setCheckboxState] = useState(false);
-  const storedInputValue = localStorage.getItem('inputValue');
+  // const storedInputValue = localStorage.getItem('inputValue');
   const storedCheckboxValue = localStorage.getItem('checkbox');
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (currentRoute === '/movies') {
-      if (storedInputValue) {
-        setInputState(storedInputValue);
-        checkArrayAndGetMovies(storedInputValue);
-        console.log(`выполнился useEffect ${storedInputValue}`);
-      }
-      if (storedCheckboxValue === 'true') {
-        setCheckboxState(storedCheckboxValue);
-        console.log('/movies if storedCheckboxValue');
-      }
+    setInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (initialized) {
+      handleSetShortMovies(checkboxState);
+      console.log(`checkboxState=${checkboxState}`);
+      console.log(`storedCheckboxValue=${storedCheckboxValue}`);
     }
-    else {
-      setInputState('');
+  }, [checkboxState]);
+
+  useEffect(() => {
+    if (currentRoute !== '/movies') {
       setCheckboxState(false);
-      handleSetSearch('');
-      console.log('myMoviesPage');
+      console.log(`test we changed currentRoute and now on /saved-movies`);
+    } else {
+      checkArrayAndGetMovies();
+
+      if (storedCheckboxValue !== null) {
+        setCheckboxState(storedCheckboxValue === 'true'); // Явное преобразование строки в булево значение
+        console.log(`test we changed checkboxState and now on /movies + storedCheckboxValue=${storedCheckboxValue}`);
+        console.log(`test we changed checkboxState and now on /movies`);
+      } else {
+        setCheckboxState(false);
+        console.log(`test we changed currentRoute and now on /movies  storedCheckboxValue DON'T EXIST`);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRoute]);
 
-  function checkArrayAndGetMovies(trueOrfalse) {
+  function checkArrayAndGetMovies() {
     if (moviesState.movies && moviesState.movies.length > 0) {
-      handleSetSearch(trueOrfalse);
+      // handleSetSearch(state);
       console.log('Yeah!');
     }
     else {
       handleFetchMovies();
-      handleSetSearch(trueOrfalse);
+      // handleSetSearch(state);
       console.log('oh no!');
     }
   }
@@ -51,9 +61,6 @@ function SearchForm(props) {
   function handlerSubmit(e) {
     e.preventDefault();
 
-    if (currentRoute === '/movies') {
-      localStorage.setItem('inputValue', inputState);
-    }
     checkArrayAndGetMovies(inputState);
   }
 

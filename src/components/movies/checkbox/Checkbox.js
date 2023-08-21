@@ -1,45 +1,23 @@
 import './Checkbox.css';
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 function Checkbox(props) {
   const {
-    handleSetShortMovies,
-    moviesState,
-    handleFetchMovies,
+    // handleSetShortMovies,
+    // moviesState,
+    // handleFetchMovies,
     checkboxState,
     setCheckboxState,
-    storedCheckboxValue,
+    // storedCheckboxValue,
     currentRoute,
   } = props;
-
-  const [initialized, setInitialized] = useState(false);
-
-  useEffect(() => {
-    if (storedCheckboxValue === "true") {
-      setCheckboxState(true);
-    }
-    setInitialized(true);
-  }, []);
-
-  useEffect(() => {
-    if (initialized) {
-      handleSetShortMovies(checkboxState);
-
-      if (moviesState.movies && moviesState.movies.length > 0) {
-        console.log(`сработал useEffect checkbox if`);
-      } else {
-        handleFetchMovies();
-        console.log(`сработал useEffect checkbox else`);
-      }
-    }
-  }, [checkboxState]);
 
   function handleChange(e) {
     const value = e.target.checked;
     setCheckboxState(value);
-
     if (currentRoute === '/movies') {
       localStorage.setItem('checkbox', value);
+      console.log('data localStorage by handleChange');
     }
   }
 

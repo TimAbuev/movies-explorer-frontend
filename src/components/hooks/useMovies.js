@@ -72,13 +72,11 @@ export const useMovies = () => {
     handleFetchMyMovies();
   }, []);
 
-
   const filterMovies = useCallback((movies) => {
-
     if (!search && !shortMovies) {
       return movies;
     }
-
+    
     const result = [];
 
     for (const movie of movies) {
@@ -129,14 +127,12 @@ export const useMovies = () => {
   const moviesNotFound = (search || shortMovies) && filteredMovies.length === 0;
   const myMoviesNotFound = (search || shortMovies) && filteredMyMovies.length === 0;
 
-
   const handleSetSearch = useCallback((value) => {
     setSearch(value);
   }, []);
 
   const handleSetShortMovies = useCallback((value) => {
       setShortMovies(value);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
