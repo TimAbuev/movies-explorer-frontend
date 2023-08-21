@@ -24,7 +24,6 @@ function App() {
   const [textError, setTextError] = React.useState('');
   const [isPreloaderShown, setPreloaderShown] = React.useState(false);
 
-
   const {
     state: moviesState,
     handleSetSearch,
@@ -91,10 +90,12 @@ function App() {
         handleInfoTooltip();
         if (err === 'Ошибка 401') {
           setTextError('Вы ввели неправильный логин или пароль. ');
-        }
-        else {
+        } else {
           setTextError(' При авторизации произошла ошибка.');
         }
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
         console.log(err);
       })
       .finally(function () {
