@@ -17,7 +17,7 @@ function Checkbox(props) {
     setCheckboxState(value);
     if (currentRoute === '/movies') {
       localStorage.setItem('checkbox', value);
-      console.log('data localStorage by handleChange');
+      console.log('data checkbox to localStorage by handleChange');
     }
   }
 

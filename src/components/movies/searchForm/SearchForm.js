@@ -12,7 +12,7 @@ function SearchForm(props) {
 
   const [inputState, setInputState] = useState('');
   const [checkboxState, setCheckboxState] = useState(false);
-  // const storedInputValue = localStorage.getItem('inputValue');
+  const storedInputValue = localStorage.getItem('inputValue');
   const storedCheckboxValue = localStorage.getItem('checkbox');
   const [initialized, setInitialized] = useState(false);
 
@@ -22,51 +22,74 @@ function SearchForm(props) {
 
   useEffect(() => {
     if (initialized) {
+      if (currentRoute === '/movies') {
+        if (!(moviesState.movies && moviesState.movies.length > 0)) {
+          handleFetchMovies();
+          console.log('сработал handleFetchMovies()'); // ?????????????
+        }
+      }
       handleSetShortMovies(checkboxState);
+
       console.log(`checkboxState=${checkboxState}`);
       console.log(`storedCheckboxValue=${storedCheckboxValue}`);
     }
   }, [checkboxState]);
 
   useEffect(() => {
+    // если saved-movies
     if (currentRoute !== '/movies') {
       setCheckboxState(false);
+      setInputState('');
+      handleSetSearch('');
       console.log(`test we changed currentRoute and now on /saved-movies`);
-    } else {
-      checkArrayAndGetMovies();
-
+    }
+    // если movies
+    else {
+      if (storedInputValue !== null) {
+        setInputState(storedInputValue);
+        checkArrayAndGetMovies(storedInputValue);
+      } else {
+        setInputState('');
+        handleSetSearch(''); 
+      }
       if (storedCheckboxValue !== null) {
         setCheckboxState(storedCheckboxValue === 'true'); // Явное преобразование строки в булево значение
-        console.log(`test we changed checkboxState and now on /movies + storedCheckboxValue=${storedCheckboxValue}`);
-        console.log(`test we changed checkboxState and now on /movies`);
+        console.log('setCheckboxState(storedCheckboxValue === true)');
       } else {
         setCheckboxState(false);
-        console.log(`test we changed currentRoute and now on /movies  storedCheckboxValue DON'T EXIST`);
+        console.log(`storedCheckboxValue DOESN'T EXIST`);
       }
     }
   }, [currentRoute]);
 
-  function checkArrayAndGetMovies() {
+  function checkArrayAndGetMovies(state) {
     if (moviesState.movies && moviesState.movies.length > 0) {
-      // handleSetSearch(state);
+      handleSetSearch(state);
       console.log('Yeah!');
     }
     else {
       handleFetchMovies();
-      // handleSetSearch(state);
+      handleSetSearch(state);
       console.log('oh no!');
     }
   }
 
   function handlerSubmit(e) {
     e.preventDefault();
-
-    checkArrayAndGetMovies(inputState);
+    if (currentRoute === '/movies') {
+      checkArrayAndGetMovies(inputState);
+    } else {
+      handleSetSearch(inputState);
+    }
   }
 
   function handleChange(e) {
     const value = e.target.value;
     setInputState(value);
+    if (currentRoute === '/movies') {
+      localStorage.setItem('inputValue', value);
+      console.log('data inputValue to localStorage by handleChange');
+    }
     truncateInputText();
   }
 
