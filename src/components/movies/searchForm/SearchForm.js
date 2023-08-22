@@ -14,25 +14,9 @@ function SearchForm(props) {
   const [checkboxState, setCheckboxState] = useState(false);
   const storedInputValue = localStorage.getItem('inputValue');
   const storedCheckboxValue = localStorage.getItem('checkbox');
-  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    setInitialized(true);
-  }, []);
-
-  useEffect(() => {
-    if (initialized) {
-      if (currentRoute === '/movies') {
-        if (!(moviesState.movies && moviesState.movies.length > 0)) {
-          handleFetchMovies();
-          console.log('сработал handleFetchMovies()'); // ?????????????
-        }
-      }
-      handleSetShortMovies(checkboxState);
-
-      console.log(`checkboxState=${checkboxState}`);
-      console.log(`storedCheckboxValue=${storedCheckboxValue}`);
-    }
+    handleSetShortMovies(checkboxState);
   }, [checkboxState]);
 
   useEffect(() => {
@@ -41,7 +25,6 @@ function SearchForm(props) {
       setCheckboxState(false);
       setInputState('');
       handleSetSearch('');
-      console.log(`test we changed currentRoute and now on /saved-movies`);
     }
     // если movies
     else {
@@ -50,14 +33,12 @@ function SearchForm(props) {
         checkArrayAndGetMovies(storedInputValue);
       } else {
         setInputState('');
-        handleSetSearch(''); 
+        handleSetSearch('');
       }
       if (storedCheckboxValue !== null) {
         setCheckboxState(storedCheckboxValue === 'true'); // Явное преобразование строки в булево значение
-        console.log('setCheckboxState(storedCheckboxValue === true)');
       } else {
         setCheckboxState(false);
-        console.log(`storedCheckboxValue DOESN'T EXIST`);
       }
     }
   }, [currentRoute]);
@@ -88,7 +69,6 @@ function SearchForm(props) {
     setInputState(value);
     if (currentRoute === '/movies') {
       localStorage.setItem('inputValue', value);
-      console.log('data inputValue to localStorage by handleChange');
     }
     truncateInputText();
   }
@@ -97,7 +77,6 @@ function SearchForm(props) {
     const inputElement = document.querySelector('.searchForm__input');
     const maxLength = 16;
     if (inputElement.value.length > maxLength) {
-      console.log('where????');
       inputElement.classList.add('searchForm__input_extra');
     } else {
       inputElement.classList.remove('searchForm__input_extra');
@@ -124,12 +103,10 @@ function SearchForm(props) {
       </form>
       <div className="searchForm__container-for-checkbox">
         <Checkbox
-          handleSetShortMovies={handleSetShortMovies}
           moviesState={moviesState}
           handleFetchMovies={handleFetchMovies}
           checkboxState={checkboxState}
           setCheckboxState={setCheckboxState}
-          storedCheckboxValue={storedCheckboxValue}
           currentRoute={currentRoute}
         />
       </div>

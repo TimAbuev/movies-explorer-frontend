@@ -1,14 +1,11 @@
 import './Checkbox.css';
-// import { useState, useEffect } from "react";
 
 function Checkbox(props) {
   const {
-    // handleSetShortMovies,
-    // moviesState,
-    // handleFetchMovies,
+    moviesState,
+    handleFetchMovies,
     checkboxState,
     setCheckboxState,
-    // storedCheckboxValue,
     currentRoute,
   } = props;
 
@@ -17,7 +14,10 @@ function Checkbox(props) {
     setCheckboxState(value);
     if (currentRoute === '/movies') {
       localStorage.setItem('checkbox', value);
-      console.log('data checkbox to localStorage by handleChange');
+      
+      if (!(moviesState.movies && moviesState.movies.length > 0)) {
+        handleFetchMovies();
+      }
     }
   }
 
