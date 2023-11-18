@@ -80,7 +80,11 @@
   font-size: 18px;
   line-height: 22px;
   margin-bottom: 24px;
+}
 
+.menu__link:hover {
+  opacity: 80%;
+  transition: 0.4s;
 }
 
 .menu__nav-container {

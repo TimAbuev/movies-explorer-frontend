@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function NotFound() {
+  const navigate = useNavigate();
+  
   return (
     <section className="not-found-section">
       <div className="not-found-section__container">
@@ -8,7 +10,8 @@ function NotFound() {
         <p className="not-found-section__line">Страница не найдена</p>
         
       </div>
-      <Link to="/" className="not-found-section__go-back">Назад</Link>
+      <button className="not-found-section__go-back" onClick={() => navigate(-1)}>Go Back</button>
+      
     </section>
   );
 }

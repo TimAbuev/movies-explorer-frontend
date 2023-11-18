@@ -1,0 +1,18 @@
+.infoTooltip {
+  margin-bottom: 20px;
+  display: none;
+}
+
+.infoTooltip_opened {
+  display: block;
+}
+
+.infoTooltip__text {
+  margin: 0;
+  color: #FF004C;
+}
+
+.infoTooltip__text_green {
+  margin: 0;
+  color: green;
+}

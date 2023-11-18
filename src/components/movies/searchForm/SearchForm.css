@@ -33,6 +33,21 @@
   line-height: 20px;
 }
 
+.searchForm__input_extra {
+  color: red;
+}
+
+.searchForm__input_extra::after {
+  content: "...";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #FDFDFD;
+  padding: 25px 19px;
+  border-radius: 9px;
+  z-index: 1;
+}
+
 .searchForm__input:focus {
   border-bottom: 1px solid black;
 }
