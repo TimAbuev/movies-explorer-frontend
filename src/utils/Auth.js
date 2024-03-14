@@ -1,5 +1,5 @@
 import {checkResponse} from '../utils/checkResponse';
-const { REACT_APP_NODE_ENV: NODE_ENV, URL } = process.env;
+const { REACT_APP_NODE_ENV: NODE_ENV, REACT_APP_URL: URL } = process.env;
 export const BASE_URL = NODE_ENV === 'production' ? URL : 'http://localhost:3000';
 
 export const register = (name, email, password) => {
